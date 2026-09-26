@@ -16,8 +16,9 @@ Pasta: [`disciplina-01-estado-governo-mercado/`](disciplina-01-estado-governo-me
 |---|---|
 | `index.html` | Página de conteúdos: ementa, objetivos, 8 unidades (da introdução à economia ao Estado neoliberal e ao caso brasileiro), plano de estudos e referências |
 | `slides.html` | 28 slides (use ←/→, espaço ou deslize; `#n` na URL abre o slide n; imprimir gera PDF com um slide por página) |
-| `avaliacao-1.html` | Avaliação 1: Unidades 1–4, 10 questões de múltipla escolha com correção automática e gabarito comentado |
-| `avaliacao-2.html` | Avaliação 2: Unidades 5–8, 10 questões de múltipla escolha com correção automática e gabarito comentado |
-| `assets/` | Estilo compartilhado e motor das avaliações |
+| `apresentacao.html` | Slides do vídeo de apresentação da disciplina (8 slides) |
+| `exercicios-1.html` | Exercícios de fixação 1: Unidades 1–4, 10 questões de múltipla escolha com correção automática e comentários (não avaliativos) |
+| `exercicios-2.html` | Exercícios de fixação 2: Unidades 5–8, 10 questões de múltipla escolha com correção automática e comentários (não avaliativos) |
+| `assets/` | Estilo compartilhado e motor dos exercícios |
 
-Para usar, abra `index.html` no navegador. Não é preciso instalar nada. As avaliações têm botões para imprimir a prova e, em separado, o gabarito comentado (para o professor ou tutor).
+Para usar, abra `index.html` no navegador. Não é preciso instalar nada. As avaliações oficiais (A1, A2, A3, 2ª chamada e Prova Final) são aplicadas no AVA e não ficam neste repositório público.
