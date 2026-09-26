@@ -182,3 +182,11 @@ footer { margin: 3rem 0 2rem; color: var(--muted); font-size: .9rem; }
   h1 { font-size: 1.7rem; }
   h2 { font-size: 1.35rem; }
 }
+
+/* Faixa institucional UNEMAT · DEAD · UAB */
+.inst { background: #fff; border-bottom: 3px solid #e8c65a; }
+.inst .wrap { display: flex; align-items: center; justify-content: center; gap: clamp(.8rem, 4vw, 2.6rem); padding-top: .55rem; padding-bottom: .55rem; flex-wrap: wrap; }
+.inst img { height: 52px; width: auto; display: block; }
+.inst img.brasao { height: 60px; }
+@media (max-width: 560px) { .inst img { height: 34px; } .inst img.brasao { height: 40px; } }
+@media print { .inst { display: none; } }
