@@ -4,282 +4,171 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apresentação: Estado, Governo e Mercado</title>
-<meta name="description" content="Slides do vídeo de apresentação da disciplina Estado, Governo e Mercado: objetivos, organização, materiais, avaliações e rotina de estudo.">
+<meta name="description" content="Videoaula de apresentação da disciplina Estado, Governo e Mercado (Prof. Dr. Cleiton Franco, 09/10 a 15/11/2026): slides no padrão DEAD/UAB, plano de ensino e slides das unidades para download.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 <style>
-  :root {
-    --bg: #e9e5dc;
-    --slide: #fbfaf7;
-    --text: #1f2328;
-    --muted: #5b6168;
-    --border: #ddd6c8;
-    --accent: #1d5c63;
-    --accent-soft: #d8ebe9;
-    --accent-2: #a4471f;
-    --surface-2: #efebe2;
+  .viewer { margin: 1.2rem 0 .6rem; }
+  .frame {
+    position: relative; background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; aspect-ratio: 16 / 9; box-shadow: 0 6px 24px rgba(0,0,0,.08);
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0f1113; --slide: #1d2125; --text: #e8e6e1; --muted: #a3a9b0; --border: #353b42;
-      --accent: #6cc3bb; --accent-soft: #1f3a3c; --accent-2: #e59a74; --surface-2: #262b30;
-    }
+  .frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .viewer-bar { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: .6rem; flex-wrap: wrap; }
+  .viewer-bar .nav { display: flex; align-items: center; gap: .5rem; }
+  .viewer-bar button {
+    font: inherit; font-size: .95rem; cursor: pointer; padding: .4rem .9rem; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
   }
-  :root[data-theme="dark"] {
-    --bg: #0f1113; --slide: #1d2125; --text: #e8e6e1; --muted: #a3a9b0; --border: #353b42;
-    --accent: #6cc3bb; --accent-soft: #1f3a3c; --accent-2: #e59a74; --surface-2: #262b30;
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-
-  .stage {
-    width: min(100vw, calc((100vh - 52px) * 16 / 9));
-    aspect-ratio: 16 / 9;
-    container-type: inline-size;
-    position: relative;
-  }
-  .slide {
-    position: absolute; inset: 0;
-    display: none; flex-direction: column;
-    background: var(--slide);
-    border-radius: 1cqw;
-    box-shadow: 0 .6cqw 2.4cqw rgba(0,0,0,.18);
-    padding: 4.2cqw 5.5cqw 3.6cqw;
-    font-size: 2.05cqw; line-height: 1.45;
-    overflow: hidden;
-  }
-  .slide.active { display: flex; }
-  .slide::after {
-    content: attr(data-n); position: absolute; right: 2.4cqw; bottom: 1.6cqw;
-    font-size: 1.3cqw; color: var(--muted);
-  }
-  .slide::before {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: .7cqw; background: var(--accent);
-    border-radius: 1cqw 0 0 1cqw;
-  }
-
-  .slide h1, .slide h2 { font-family: "Source Serif 4", Georgia, serif; margin: 0 0 1.6cqw; line-height: 1.15; }
-  .slide h1 { font-size: 5cqw; }
-  .slide h2 { font-size: 3.4cqw; }
-  .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 1.35cqw; font-weight: 700; color: var(--accent-2); margin: 0 0 .8cqw; }
-  .slide p { margin: 0 0 1.2cqw; }
-  .slide ul, .slide ol { margin: 0 0 1.2cqw; padding-left: 2.6cqw; }
-  .slide li { margin: 0 0 .7cqw; }
-  .slide strong { color: var(--accent); }
-  .muted { color: var(--muted); }
-  .big { font-size: 2.6cqw; }
-  .quote {
-    font-family: "Source Serif 4", Georgia, serif; font-size: 2.6cqw; line-height: 1.35;
-    border-left: .5cqw solid var(--accent-2); padding-left: 2cqw; margin: 1cqw 0 1.6cqw;
-  }
-
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4cqw; }
-  .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8cqw; }
-  .cols4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4cqw; }
-  .tile {
-    background: var(--surface-2); border: .12cqw solid var(--border); border-radius: .9cqw;
-    padding: 1.5cqw 1.7cqw;
-  }
-  .tile h3 { margin: 0 0 .6cqw; font-size: 2.1cqw; color: var(--accent); }
-  .tile p { margin: 0; font-size: 1.8cqw; }
-  .tile .tag { font-size: 1.3cqw; text-transform: uppercase; letter-spacing: .08em; color: var(--accent-2); font-weight: 700; }
-
-  table { width: 100%; border-collapse: collapse; font-size: 1.65cqw; }
-  th, td { text-align: left; padding: .7cqw 1cqw; border-bottom: .12cqw solid var(--border); vertical-align: top; }
-  th { background: var(--surface-2); }
-
-  .title-slide { justify-content: center; }
-  .title-slide h1 { font-size: 6cqw; }
-  .title-slide .sub { font-size: 2.4cqw; color: var(--muted); }
-  .title-slide .foot { position: absolute; left: 5.5cqw; bottom: 3.6cqw; font-size: 1.5cqw; color: var(--muted); }
-
-  .tl { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1cqw; margin-top: 2cqw; position: relative; }
-  .tl::before { content: ""; position: absolute; left: 0; right: 0; top: 1.1cqw; height: .3cqw; background: var(--accent); }
-  .tl div { position: relative; padding-top: 3cqw; font-size: 1.6cqw; }
-  .tl div::before {
-    content: ""; position: absolute; top: .3cqw; left: 0; width: 1.8cqw; height: 1.8cqw; border-radius: 50%;
-    background: var(--slide); border: .35cqw solid var(--accent-2);
-  }
-  .tl b { display: block; color: var(--accent-2); font-size: 1.9cqw; }
-
-  svg.pend { width: 100%; height: auto; }
-
-  .controls {
-    height: 52px; display: flex; align-items: center; gap: 12px;
-    font-size: 14px; color: var(--muted);
-  }
-  .controls button {
-    font: inherit; cursor: pointer; background: transparent; color: var(--text);
-    border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px;
-  }
-  .controls button:hover { border-color: var(--accent); }
-  .controls a { color: var(--accent); }
-  .progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--accent); transition: width .2s; }
-
-  @media print {
-    @page { size: 1280px 720px; margin: 0; }
-    html, body { height: auto; overflow: visible; background: #fff; display: block; }
-    .controls, .progress { display: none; }
-    .stage { width: 1280px; aspect-ratio: auto; }
-    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; border-radius: 0; box-shadow: none; break-after: page; }
-  }
+  .viewer-bar button:hover { border-color: var(--accent); }
+  .viewer-bar .count { color: var(--muted); font-size: .92rem; min-width: 4.5rem; text-align: center; }
+  .viewer-bar .caption { color: var(--muted); font-size: .92rem; }
+  .thumbs { display: flex; gap: .4rem; overflow-x: auto; padding: .5rem 0 .2rem; }
+  .thumbs button { flex: 0 0 auto; width: 96px; padding: 0; border: 2px solid transparent; border-radius: 6px; overflow: hidden; cursor: pointer; background: none; }
+  .thumbs button[aria-current="true"] { border-color: var(--accent); }
+  .thumbs img { display: block; width: 100%; }
+  .files { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .8rem; margin: 1rem 0; }
+  .file { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; display: flex; flex-direction: column; gap: .35rem; }
+  .file h3 { margin: 0; font-size: 1.05rem; }
+  .file p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .file .links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .3rem; }
+  .file .links a { font-size: .9rem; font-weight: 600; text-decoration: none; padding: .3rem .7rem; border-radius: 6px; border: 1px solid var(--accent); }
+  .file.featured { border-color: var(--accent); background: var(--accent-soft); }
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
 
-<main class="stage" id="deck" aria-live="polite">
-
-<!-- 1 -->
-<section class="slide title-slide">
-  <p class="kicker">Especialização em Gestão Pública · Apresentação da disciplina</p>
-  <h1>Estado, Governo e Mercado</h1>
-  <p class="sub">Boas-vindas! Prof. Dr. Cleiton Franco<br>1º bloco · 09/10 a 15/11/2026</p>
-  <p class="foot">UNEMAT / DEAD · UAB · 1º Eixo · Módulo Básico · 30 h · EaD</p>
-</section>
-
-<!-- 2 -->
-<section class="slide">
-  <p class="kicker">Por que esta disciplina?</p>
-  <h2>A pergunta central</h2>
-  <p class="quote">Qual deve ser o papel do Estado na economia e na sociedade, e qual deve ser o papel do mercado?</p>
-  <div class="cols">
-    <div class="tile"><h3>No seu trabalho</h3><p>Tarifas, concessões, programas sociais, regulação, orçamento: toda decisão pública responde a essa pergunta.</p></div>
-    <div class="tile"><h3>No curso</h3><p>Base para O Público e o Privado, Desenvolvimento do Estado Brasileiro e Políticas Públicas.</p></div>
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Estado, Governo e Mercado</a>
+    <nav aria-label="Material da disciplina">
+      <a href="../index.html">Curso</a>
+      <a href="index.html">Conteúdos</a>
+      <a href="slides.html">Slides</a>
+      <a href="apresentacao.html" aria-current="page">Apresentação</a>
+      <a href="exercicios-1.html">Exercícios 1</a>
+      <a href="exercicios-2.html">Exercícios 2</a>
+    </nav>
   </div>
-</section>
-
-<!-- 3 -->
-<section class="slide">
-  <p class="kicker">Objetivo</p>
-  <h2>Ao final da disciplina, você vai…</h2>
-  <ul class="big">
-    <li>usar os <strong>conceitos básicos de economia</strong> para analisar problemas públicos</li>
-    <li>explicar as <strong>falhas de mercado</strong> e as <strong>funções do Estado</strong></li>
-    <li>comparar as matrizes <strong>liberal</strong> e <strong>marxista</strong></li>
-    <li>caracterizar os <strong>modelos de Estado</strong> e relacioná-los ao Brasil</li>
-  </ul>
-</section>
-
-<!-- 4 -->
-<section class="slide">
-  <p class="kicker">Organização</p>
-  <h2>Quatro unidades, quatro semanas</h2>
-  <table>
-    <thead><tr><th>Semana</th><th>Unidade</th><th>Destaques</th></tr></thead>
-    <tbody>
-      <tr><td><strong>1</strong></td><td>Introdução à economia; Estado, governo e mercado</td><td>Fórum de apresentação e fórum temático 1</td></tr>
-      <tr><td><strong>2</strong></td><td>Dinâmica pendular e matriz liberal</td><td>Web-conferência · <strong>A1</strong></td></tr>
-      <tr><td><strong>3</strong></td><td>Matriz marxista e mudanças do séc. XIX</td><td>Web-conferência · fórum temático 2</td></tr>
-      <tr><td><strong>4</strong></td><td>Modelos de Estado e o Estado brasileiro</td><td>Revisão · <strong>A2</strong> e <strong>A3</strong></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- 5 -->
-<section class="slide">
-  <p class="kicker">Materiais</p>
-  <h2>Onde estudar</h2>
-  <div class="cols3">
-    <div class="tile"><h3>Livro-texto</h3><p>COELHO, R. C. <em>Estado, governo e mercado</em> (UFSC/CAPES/UAB, 2014), no EduCAPES.</p></div>
-    <div class="tile"><h3>Página e slides</h3><p>Textos, quadros e exemplos por unidade, e 28 slides de revisão.</p></div>
-    <div class="tile"><h3>Videoaulas</h3><p>Uma por unidade, no AVA.</p></div>
-    <div class="tile"><h3>Exercícios de fixação</h3><p>Dois questionários sem nota, com comentários.</p></div>
-    <div class="tile"><h3>Fóruns</h3><p>Apresentação, dúvidas e dois fóruns temáticos.</p></div>
-    <div class="tile"><h3>Web-conferências</h3><p>Uma por semana, com professor e tutor.</p></div>
-  </div>
-</section>
-
-<!-- 6 -->
-<section class="slide">
-  <p class="kicker">Avaliação</p>
-  <h2>Três avaliações, todas a distância</h2>
-  <div class="cols3">
-    <div class="tile"><span class="tag">Semana 2</span><h3>A1</h3><p>Questionário no AVA: 10 questões objetivas (Unidades 1 e 2).</p></div>
-    <div class="tile"><span class="tag">Semana 4</span><h3>A2</h3><p>Questionário no AVA: 10 questões objetivas (Unidades 3 e 4).</p></div>
-    <div class="tile"><span class="tag">Semana 4</span><h3>A3</h3><p>10 questões objetivas + estudo de caso discursivo (todo o conteúdo).</p></div>
-  </div>
-  <p style="margin-top:2cqw" class="big">Nota final = (((A1 + A2) / 2) × 0,4) + (A3 × 0,6)</p>
-  <p class="muted">Aprovação: nota final ≥ 7,0 e 75% de frequência nas web-conferências. Há 2ª chamada e Prova Final, conforme as normas da UNEMAT.</p>
-</section>
-
-<!-- 7 -->
-<section class="slide">
-  <p class="kicker">Como estudar</p>
-  <h2>Uma rotina para cada semana</h2>
-  <ol class="big">
-    <li>Assista à <strong>videoaula</strong> da unidade</li>
-    <li>Leia o <strong>livro-texto</strong> e a <strong>página de conteúdos</strong></li>
-    <li>Revise com os <strong>slides</strong> e os <strong>exercícios de fixação</strong></li>
-    <li>Participe do <strong>fórum</strong> e da <strong>web-conferência</strong></li>
-    <li>Faça a <strong>avaliação</strong> antes do prazo (23h55)</li>
-  </ol>
-</section>
-
-<!-- 8 -->
-<section class="slide title-slide">
-  <p class="kicker">Próximos passos</p>
-  <h1>Vamos começar!</h1>
-  <p class="sub">1. Apresente-se no fórum de apresentação<br>2. Participe da aula inaugural (web-conferência)<br>3. Dúvidas: fórum de dúvidas e tutoria no AVA</p>
-  <p class="foot">Material da disciplina: cleitonfranco74.github.io/gestao_publica</p>
-</section>
-
-</main>
-
-<div class="controls">
-  <button id="prev" aria-label="Slide anterior">←</button>
-  <span id="counter">1 / 1</span>
-  <button id="next" aria-label="Próximo slide">→</button>
-  <a href="index.html">Conteúdos</a>
-  <a href="../index.html">Curso</a>
 </div>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Videoaula de apresentação · Padrão DEAD/UAB</p>
+    <h1>Apresentação da disciplina</h1>
+    <p class="lead">Prof. Dr. Cleiton Franco · Especialização em Gestão Pública · Turma 2026/2 · 1º bloco, de 09/10 a 15/11/2026.</p>
+  </header>
+
+  <section class="viewer" aria-label="Slides da videoaula de apresentação">
+    <div class="frame"><img id="slide" src="materiais/apresentacao/slide-01.jpg" alt=""></div>
+    <div class="viewer-bar">
+      <div class="nav">
+        <button id="prev" type="button" aria-label="Slide anterior">←</button>
+        <span class="count" id="count">1 / 13</span>
+        <button id="next" type="button" aria-label="Próximo slide">→</button>
+      </div>
+      <span class="caption" id="caption"></span>
+    </div>
+    <div class="thumbs" id="thumbs" aria-label="Miniaturas dos slides"></div>
+  </section>
+
+  <h2 id="materiais">Materiais da disciplina</h2>
+  <p>Plano de ensino e slides das videoaulas no padrão DEAD/UAB. Os arquivos em PowerPoint (.pptx) podem ser editados; os PDFs servem para leitura e impressão.</p>
+
+  <div class="files">
+    <div class="file featured">
+      <h3>Plano de Ensino</h3>
+      <p>Modelo institucional DEAD, preenchido: identificação, metodologia, avaliação, unidades, roteiro de atividades e webaulas.</p>
+      <div class="links"><a href="materiais/Plano_de_Ensino_Estado_Governo_e_Mercado.docx" download>Word (.docx)</a></div>
+    </div>
+    <div class="file featured">
+      <h3>Videoaula de apresentação</h3>
+      <p>13 slides: professor, ementa, unidades, bibliografia, avaliação, calendário do bloco e próximos passos.</p>
+      <div class="links"><a href="materiais/00_Videoaula_de_Apresentacao.pdf">PDF</a><a href="materiais/00_Videoaula_de_Apresentacao.pptx" download>PowerPoint</a></div>
+    </div>
+    <div class="file">
+      <h3>Unidade 1</h3>
+      <p>Introdução à economia; Estado, governo e mercado. 09/10 a 18/10.</p>
+      <div class="links"><a href="materiais/01_Unidade_1_Introducao_a_Economia_Estado_Governo_Mercado.pdf">PDF</a><a href="materiais/01_Unidade_1_Introducao_a_Economia_Estado_Governo_Mercado.pptx" download>PowerPoint</a></div>
+    </div>
+    <div class="file">
+      <h3>Unidade 2</h3>
+      <p>A dinâmica pendular e a matriz liberal. 19/10 a 25/10.</p>
+      <div class="links"><a href="materiais/02_Unidade_2_Pendulo_e_Matriz_Liberal.pdf">PDF</a><a href="materiais/02_Unidade_2_Pendulo_e_Matriz_Liberal.pptx" download>PowerPoint</a></div>
+    </div>
+    <div class="file">
+      <h3>Unidade 3</h3>
+      <p>A matriz marxista e as mudanças do século XIX. 26/10 a 01/11.</p>
+      <div class="links"><a href="materiais/03_Unidade_3_Matriz_Marxista.pdf">PDF</a><a href="materiais/03_Unidade_3_Matriz_Marxista.pptx" download>PowerPoint</a></div>
+    </div>
+    <div class="file">
+      <h3>Unidade 4</h3>
+      <p>Os modelos de Estado e o Estado brasileiro. 02/11 a 15/11.</p>
+      <div class="links"><a href="materiais/04_Unidade_4_Modelos_de_Estado_e_Brasil.pdf">PDF</a><a href="materiais/04_Unidade_4_Modelos_de_Estado_e_Brasil.pptx" download>PowerPoint</a></div>
+    </div>
+  </div>
+
+  <footer>Especialização em Gestão Pública · UNEMAT/DEAD · UAB · Estado, Governo e Mercado</footer>
+</main>
 
 <script>
 (function () {
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var counter = document.getElementById('counter');
-  var progress = document.getElementById('progress');
-  var i = 0;
-  slides.forEach(function (s, k) { s.setAttribute('data-n', (k + 1) + ' / ' + slides.length); });
-
-  function show(n) {
-    i = Math.max(0, Math.min(slides.length - 1, n));
-    slides.forEach(function (s, k) { s.classList.toggle('active', k === i); });
-    counter.textContent = (i + 1) + ' / ' + slides.length;
-    progress.style.width = ((i + 1) / slides.length * 100) + '%';
-    if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
+  var titles = [
+    'Capa: Especialização em Gestão Pública',
+    'Estado, Governo e Mercado: dados da disciplina',
+    'Prof. Dr. Cleiton Franco: formação e atuação',
+    'Por que estudar esta disciplina?',
+    'Ementa e objetivo geral',
+    'A arquitetura da disciplina',
+    'Bibliografia e fontes',
+    'O ecossistema de aprendizagem (30 h/a)',
+    'A avaliação: três etapas, todas a distância',
+    'Redes de segurança: 2ª chamada e Prova Final',
+    'O mapa do 1º bloco: 09/10 a 15/11/2026',
+    'Como estudar a cada semana',
+    'Próximos passos'
+  ];
+  var n = titles.length, i = 0;
+  var img = document.getElementById('slide');
+  var count = document.getElementById('count');
+  var caption = document.getElementById('caption');
+  var thumbs = document.getElementById('thumbs');
+  function src(k) { return 'materiais/apresentacao/slide-' + String(k + 1).padStart(2, '0') + '.jpg'; }
+  titles.forEach(function (t, k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Slide ' + (k + 1) + ': ' + t);
+    b.innerHTML = '<img src="' + src(k) + '" alt="" loading="lazy">';
+    b.onclick = function () { show(k); };
+    thumbs.appendChild(b);
+  });
+  function show(k) {
+    i = Math.max(0, Math.min(n - 1, k));
+    img.src = src(i);
+    img.alt = 'Slide ' + (i + 1) + ': ' + titles[i];
+    count.textContent = (i + 1) + ' / ' + n;
+    caption.textContent = titles[i];
+    [].forEach.call(thumbs.children, function (b, k2) { b.setAttribute('aria-current', k2 === i ? 'true' : 'false'); });
+    var t = thumbs.children[i];
+    if (t) thumbs.scrollLeft = t.offsetLeft - thumbs.clientWidth / 2 + t.clientWidth / 2;
   }
-  function fromHash() {
-    var n = parseInt(location.hash.slice(1), 10);
-    return isNaN(n) ? 0 : n - 1;
-  }
-
   document.getElementById('prev').onclick = function () { show(i - 1); };
   document.getElementById('next').onclick = function () { show(i + 1); };
   document.addEventListener('keydown', function (e) {
-    if (['ArrowRight', 'PageDown', ' ', 'Enter'].indexOf(e.key) >= 0) { e.preventDefault(); show(i + 1); }
-    else if (['ArrowLeft', 'PageUp', 'Backspace'].indexOf(e.key) >= 0) { e.preventDefault(); show(i - 1); }
-    else if (e.key === 'Home') show(0);
-    else if (e.key === 'End') show(slides.length - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
+    else if (e.key === 'ArrowLeft') show(i - 1);
   });
-  var x0 = null;
-  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-  document.addEventListener('touchend', function (e) {
+  var x0 = null, frame = document.querySelector('.frame');
+  frame.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  frame.addEventListener('touchend', function (e) {
     if (x0 === null) return;
     var dx = e.changedTouches[0].clientX - x0;
     if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
     x0 = null;
   });
-  window.addEventListener('hashchange', function () { show(fromHash()); });
-  show(fromHash());
+  show(0);
 })();
 </script>
 </body>

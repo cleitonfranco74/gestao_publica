@@ -16,7 +16,8 @@ Pasta: [`disciplina-01-estado-governo-mercado/`](disciplina-01-estado-governo-me
 |---|---|
 | `index.html` | Página de conteúdos: ementa, objetivos, 8 unidades (da introdução à economia ao Estado neoliberal e ao caso brasileiro), plano de estudos e referências |
 | `slides.html` | 28 slides (use ←/→, espaço ou deslize; `#n` na URL abre o slide n; imprimir gera PDF com um slide por página) |
-| `apresentacao.html` | Slides do vídeo de apresentação da disciplina (8 slides) |
+| `apresentacao.html` | Videoaula de apresentação no padrão DEAD/UAB (visualizador com 13 slides) e área de download dos materiais |
+| `materiais/` | Plano de Ensino preenchido (.docx) e slides no padrão DEAD/UAB da apresentação e das Unidades 1 a 4 (.pptx e .pdf) |
 | `exercicios-1.html` | Exercícios de fixação 1: Unidades 1–4, 10 questões de múltipla escolha com correção automática e comentários (não avaliativos) |
 | `exercicios-2.html` | Exercícios de fixação 2: Unidades 5–8, 10 questões de múltipla escolha com correção automática e comentários (não avaliativos) |
 | `assets/` | Estilo compartilhado e motor dos exercícios |
