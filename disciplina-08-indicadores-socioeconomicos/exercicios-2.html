@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercícios de fixação 2: Indicadores Socioeconômicos</title>
+<meta name="description" content="Exercícios de fixação 2 (Seções 5 a 8) da disciplina Indicadores Socioeconômicos na Gestão Pública: 10 questões de múltipla escolha para autoestudo, sem valor de nota.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Indicadores Socioeconômicos</a>
+    <nav aria-label="Material da disciplina">
+      <a href="../index.html">Curso</a>
+      <a href="index.html">Conteúdos</a>
+      <a href="apresentacao.html">Apresentação</a>
+      <a href="exercicios-1.html">Exercícios 1</a>
+      <a href="exercicios-2.html" aria-current="page">Exercícios 2</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Exercícios de fixação 2 · Seções 5 a 8 · não avaliativos</p>
+    <h1>Fontes de dados e indicadores econômicos</h1>
+    <p class="lead">10 questões de múltipla escolha para revisar o conteúdo. Esta atividade <strong>não vale nota</strong>: use-a para verificar o que aprendeu antes da Avaliação A2, que é feita no SIGAA. Marque uma alternativa por questão e clique em “Enviar respostas” para ver os acertos e os comentários.</p>
+    <div class="meta">
+      <div><b>Conteúdo</b>Seções 5 a 8</div>
+      <div><b>Valor</b>Sem nota (autoestudo)</div>
+      <div><b>Tempo sugerido</b>40 minutos</div>
+    </div>
+  </header>
+
+  <form id="quiz" onsubmit="return false"></form>
+
+  <div class="actions">
+    <button class="btn" id="submit" type="button">Enviar respostas</button>
+    <button class="btn secondary" id="reset" type="button">Refazer</button>
+    <button class="btn secondary" id="print-test" type="button">Imprimir exercícios</button>
+    <button class="btn secondary" id="print-key" type="button">Imprimir gabarito</button>
+  </div>
+
+  <section class="card result" id="result" aria-live="polite">
+    <div class="score"></div>
+    <p class="detail"></p>
+    <p>Revise na <a href="index.html">página de conteúdos</a> as questões que você errou e depois faça a Avaliação A2 no SIGAA.</p>
+  </section>
+
+  <section class="gabarito" id="gabarito">
+    <h2>Gabarito comentado: Exercícios de fixação 1</h2>
+  </section>
+
+  <footer>Especialização em Gestão Pública · Indicadores Socioeconômicos</footer>
+</main>
+
+<script>
+window.QUIZ = { questions: [
+ {
+  "q": "Qual fonte é universal e realizada a cada dez anos?",
+  "opts": [
+   "PNAD Contínua",
+   "POF",
+   "RAIS",
+   "Censo Demográfico",
+   "MUNIC"
+  ],
+  "a": 3,
+  "exp": "O Censo visita todos os domicílios; o mais recente foi em 2022."
+ },
+ {
+  "q": "A PNS, do IBGE, investiga principalmente:",
+  "opts": [
+   "Condições de saúde e acesso a serviços",
+   "Produção industrial",
+   "Preços ao consumidor",
+   "Finanças municipais",
+   "Safras agrícolas"
+  ],
+  "a": 0,
+  "exp": "A Pesquisa Nacional de Saúde traz dados sobre saúde, doenças crônicas e uso de serviços."
+ },
+ {
+  "q": "O Censo Escolar e o IDEB são produzidos pelo:",
+  "opts": [
+   "IBGE",
+   "INEP",
+   "IPEA",
+   "DATASUS",
+   "TSE"
+  ],
+  "a": 1,
+  "exp": "O INEP, vinculado ao MEC, realiza o Censo Escolar e o SAEB."
+ },
+ {
+  "q": "O saldo mensal de empregos com carteira assinada no município é obtido no:",
+  "opts": [
+   "Censo Demográfico",
+   "Boletim Focus",
+   "IPCA",
+   "SINASC",
+   "Novo CAGED"
+  ],
+  "a": 4,
+  "exp": "O Novo CAGED registra admissões e desligamentos de empregados formais."
+ },
+ {
+  "q": "Uma limitação do CadÚnico como fonte para diagnóstico é:",
+  "opts": [
+   "Não ter dados de renda",
+   "Ser realizado a cada dez anos",
+   "Registrar apenas as famílias cadastradas",
+   "Não ter dados municipais",
+   "Ser uma pesquisa de opinião"
+  ],
+  "a": 2,
+  "exp": "É um cadastro de demanda: quem não se cadastrou não aparece."
+ },
+ {
+  "q": "No PIB pela ótica da despesa, a letra G representa:",
+  "opts": [
+   "Ganhos de capital",
+   "Gastos do governo",
+   "Gasto das famílias",
+   "Geração de empregos",
+   "Gás e energia"
+  ],
+  "a": 1,
+  "exp": "PIB = C + I + G + (X − M): G são os gastos do governo."
+ },
+ {
+  "q": "O IGP-M, calculado pela FGV, é muito usado em:",
+  "opts": [
+   "Metas de inflação",
+   "Censo",
+   "Reajuste do salário mínimo",
+   "Cálculo do IDH",
+   "Contratos de aluguel"
+  ],
+  "a": 4,
+  "exp": "O IGP-M é um índice geral de preços frequente em contratos."
+ },
+ {
+  "q": "A meta da taxa Selic é definida:",
+  "opts": [
+   "Pelo Copom, do Banco Central",
+   "Pelo IBGE",
+   "Pelo Congresso Nacional",
+   "Pelas prefeituras",
+   "Pelo IPEA"
+  ],
+  "a": 0,
+  "exp": "O Comitê de Política Monetária define a Selic em oito reuniões por ano."
+ },
+ {
+  "q": "A pesquisa mensal do IBGE sobre o comércio varejista é a:",
+  "opts": [
+   "PNS",
+   "PAM",
+   "PMC",
+   "POF",
+   "PPM"
+  ],
+  "a": 2,
+  "exp": "A Pesquisa Mensal de Comércio acompanha as vendas do varejo."
+ },
+ {
+  "q": "A Carta de Conjuntura, com análises trimestrais da economia brasileira, é publicada pelo:",
+  "opts": [
+   "INEP",
+   "TSE",
+   "DATASUS",
+   "IPEA",
+   "CadÚnico"
+  ],
+  "a": 3,
+  "exp": "O IPEA publica a Carta de Conjuntura."
+ }
+] };
+</script>
+<script src="assets/quiz.js"></script>
+</body>
+</html>

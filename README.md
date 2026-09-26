@@ -23,3 +23,15 @@ Pasta: [`disciplina-01-estado-governo-mercado/`](disciplina-01-estado-governo-me
 | `assets/` | Estilo compartilhado e motor dos exercícios |
 
 Para usar, abra `index.html` no navegador. Não é preciso instalar nada. As avaliações oficiais (A1, A2, A3, 2ª chamada e Prova Final) são aplicadas no AVA e não ficam neste repositório público.
+
+## Disciplina 08: Indicadores Socioeconômicos na Gestão Pública (30 h)
+
+Pasta: [`disciplina-08-indicadores-socioeconomicos/`](disciplina-08-indicadores-socioeconomicos/)
+
+| Arquivo | Conteúdo |
+|---|---|
+| `index.html` | Página de conteúdos: ementa, objetivos, 8 seções (histórico, conceito e cálculo dos indicadores, diagnósticos, fontes de dados, indicadores econômicos e conjuntura), plano de estudos e referências |
+| `apresentacao.html` | Videoaula de apresentação no padrão DEAD/UAB (13 slides) e download do plano de ensino, do livro-texto (EduCAPES) e dos slides das Unidades 1 a 4 |
+| `exercicios-1.html`, `exercicios-2.html` | Exercícios de fixação (não avaliativos), 10 questões cada |
+| `materiais/` | Plano de Ensino (.docx) e slides no padrão DEAD/UAB (.pptx e .pdf) |
+

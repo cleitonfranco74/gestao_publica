@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indicadores Socioeconômicos</title>
+<meta name="description" content="Página de conteúdos da disciplina Indicadores Socioeconômicos na Gestão Pública: conceito, cálculo e propriedades dos indicadores, diagnósticos, fontes de dados e indicadores econômicos. Especialização em Gestão Pública (UNEMAT/UAB).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Indicadores Socioeconômicos</a>
+    <nav aria-label="Material da disciplina">
+      <a href="../index.html">Curso</a>
+      <a href="index.html" aria-current="page">Conteúdos</a>
+      <a href="apresentacao.html">Apresentação</a>
+      <a href="exercicios-1.html">Exercícios 1</a>
+      <a href="exercicios-2.html">Exercícios 2</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Especialização em Gestão Pública · 2º Eixo · Módulo Básico</p>
+  <h1>Indicadores Socioeconômicos na Gestão Pública</h1>
+  <p class="lead">Como transformar dados em informação para planejar, acompanhar e avaliar políticas públicas.</p>
+  <div class="meta">
+    <div><b>Carga horária</b>30 h (EaD)</div>
+    <div><b>Professor</b>Prof. Dr. Cleiton Franco</div>
+    <div><b>Avaliações</b>A1, A2 e A3 no SIGAA</div>
+    <div><b>Livro-texto</b>Jannuzzi (2014)</div>
+  </div>
+</header>
+
+<section class="card">
+  <h3 style="margin-top:0">Ementa (PPC)</h3>
+  <p>Uma breve caracterização histórica. Indicadores sociais: do conceito às medidas. Indicadores e os diagnósticos socioeconômicos. Principais produtores de dados e indicadores no Brasil. Principais pesquisas amostrais e institucionais do IBGE. Registros administrativos, cadastros públicos e dados de programas. Dados e indicadores econômicos. Principais boletins de conjuntura. Principais pesquisas econômicas do IBGE.</p>
+  <h3>Objetivos de aprendizagem</h3>
+  <ul>
+    <li>reconhecer a trajetória histórica dos indicadores sociais e os limites do PIB como medida de bem-estar;</li>
+    <li>calcular taxas, proporções, razões e números-índice e avaliar indicadores por suas propriedades;</li>
+    <li>elaborar um diagnóstico socioeconômico municipal e usar indicadores de eficiência, eficácia e efetividade;</li>
+    <li>localizar e usar as principais fontes de dados do país (Censo, pesquisas do IBGE, registros administrativos e cadastros);</li>
+    <li>interpretar indicadores econômicos e boletins de conjuntura e relacioná-los ao orçamento municipal.</li>
+  </ul>
+  <p><strong>Dica:</strong> escolha desde já um município (de preferência aquele em que você vive ou trabalha) e acompanhe os indicadores dele em todas as unidades.</p>
+</section>
+
+<nav class="card toc" aria-label="Sumário">
+  <h3 style="margin-top:0">Sumário</h3>
+  <ol>
+    <li><a href="#u1">Uma breve caracterização histórica</a></li>
+    <li><a href="#u2">Indicadores sociais: do conceito às medidas</a></li>
+    <li><a href="#u3">Indicadores no ciclo das políticas públicas</a></li>
+    <li><a href="#u4">O diagnóstico socioeconômico</a></li>
+    <li><a href="#u5">Produtores de dados, Censo e pesquisas do IBGE</a></li>
+    <li><a href="#u6">Registros administrativos, cadastros e portais</a></li>
+    <li><a href="#u7">Dados e indicadores econômicos</a></li>
+    <li><a href="#u8">Pesquisas econômicas do IBGE e boletins de conjuntura</a></li>
+    <li><a href="#plano">Plano de estudos e avaliações</a></li>
+    <li><a href="#refs">Referências</a></li>
+  </ol>
+</nav>
+
+<!-- ============ 1 ============ -->
+<h2 id="u1">1. Uma breve caracterização histórica</h2>
+<p>Governar exige informação. Sem dados, o gestor não sabe quem precisa de uma política, quanto precisa e se a ação produziu resultados. Os indicadores servem para <strong>diagnosticar</strong>, <strong>planejar</strong>, <strong>monitorar</strong> e <strong>avaliar</strong>, e também para o <strong>controle social</strong>: com dados públicos, a população pode cobrar metas.</p>
+<ul class="timeline">
+  <li><b>Séc. XIX:</b> consolidação das estatísticas oficiais e dos censos. No Brasil, o primeiro recenseamento geral é de 1872.</li>
+  <li><b>1936:</b> criação do IBGE, que passa a coordenar as estatísticas nacionais.</li>
+  <li><b>1930–1950:</b> sistemas de contas nacionais; o PIB se torna a principal medida do desempenho das economias.</li>
+  <li><b>Anos 1960:</b> “movimento dos indicadores sociais”, nos Estados Unidos: crescer não bastava, era preciso medir saúde, educação, moradia e condições de vida.</li>
+  <li><b>1990:</b> o PNUD lança o Índice de Desenvolvimento Humano (IDH).</li>
+  <li><b>2000 e 2015:</b> Objetivos de Desenvolvimento do Milênio e, depois, a Agenda 2030, com 17 Objetivos de Desenvolvimento Sustentável (ODS).</li>
+  <li><b>Hoje:</b> dados abertos, portais públicos e registros administrativos digitais ampliam o acesso à informação.</li>
+</ul>
+<div class="card box-key">
+  <div class="label">O PIB não mede tudo</div>
+  <p>O PIB mostra o valor da produção e seu crescimento, mas não mostra como a renda se distribui, o acesso a serviços básicos nem os custos ambientais. Um município pode ter PIB per capita elevado, graças ao agronegócio, e ainda assim muitas famílias em situação de pobreza.</p>
+</div>
+
+<!-- ============ 2 ============ -->
+<h2 id="u2">2. Indicadores sociais: do conceito às medidas</h2>
+<div class="card box-key">
+  <div class="label">Conceito (Jannuzzi)</div>
+  <p>Indicador social é uma medida, em geral quantitativa, dotada de significado social, usada para substituir, quantificar ou operacionalizar um conceito social abstrato, de interesse teórico ou programático.</p>
+</div>
+<h3>2.1 Do conceito ao indicador</h3>
+<p>Conceitos como pobreza, desenvolvimento ou qualidade da educação não se observam diretamente. Para medi-los, definimos <strong>dimensões</strong>, escolhemos <strong>dados</strong> e construímos <strong>indicadores</strong>. Exemplo: pobreza → dimensões de renda, moradia e acesso a serviços → dados do Censo, da PNAD Contínua ou do CadÚnico → proporção de pessoas com renda per capita abaixo de uma linha de pobreza. A escolha das dimensões e da linha de corte muda o resultado: todo indicador envolve decisões metodológicas.</p>
+<h3>2.2 Dado, indicador e índice sintético</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>Nível</th><th>Exemplo (hipotético)</th><th>Para que serve</th></tr></thead>
+  <tbody>
+    <tr><td>Dado bruto</td><td>18 óbitos de menores de 1 ano</td><td>Contagem; não permite comparar municípios de tamanhos diferentes</td></tr>
+    <tr><td>Indicador</td><td>15 óbitos por mil nascidos vivos</td><td>Relaciona o dado a uma base comparável</td></tr>
+    <tr><td>Índice sintético</td><td>IDHM = 0,72</td><td>Combina vários indicadores em um número</td></tr>
+  </tbody>
+</table></div>
+<h3>2.3 Como se calcula</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>Tipo</th><th>Cálculo (dados hipotéticos)</th><th>Resultado</th></tr></thead>
+  <tbody>
+    <tr><td>Taxa</td><td>Mortalidade infantil: 18 óbitos de menores de 1 ano ÷ 1.200 nascidos vivos × 1.000</td><td>15 por mil nascidos vivos</td></tr>
+    <tr><td>Proporção</td><td>Analfabetismo: 900 analfabetos ÷ 9.000 pessoas de 15 anos ou mais × 100</td><td>10%</td></tr>
+    <tr><td>Razão</td><td>Médicos por habitante: 24 médicos ÷ 12.000 habitantes × 1.000</td><td>2 por mil habitantes</td></tr>
+    <tr><td>Número-índice</td><td>Valor do ano ÷ valor do ano-base × 100</td><td>Ano-base = 100</td></tr>
+  </tbody>
+</table></div>
+<p>Sempre verifique <strong>numerador</strong>, <strong>denominador</strong> e <strong>unidade</strong> (“por mil”, “por cem mil”, “%”).</p>
+<h3>2.4 Propriedades de um bom indicador</h3>
+<ul>
+  <li><strong>Relevância:</strong> responde a uma questão importante da agenda pública.</li>
+  <li><strong>Validade:</strong> mede de fato o conceito que se pretende medir.</li>
+  <li><strong>Confiabilidade:</strong> dados de boa qualidade, coletados com método consistente.</li>
+  <li><strong>Sensibilidade:</strong> capta as mudanças, inclusive as produzidas pela política.</li>
+  <li><strong>Especificidade:</strong> reflete o fenômeno de interesse, e não outros.</li>
+  <li><strong>Desagregabilidade:</strong> pode ser calculado por bairro, sexo, idade, cor/raça.</li>
+  <li><strong>Também importam:</strong> periodicidade, comunicabilidade, factibilidade (custo) e historicidade (série no tempo).</li>
+</ul>
+<h3>2.5 Classificações</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>Critério</th><th>Tipos e exemplos</th></tr></thead>
+  <tbody>
+    <tr><td>Natureza</td><td>Objetivos (taxa de matrícula) × subjetivos (satisfação com o posto de saúde)</td></tr>
+    <tr><td>Complexidade</td><td>Simples (taxa de analfabetismo) × sintéticos ou compostos (IDH, IDEB)</td></tr>
+    <tr><td>Fluxo da política</td><td>Insumo (médicos por mil habitantes) · processo (consultas de pré-natal realizadas) · resultado (gestantes com 7+ consultas) · impacto (queda da mortalidade infantil)</td></tr>
+    <tr><td>Uso</td><td>Descritivos (retratam a realidade) × normativos (comparam com um padrão desejado)</td></tr>
+  </tbody>
+</table></div>
+<h3>2.6 Indicadores sintéticos: IDH e IDHM</h3>
+<p>O IDH combina <strong>longevidade</strong> (esperança de vida), <strong>educação</strong> e <strong>renda</strong> em um número de 0 a 1. No Brasil, o IDHM é calculado para os municípios e divulgado no Atlas do Desenvolvimento Humano. Os índices sintéticos facilitam comparações, mas escondem desigualdades internas e dependem de escolhas de componentes e pesos, como discutem Guimarães e Jannuzzi (2005).</p>
+
+<!-- ============ 3 ============ -->
+<h2 id="u3">3. Indicadores no ciclo das políticas públicas</h2>
+<p>Cada fase da política pede indicadores diferentes: de contexto no <strong>diagnóstico</strong>; de metas na <strong>formulação</strong>; de processo no <strong>monitoramento</strong> da implementação; e de resultado e impacto na <strong>avaliação</strong>.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>Conceito</th><th>O que mede</th><th>Exemplo (programa de vacinação)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Eficiência</strong></td><td>Relação entre resultados e custos</td><td>Custo por dose aplicada</td></tr>
+    <tr><td><strong>Eficácia</strong></td><td>Grau de alcance das metas</td><td>95% da meta de cobertura vacinal atingida</td></tr>
+    <tr><td><strong>Efetividade</strong></td><td>Mudança nas condições da população (impacto)</td><td>Queda das internações por doenças evitáveis</td></tr>
+  </tbody>
+</table></div>
+<p>Um programa pode ser eficiente e eficaz sem ser efetivo: cumprir metas baratas que não mudam a realidade.</p>
+
+<!-- ============ 4 ============ -->
+<h2 id="u4">4. O diagnóstico socioeconômico</h2>
+<p>O diagnóstico é um retrato organizado das condições de vida da população de um território, construído com indicadores, para orientar prioridades. É usado no PPA, na LDO, nos planos municipais de saúde, educação e assistência social, no Plano Diretor e em editais e convênios.</p>
+<h3>4.1 Roteiro</h3>
+<ol>
+  <li>Definir o objetivo e o território (município, bairros).</li>
+  <li>Selecionar dimensões e indicadores.</li>
+  <li>Levantar dados e fontes (com ano de referência).</li>
+  <li>Comparar e analisar: no tempo, no espaço e com metas.</li>
+  <li>Identificar prioridades e grupos mais afetados.</li>
+  <li>Comunicar com tabelas, gráficos e mapas simples, sempre com fonte e ano.</li>
+</ol>
+<h3>4.2 Dimensões e exemplos de indicadores</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>Dimensão</th><th>Exemplos</th></tr></thead>
+  <tbody>
+    <tr><td>Demografia</td><td>População por idade; taxa de crescimento</td></tr>
+    <tr><td>Educação</td><td>Taxa de atendimento em creche; IDEB; distorção idade-série</td></tr>
+    <tr><td>Saúde</td><td>Mortalidade infantil; cobertura vacinal; gestantes com 7+ consultas</td></tr>
+    <tr><td>Trabalho e renda</td><td>Saldo de empregos formais; renda per capita</td></tr>
+    <tr><td>Habitação e saneamento</td><td>% de domicílios com esgotamento adequado</td></tr>
+    <tr><td>Assistência social</td><td>Famílias no CadÚnico por mil habitantes</td></tr>
+    <tr><td>Segurança</td><td>Homicídios por 100 mil habitantes</td></tr>
+    <tr><td>Finanças públicas</td><td>Receita própria ÷ receita total; gasto com pessoal ÷ RCL</td></tr>
+  </tbody>
+</table></div>
+<div class="card box-ex">
+  <div class="label">Comparar para interpretar</div>
+  <p>Uma taxa de desocupação de 8% parece moderada. Se a do estado é 5% e a do município subiu de 4% para 8% em dois anos, o quadro é preocupante. (Dados hipotéticos.)</p>
+</div>
+<h3>4.3 Cuidados na leitura</h3>
+<ul>
+  <li>Use <strong>taxas</strong>, e não números absolutos, para comparar territórios de tamanhos diferentes.</li>
+  <li>Em municípios pequenos, poucos eventos fazem as taxas oscilarem: use <strong>médias de três anos</strong>.</li>
+  <li>Denominadores desatualizados (população estimada) distorcem as taxas.</li>
+  <li>Verifique se o <strong>método de cálculo</strong> mudou ao longo da série.</li>
+</ul>
+
+<!-- ============ 5 ============ -->
+<h2 id="u5">5. Produtores de dados, Censo e pesquisas do IBGE</h2>
+<p>O <strong>IBGE</strong> coordena o sistema estatístico nacional. Os ministérios produzem dados setoriais (Saúde/DATASUS, Educação/INEP, Trabalho/RAIS e CAGED, Desenvolvimento Social/CadÚnico); o Banco Central e o Tesouro produzem dados econômicos e fiscais; IPEA, PNUD e Fundação João Pinheiro (Atlas Brasil) e os institutos estaduais completam o sistema.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>Tipo de fonte</th><th>Vantagens</th><th>Limites</th></tr></thead>
+  <tbody>
+    <tr><td>Censos</td><td>Cobrem toda a população; dados para municípios e bairros</td><td>Caros; realizados a cada dez anos</td></tr>
+    <tr><td>Pesquisas amostrais</td><td>Frequentes e detalhadas; custo menor</td><td>Em geral sem dados municipais</td></tr>
+    <tr><td>Registros administrativos</td><td>Contínuos, municipais e baratos</td><td>Só cobrem quem é registrado; dependem da qualidade do registro</td></tr>
+  </tbody>
+</table></div>
+<h3>5.1 O Censo Demográfico</h3>
+<p>Universal e decenal, visita todos os domicílios. O mais recente foi realizado em 2022, adiado de 2020. É a única fonte com dados detalhados para todos os municípios, bairros e setores censitários, e serve de base para as estimativas populacionais anuais (usadas na distribuição do FPM) e para o IDHM.</p>
+<h3>5.2 Pesquisas amostrais e institucionais do IBGE</h3>
+<ul>
+  <li><strong>PNAD Contínua</strong> (trimestral): trabalho, desocupação, informalidade e rendimento.</li>
+  <li><strong>POF</strong>: orçamentos familiares; base dos pesos dos índices de preços.</li>
+  <li><strong>PNS</strong>: condições de saúde e acesso a serviços.</li>
+  <li><strong>MUNIC</strong> (institucional): estrutura e gestão das prefeituras, como conselhos, planos e órgãos.</li>
+</ul>
+<p>Atenção: pesquisas amostrais como a PNAD Contínua não produzem resultados para a maioria dos municípios.</p>
+
+<!-- ============ 6 ============ -->
+<h2 id="u6">6. Registros administrativos, cadastros e portais</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Registro</th><th>Órgão</th><th>Indicadores possíveis</th></tr></thead>
+  <tbody>
+    <tr><td>SIM e SINASC</td><td>Ministério da Saúde (DATASUS)</td><td>Mortalidade infantil e por causas; nascidos vivos; pré-natal</td></tr>
+    <tr><td>Censo Escolar e SAEB</td><td>INEP</td><td>Matrículas, aprovação, distorção idade-série, IDEB</td></tr>
+    <tr><td>RAIS e Novo CAGED</td><td>Ministério do Trabalho</td><td>Emprego formal, salários, saldo mensal de vagas</td></tr>
+    <tr><td>SICONFI</td><td>Tesouro Nacional</td><td>Receitas, despesas, gasto com pessoal dos municípios</td></tr>
+  </tbody>
+</table></div>
+<div class="card box-key">
+  <div class="label">Cadastro Único</div>
+  <p>Registro das famílias de baixa renda, com dados de moradia, escolaridade, trabalho e renda. É a base do Bolsa Família e de dezenas de programas. Serve para localizar famílias vulneráveis e focalizar ações, mas é um <strong>cadastro de demanda</strong>: quem não se cadastrou não aparece, e os dados dependem de atualização.</p>
+</div>
+<h3>6.1 Portais de acesso livre</h3>
+<ul>
+  <li><a href="https://cidades.ibge.gov.br" target="_blank" rel="noopener">IBGE Cidades</a>: panorama de cada município.</li>
+  <li><a href="https://sidra.ibge.gov.br" target="_blank" rel="noopener">SIDRA</a>: tabelas das pesquisas do IBGE.</li>
+  <li><a href="https://www.atlasbrasil.org.br" target="_blank" rel="noopener">Atlas Brasil</a>: IDHM e indicadores municipais.</li>
+  <li><a href="https://datasus.saude.gov.br" target="_blank" rel="noopener">DATASUS</a>: dados de saúde (TabNet).</li>
+  <li><a href="https://portaldatransparencia.gov.br" target="_blank" rel="noopener">Portal da Transparência</a>: recursos federais e beneficiários.</li>
+</ul>
+<h3>6.2 Qual fonte para cada indicador?</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>Indicador</th><th>Fonte</th></tr></thead>
+  <tbody>
+    <tr><td>População por faixa etária</td><td>Censo 2022 e estimativas populacionais (IBGE)</td></tr>
+    <tr><td>Taxa de mortalidade infantil</td><td>SIM e SINASC (DATASUS)</td></tr>
+    <tr><td>IDEB e taxa de aprovação</td><td>INEP</td></tr>
+    <tr><td>Saldo de empregos formais</td><td>Novo CAGED</td></tr>
+    <tr><td>Famílias em situação de pobreza cadastradas</td><td>CadÚnico (MDS)</td></tr>
+    <tr><td>Receita própria do município</td><td>SICONFI (Tesouro Nacional)</td></tr>
+  </tbody>
+</table></div>
+
+<!-- ============ 7 ============ -->
+<h2 id="u7">7. Dados e indicadores econômicos</h2>
+<h3>7.1 PIB</h3>
+<p>O Produto Interno Bruto é o valor dos bens e serviços finais produzidos em um período. Pode ser medido pela ótica da <strong>produção</strong> (soma do valor adicionado pela agropecuária, indústria e serviços), da <strong>despesa</strong> (<strong>C + I + G + (X − M)</strong>) e da <strong>renda</strong> (salários, lucros, juros e aluguéis). O IBGE divulga o PIB trimestral do país e o PIB anual dos municípios.</p>
+<div class="card box-ex">
+  <div class="label">Nominal × real</div>
+  <p>Se o PIB nominal de um município cresceu 10% e a inflação foi de 6%, o crescimento real foi de (1,10 ÷ 1,06) − 1 ≈ 3,8%. O restante foi aumento de preços. (Dados hipotéticos.)</p>
+</div>
+<h3>7.2 Índices de preços</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>Índice</th><th>Instituição</th><th>Usos</th></tr></thead>
+  <tbody>
+    <tr><td>IPCA</td><td>IBGE</td><td>Índice oficial de inflação; referência da meta definida pelo CMN</td></tr>
+    <tr><td>INPC</td><td>IBGE</td><td>Famílias de menor renda; reajuste de benefícios do INSS e do salário mínimo</td></tr>
+    <tr><td>IGP-M</td><td>FGV</td><td>Índice geral de preços; muito usado em contratos de aluguel</td></tr>
+  </tbody>
+</table></div>
+<h3>7.3 Mercado de trabalho</h3>
+<p>Na PNAD Contínua, a <strong>força de trabalho</strong> reúne ocupados e desocupados; <strong>desocupado</strong> é quem procurou trabalho e não encontrou; a <strong>taxa de desocupação</strong> é desocupados ÷ força de trabalho. Como a PNAD não traz dados para a maioria dos municípios, no nível local usam-se o Novo CAGED (saldo mensal de empregos formais), a RAIS (estoque anual) e o Censo.</p>
+<h3>7.4 Juros, câmbio e contas públicas</h3>
+<ul>
+  <li><strong>Selic:</strong> taxa básica de juros, definida pelo Copom do Banco Central em oito reuniões por ano.</li>
+  <li><strong>Câmbio:</strong> afeta importados, combustíveis e as exportações do agronegócio.</li>
+  <li><strong>Resultado primário:</strong> receitas menos despesas, sem os juros.</li>
+  <li><strong>LRF no município:</strong> gasto com pessoal até 60% da receita corrente líquida (54% Executivo, 6% Legislativo).</li>
+</ul>
+
+<!-- ============ 8 ============ -->
+<h2 id="u8">8. Pesquisas econômicas do IBGE e boletins de conjuntura</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Pesquisa</th><th>Frequência</th><th>O que mostra</th></tr></thead>
+  <tbody>
+    <tr><td>Contas Nacionais</td><td>Trimestral</td><td>PIB do país e seus componentes</td></tr>
+    <tr><td>PIB dos Municípios</td><td>Anual</td><td>PIB e valor adicionado por setor em cada município</td></tr>
+    <tr><td>PIM-PF, PMC, PMS</td><td>Mensal</td><td>Indústria, comércio varejista e serviços</td></tr>
+    <tr><td>LSPA</td><td>Mensal</td><td>Estimativas das safras</td></tr>
+    <tr><td>PAM e PPM</td><td>Anual</td><td>Produção agrícola e pecuária de cada município</td></tr>
+  </tbody>
+</table></div>
+<h3>8.1 Boletins de conjuntura</h3>
+<ul>
+  <li><strong>Boletim Focus</strong> (Banco Central, semanal): expectativas do mercado para inflação, PIB, câmbio e Selic.</li>
+  <li><strong>Atas do Copom e relatórios do Banco Central:</strong> decisões e avaliação de juros e inflação.</li>
+  <li><strong>Carta de Conjuntura</strong> (IPEA, trimestral): atividade, preços, trabalho e setor externo.</li>
+  <li><strong>Boletim Macro</strong> (FGV IBRE): análises e projeções da economia brasileira.</li>
+</ul>
+<h3>8.2 Como ler a conjuntura em cinco passos</h3>
+<p>Inspirado em Feijó et al. (2008): (1) atividade (PIB, indústria, comércio, serviços, safra); (2) preços (IPCA); (3) trabalho (desocupação, CAGED, renda); (4) juros e câmbio; (5) contas públicas. Para o município, a conjuntura afeta a arrecadação (ICMS, FPM, ISS) e a procura por serviços públicos.</p>
+<div class="card box-ex">
+  <div class="label">Da conjuntura ao orçamento municipal</div>
+  <p>Em municípios agrícolas de Mato Grosso, uma safra maior tende a elevar o valor adicionado local e, nos anos seguintes, a participação do município na cota-parte do ICMS. Já uma desaceleração da economia reduz transferências e aumenta a procura por assistência social.</p>
+</div>
+
+<!-- ============ PLANO ============ -->
+<h2 id="plano">Plano de estudos e avaliações</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Semana</th><th>Seções desta página</th><th>Atividades</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>1 e 2</td><td>Vídeo de apresentação, Videoaula 1, fórum de apresentação e fórum temático 1</td></tr>
+    <tr><td>2</td><td>3 e 4</td><td>Videoaula 2, <a href="exercicios-1.html">exercícios de fixação 1</a>, <strong>Avaliação A1</strong> (SIGAA)</td></tr>
+    <tr><td>3</td><td>5 e 6</td><td>Videoaula 3, <strong>encontro síncrono</strong> (19h) e fórum temático 2 (ficha de indicadores)</td></tr>
+    <tr><td>4</td><td>7 e 8</td><td>Videoaula 4, <a href="exercicios-2.html">exercícios de fixação 2</a>, <strong>Avaliação A2</strong> (SIGAA)</td></tr>
+    <tr><td>5</td><td>Revisão</td><td><strong>Avaliação A3</strong> (SIGAA) e encerramento</td></tr>
+  </tbody>
+</table></div>
+<p>As três avaliações são a distância, no SIGAA. A A1 cobre as seções 1 a 4 e a A2, as seções 5 a 8; a A3 cobre todo o conteúdo, com parte objetiva e estudo de caso. Nota final = <strong>(((A1 + A2) / 2) × 0,4) + (A3 × 0,6)</strong>. Aprovação: nota final igual ou superior a 7,0 e presença no encontro síncrono (PPC: 75% de frequência nas atividades síncronas). As datas de cada semana serão divulgadas no SIGAA.</p>
+<div class="actions">
+  <a class="btn" href="apresentacao.html">Apresentação e materiais</a>
+  <a class="btn secondary" href="exercicios-1.html">Exercícios de fixação 1</a>
+  <a class="btn secondary" href="exercicios-2.html">Exercícios de fixação 2</a>
+</div>
+
+<!-- ============ REFERÊNCIAS ============ -->
+<h2 id="refs">Referências</h2>
+<h3>Bibliografia básica (PPC)</h3>
+<ul>
+  <li>FEIJÓ, C. et al. <em>Para entender a conjuntura econômica</em>. Barueri: Manole, 2008. p. 1-60.</li>
+  <li>JANNUZZI, P. M. <em>Indicadores sociais no Brasil: conceitos, fontes de dados e aplicações</em>. Campinas: Alínea, 2001. p. 11-63.</li>
+  <li>JANNUZZI, P. M. <em>Indicadores socioeconômicos na gestão pública</em>. 3. ed. Florianópolis: UFSC; Brasília: CAPES/UAB, 2014. <a href="https://educapes.capes.gov.br/bitstream/capes/145410/1/PNAP%20-%20Modulo%20Basico%20-%20GPM%20-%20Indicadores%20Socioeconomicos%20na%20Gestao%20Publica.pdf" target="_blank" rel="noopener">PDF no Portal EduCAPES</a>.</li>
+</ul>
+<h3>Bibliografia complementar</h3>
+<ul>
+  <li>CARDOSO, R. L. S. <em>Elaboração de indicadores de desempenho institucional e organizacional no setor público</em>. São Paulo: CEPAM, 1999.</li>
+  <li>CARLEY, M. <em>Indicadores sociais: teoria e prática</em>. Rio de Janeiro: Zahar, 1985.</li>
+  <li>GUIMARÃES, J. R. S.; JANNUZZI, P. M. IDH, indicadores sintéticos e suas aplicações em políticas públicas: uma análise crítica. <em>Revista Brasileira de Estudos Urbanos e Regionais</em>, v. 7, n. 1, p. 73-89, 2005.</li>
+  <li>JANNUZZI, P. M.; CAVATI SOBRINHO, H. Informação econômica no Sistema Estatístico Brasileiro. <em>Bahia Análise &amp; Dados</em>, v. 15, n. 1, p. 75-90, 2005.</li>
+  <li>SANTAGADA, S. Indicadores sociais: uma primeira abordagem histórica. <em>Pensamento Plural</em>, Pelotas, n. 1, p. 113-142, 2007.</li>
+</ul>
+
+<footer>Material didático da disciplina Indicadores Socioeconômicos na Gestão Pública, do Curso de Especialização em Gestão Pública (UNEMAT/UAB, EaD, 30 h). Prof. Dr. Cleiton Franco.</footer>
+</main>
+</body>
+</html>

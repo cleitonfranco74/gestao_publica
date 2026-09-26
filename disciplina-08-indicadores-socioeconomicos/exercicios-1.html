@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercícios de fixação 1: Indicadores Socioeconômicos</title>
+<meta name="description" content="Exercícios de fixação 1 (Seções 1 a 4) da disciplina Indicadores Socioeconômicos na Gestão Pública: 10 questões de múltipla escolha para autoestudo, sem valor de nota.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Indicadores Socioeconômicos</a>
+    <nav aria-label="Material da disciplina">
+      <a href="../index.html">Curso</a>
+      <a href="index.html">Conteúdos</a>
+      <a href="apresentacao.html">Apresentação</a>
+      <a href="exercicios-1.html" aria-current="page">Exercícios 1</a>
+      <a href="exercicios-2.html">Exercícios 2</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Exercícios de fixação 1 · Seções 1 a 4 · não avaliativos</p>
+    <h1>Indicadores sociais e diagnósticos</h1>
+    <p class="lead">10 questões de múltipla escolha para revisar o conteúdo. Esta atividade <strong>não vale nota</strong>: use-a para verificar o que aprendeu antes da Avaliação A1, que é feita no SIGAA. Marque uma alternativa por questão e clique em “Enviar respostas” para ver os acertos e os comentários.</p>
+    <div class="meta">
+      <div><b>Conteúdo</b>Seções 1 a 4</div>
+      <div><b>Valor</b>Sem nota (autoestudo)</div>
+      <div><b>Tempo sugerido</b>40 minutos</div>
+    </div>
+  </header>
+
+  <form id="quiz" onsubmit="return false"></form>
+
+  <div class="actions">
+    <button class="btn" id="submit" type="button">Enviar respostas</button>
+    <button class="btn secondary" id="reset" type="button">Refazer</button>
+    <button class="btn secondary" id="print-test" type="button">Imprimir exercícios</button>
+    <button class="btn secondary" id="print-key" type="button">Imprimir gabarito</button>
+  </div>
+
+  <section class="card result" id="result" aria-live="polite">
+    <div class="score"></div>
+    <p class="detail"></p>
+    <p>Revise na <a href="index.html">página de conteúdos</a> as questões que você errou e depois faça a Avaliação A1 no SIGAA.</p>
+  </section>
+
+  <section class="gabarito" id="gabarito">
+    <h2>Gabarito comentado: Exercícios de fixação 1</h2>
+  </section>
+
+  <footer>Especialização em Gestão Pública · Indicadores Socioeconômicos</footer>
+</main>
+
+<script>
+window.QUIZ = { questions: [
+ {
+  "q": "Qual foi a principal crítica do movimento dos indicadores sociais, nos anos 1960?",
+  "opts": [
+   "A falta de computadores",
+   "O uso do PIB como única medida de bem-estar",
+   "A existência de censos",
+   "O excesso de pesquisas de opinião",
+   "A criação das Nações Unidas"
+  ],
+  "a": 1,
+  "exp": "Crescer não bastava: era preciso medir diretamente saúde, educação e condições de vida."
+ },
+ {
+  "q": "O primeiro recenseamento geral do Brasil foi realizado em:",
+  "opts": [
+   "1822",
+   "1936",
+   "1872",
+   "1950",
+   "1991"
+  ],
+  "a": 2,
+  "exp": "O primeiro censo geral é de 1872. O IBGE foi criado em 1936."
+ },
+ {
+  "q": "Em um município com 24 médicos e 12.000 habitantes, a razão de médicos por mil habitantes é:",
+  "opts": [
+   "0,2",
+   "24",
+   "20",
+   "2",
+   "500"
+  ],
+  "a": 3,
+  "exp": "24 ÷ 12.000 × 1.000 = 2 médicos por mil habitantes."
+ },
+ {
+  "q": "Um indicador que reflete o fenômeno de interesse, e não outros fatores, possui:",
+  "opts": [
+   "Especificidade",
+   "Periodicidade",
+   "Comunicabilidade",
+   "Factibilidade",
+   "Historicidade"
+  ],
+  "a": 0,
+  "exp": "A especificidade evita que o indicador capte efeitos de outros fenômenos."
+ },
+ {
+  "q": "A satisfação da população com o atendimento do posto de saúde é um indicador:",
+  "opts": [
+   "Objetivo",
+   "Sintético",
+   "Econômico",
+   "De insumo",
+   "Subjetivo"
+  ],
+  "a": 4,
+  "exp": "Indicadores subjetivos medem percepções e avaliações das pessoas."
+ },
+ {
+  "q": "Qual dimensão NÃO faz parte do IDH?",
+  "opts": [
+   "Longevidade",
+   "Educação",
+   "Segurança pública",
+   "Renda",
+   "Escolaridade"
+  ],
+  "a": 2,
+  "exp": "O IDH combina longevidade, educação e renda."
+ },
+ {
+  "q": "Relacionar os resultados de um programa aos recursos gastos é avaliar a sua:",
+  "opts": [
+   "Eficiência",
+   "Efetividade",
+   "Eficácia",
+   "Equidade",
+   "Legalidade"
+  ],
+  "a": 0,
+  "exp": "Eficiência é a relação entre resultados e custos."
+ },
+ {
+  "q": "Um diagnóstico socioeconômico municipal é especialmente útil para elaborar:",
+  "opts": [
+   "O Censo Demográfico",
+   "O PPA e os planos setoriais",
+   "A taxa Selic",
+   "O IPCA",
+   "A POF"
+  ],
+  "a": 1,
+  "exp": "O diagnóstico orienta as prioridades do PPA, da LDO e dos planos de saúde, educação e assistência."
+ },
+ {
+  "q": "Comparar a taxa atual do município com a de cinco anos atrás é uma comparação:",
+  "opts": [
+   "No espaço",
+   "Setorial",
+   "Com metas",
+   "Subjetiva",
+   "No tempo"
+  ],
+  "a": 4,
+  "exp": "Séries históricas mostram se o indicador melhorou ou piorou."
+ },
+ {
+  "q": "Para comparar municípios de tamanhos muito diferentes, deve-se preferir:",
+  "opts": [
+   "Números absolutos",
+   "Apenas o IDH",
+   "Apenas o PIB",
+   "Taxas e proporções",
+   "Opiniões dos gestores"
+  ],
+  "a": 3,
+  "exp": "Taxas relacionam os eventos a uma base comparável, como a população."
+ }
+] };
+</script>
+<script src="assets/quiz.js"></script>
+</body>
+</html>
