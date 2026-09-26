@@ -190,3 +190,4 @@ footer { margin: 3rem 0 2rem; color: var(--muted); font-size: .9rem; }
 .inst img.brasao { height: 60px; }
 @media (max-width: 560px) { .inst img { height: 34px; } .inst img.brasao { height: 40px; } }
 @media print { .inst { display: none; } }
+.topbar .wrap { max-width: calc(var(--maxw) + 240px); }
