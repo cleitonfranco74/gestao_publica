@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20260927c">
+<link rel="stylesheet" href="assets/style.css?v=20260927d">
 </head>
 <body>
 <div class="inst" role="banner" aria-label="UNEMAT · DEAD · UAB">
@@ -309,6 +309,98 @@
   <li><strong>Desemprego e instabilidade:</strong> economias de mercado passam por ciclos de crise, recessão e inflação.</li>
   <li><strong>Desigualdade:</strong> o mercado pode ser eficiente e, ainda assim, gerar uma distribuição de renda considerada injusta.</li>
 </ul>
+<div class="card box-ex">
+  <div class="label">Exemplo na gestão pública: a vacinação</div>
+  <p>A vacinação é uma <strong>externalidade positiva</strong>: quem se vacina se protege e também reduz a circulação da doença, protegendo quem não se vacinou. Mas cada pessoa decide considerando só o <em>próprio</em> benefício. Se a vacina fosse vendida livremente no mercado, muita gente não pagaria por ela, e a cobertura ficaria abaixo do que é bom para a sociedade. Por isso o Estado atua: oferece vacinas gratuitas no SUS, faz campanhas e exige a carteira de vacinação em algumas situações.</p>
+</div>
+
+<figure class="card od-fig" id="grafico-vacinacao" aria-labelledby="vx-titulo">
+  <figcaption id="vx-titulo"><strong>Gráfico interativo: a falha de mercado na vacinação</strong><br>
+  <span class="od-sub">Mova o subsídio por dose e veja a cobertura se aproximar do ótimo social. Dados hipotéticos, para fins didáticos.</span></figcaption>
+  <div class="od-ctrl">
+    <label for="vx-sub">Subsídio público por dose</label>
+    <input type="range" id="vx-sub" min="0" max="100" step="10" value="0">
+    <output id="vx-sub-v" for="vx-sub">R$ 0</output>
+  </div>
+  <div class="od-btns" role="group" aria-label="Situações">
+    <button type="button" class="btn secondary" data-s="0">Só o mercado (sem subsídio)</button>
+    <button type="button" class="btn secondary" data-s="40">Subsídio parcial (R$ 40)</button>
+    <button type="button" class="btn secondary" data-s="90">Subsídio que corrige a falha (R$ 90)</button>
+  </div>
+  <svg id="vx-svg" viewBox="0 0 560 340" role="img" aria-labelledby="vx-titulo vx-leitura"></svg>
+  <div class="od-leg">
+    <span><i class="od-l od-dem"></i>Benefício privado (demanda)</span>
+    <span><i class="od-l vx-soc"></i>Benefício social (inclui proteção aos outros)</span>
+    <span><i class="od-l od-ofe"></i>Custo por dose (oferta)</span>
+    <span><i class="od-l vx-subl"></i>Demanda com subsídio</span>
+    <span><i class="vx-sw"></i>Perda social</span>
+  </div>
+  <div class="od-num">
+    <div><b>Cobertura alcançada</b><span id="vx-cob">–</span></div>
+    <div><b>Ótimo social</b><span>95%</span></div>
+    <div><b>Pessoas sem vacina a mais*</b><span id="vx-pes">–</span></div>
+  </div>
+  <p class="od-leitura" id="vx-leitura" aria-live="polite"></p>
+  <p class="od-fonte">* Em relação ao ótimo social, num município de 20 mil habitantes. Modelo didático: benefício privado P = 120 − 1,2 × C; benefício social P = 210 − 1,2 × C (R$ 90 de benefício externo por dose); custo P = 20 + 0,8 × C, em que C é a cobertura (%). Sem intervenção, a cobertura é de 50%; o ótimo social é de 95%, próximo das metas do Programa Nacional de Imunizações.</p>
+</figure>
+<script>
+(function () {
+  var svg = document.getElementById('vx-svg'); if (!svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var X0 = 84, X1 = 540, Y0 = 290, Y1 = 20, PM = 220, K = 1;
+  function fs(px) { return 'font-size:' + (px * K).toFixed(1) + 'px'; }
+  function X(c) { return X0 + c / 100 * (X1 - X0); }
+  function Y(p) { return Y0 - p / PM * (Y0 - Y1); }
+  function bp(c) { return 120 - 1.2 * c; } function bs(c) { return 210 - 1.2 * c; } function cu(c) { return 20 + 0.8 * c; }
+  function el(t, a, txt) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+  function n(v) { return Math.round(v).toLocaleString('pt-BR'); }
+  var inp = document.getElementById('vx-sub');
+  function draw() {
+    var w = svg.getBoundingClientRect().width || 560;
+    K = Math.min(2.2, Math.max(1, 1.1 * 560 / w));
+    X0 = Math.round(40 + 44 * K); Y0 = Math.round(310 - 20 * K); X1 = Math.round(545 - 14 * K);
+    var s = parseFloat(inp.value), cm = Math.min(100, (100 + s) / 2), gap = Math.max(0, 95 - cm);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    for (var p = 0; p <= 200; p += 50) {
+      el('line', { x1: X0, x2: X1, y1: Y(p), y2: Y(p), class: 'od-grid' });
+      el('text', { x: X0 - 8, y: Y(p) + 4 * K, 'text-anchor': 'end', class: 'od-tick', style: fs(12) }, K > 1.3 ? String(p) : 'R$ ' + p);
+    }
+    for (var c = 0; c <= 100; c += (K > 1.3 ? 25 : 10)) el('text', { x: X(c), y: Y0 + 8 + 11 * K, 'text-anchor': 'middle', class: 'od-tick', style: fs(12) }, c + '%');
+    el('line', { x1: X0, x2: X1, y1: Y0, y2: Y0, class: 'od-axis' });
+    el('line', { x1: X0, x2: X0, y1: Y0, y2: Y1, class: 'od-axis' });
+    el('text', { x: (X0 + X1) / 2, y: 336, 'text-anchor': 'middle', class: 'od-lab', style: fs(12) }, 'Cobertura vacinal (% da população)');
+    el('text', { x: 6 + 9 * K, y: (Y0 + Y1) / 2, 'text-anchor': 'middle', transform: 'rotate(-90 ' + (6 + 9 * K) + ' ' + (Y0 + Y1) / 2 + ')', class: 'od-lab', style: fs(12) }, 'R$ por dose');
+    if (gap > 0.1) el('polygon', { points: [X(cm) + ',' + Y(bs(cm)), X(cm) + ',' + Y(cu(cm)), X(95) + ',' + Y(cu(95))].join(' '), class: 'vx-perda' });
+    el('line', { x1: X(0), y1: Y(bp(0)), x2: X(100), y2: Y(bp(100)), class: 'od-dem-c' });
+    el('line', { x1: X(0), y1: Y(bs(0)), x2: X(100), y2: Y(bs(100)), class: 'vx-soc-c' });
+    el('line', { x1: X(0), y1: Y(cu(0)), x2: X(100), y2: Y(cu(100)), class: 'od-ofe-c' });
+    if (s > 0) el('line', { x1: X(0), y1: Y(bp(0) + s), x2: X(100), y2: Y(bp(100) + s), class: 'vx-sub-c' });
+    if (K <= 1.3) el('text', { x: X(2), y: Y(bs(2)) - 8, class: 'vx-soc-t', style: fs(13) }, 'Benefício social');
+    if (K <= 1.3) el('text', { x: X(2), y: Y(bp(2)) + 18 * K, class: 'od-dem-t', style: fs(13) }, 'Benefício privado');
+    if (K <= 1.3) el('text', { x: X(3), y: Y(cu(3)) + 18 * K, class: 'od-ofe-t', style: fs(13) }, 'Custo por dose');
+    el('line', { x1: X(95), x2: X(95), y1: Y0, y2: Y(cu(95)), class: 'vx-ref' });
+    el('circle', { cx: X(95), cy: Y(cu(95)), r: 6, class: 'od-eq' });
+    el('text', { x: X(95) - 10, y: Y(cu(95)) - 14, 'text-anchor': 'end', class: 'od-eq-t', style: fs(13) }, K > 1.3 ? 'Ótimo: 95%' : 'Ótimo social: 95%');
+    el('line', { x1: X(cm), x2: X(cm), y1: Y0, y2: Y(cu(cm)), class: 'vx-ref' });
+    el('circle', { cx: X(cm), cy: Y(cu(cm)), r: 6, class: 'vx-merc' });
+    el('text', { x: cm > 75 ? X(cm) - 10 : X(cm) + 8, y: Y(cu(cm)) + 22 * K, 'text-anchor': cm > 75 ? 'end' : 'start', class: 'vx-merc-t', style: fs(13) }, (s > 0 ? 'Com subsídio: ' : 'Mercado: ') + n(cm) + '%');
+    document.getElementById('vx-sub-v').textContent = 'R$ ' + s;
+    document.getElementById('vx-cob').textContent = n(cm) + '%';
+    document.getElementById('vx-pes').textContent = gap > 0 ? n(gap / 100 * 20000) : '0';
+    var lt = document.getElementById('vx-leitura');
+    if (s === 0) lt.textContent = 'Só o mercado: cada pessoa compara o próprio benefício com o preço da dose, e a cobertura fica em 50%. Do ponto de vista da sociedade, que conta também a proteção dada aos outros, o ideal seria 95%. A área sombreada é a perda social: benefícios que deixam de existir porque o mercado não "enxerga" a externalidade.';
+    else if (gap > 0.1) lt.textContent = 'Com subsídio de R$ ' + s + ' por dose, a vacina fica mais barata para a população e a cobertura sobe para ' + n(cm) + '%. A perda social diminui, mas ainda faltam ' + n(gap) + ' pontos percentuais para o ótimo.';
+    else lt.textContent = 'Com subsídio de R$ ' + s + ' por dose, que corresponde ao benefício externo, a cobertura chega a ' + n(cm) + '% e a falha de mercado é corrigida. A vacina gratuita no SUS vai além: o Estado arca com todo o custo, e campanhas e a exigência da carteira de vacinação ajudam a alcançar a meta.';
+  }
+  inp.addEventListener('input', draw);
+  window.addEventListener('resize', draw);
+  document.querySelectorAll('#grafico-vacinacao .od-btns button').forEach(function (b) {
+    b.addEventListener('click', function () { inp.value = b.getAttribute('data-s'); draw(); });
+  });
+  draw();
+})();
+</script>
+
 <p>Também existem as <strong>falhas de governo</strong>: captura do Estado por interesses privados, ineficiência, corrupção, rigidez burocrática e custos de informação. O debate entre as matrizes teóricas é, em grande medida, um debate sobre qual falha é mais grave.</p>
 
 <h3>2.3 As funções econômicas do Estado (Musgrave)</h3>

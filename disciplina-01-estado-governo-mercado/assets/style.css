@@ -243,3 +243,16 @@ footer { margin: 3rem 0 2rem; color: var(--muted); font-size: .9rem; }
 @media (prefers-color-scheme: dark) { .od-falta-t, .od-neg { fill: #ff8a7a; color: #ff8a7a; } .od-sobra-t, .od-pos { fill: #f2c14e; color: #f2c14e; } }
 .caso-inline { margin: 1rem 0; }
 .caso-inline .caso-tags { font-weight: 700; color: var(--accent); font-size: .9rem; }
+
+/* Gráfico da vacinação (externalidade positiva) */
+.vx-perda { fill: #c0392b; opacity: .22; }
+.vx-soc-c { stroke: #6d3ec4; stroke-width: 3; stroke-dasharray: 8 5; }
+.vx-soc-t { fill: #6d3ec4; font-weight: 700; }
+.vx-sub-c { stroke: var(--accent-2); stroke-width: 2; stroke-dasharray: 3 4; opacity: .8; }
+.vx-ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.vx-merc { fill: var(--accent-2); stroke: var(--surface); stroke-width: 2; }
+.vx-merc-t { fill: var(--accent-2); font-weight: 700; }
+.vx-soc { border-top: 3px dashed #6d3ec4; }
+.vx-subl { border-top: 2px dotted var(--accent-2); }
+.vx-sw { display: inline-block; width: 16px; height: 12px; background: rgba(192,57,43,.25); vertical-align: middle; margin-right: .35rem; }
+@media (prefers-color-scheme: dark) { .vx-soc-c { stroke: #b39dfc; } .vx-soc-t { fill: #b39dfc; } .vx-soc { border-top-color: #b39dfc; } .vx-perda { fill: #ff8a7a; } }
