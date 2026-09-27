@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elasticidade — da pecuária à tarifa municipal em Mato Grosso</title>
+<meta name="description" content="Elasticidade da pecuária à tarifa de água municipal em Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
+<link rel="icon" type="image/png" href="../../img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Estudo de caso 3 · Elasticidade · Estado, Governo e Mercado">
+<meta property="og:description" content="Elasticidade da pecuária à tarifa de água municipal em Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
+<meta property="og:url" content="https://cleitonfranco74.github.io/gestao_publica/disciplina-01-estado-governo-mercado/estudos-de-caso/elasticidade.html">
+<meta property="og:image" content="https://cleitonfranco74.github.io/gestao_publica/img/og-estado-governo-mercado.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --azul: #1a3a5c; --azul-med: #2e6da4; --azul-claro: #ddeaf7;
+    --verde: #1a5c3a; --verde-med: #2e9e5e; --verde-claro: #d5f0e0;
+    --laranja: #8c3a0e; --laranja-med: #c4561a; --laranja-claro: #fde8d5;
+    --roxo: #3d1a7a; --roxo-med: #6d3ec4; --roxo-claro: #ede8fb;
+    --agua: #0d4a5c; --agua-med: #1f7f96; --agua-claro: #d9eef3;
+    --cinza-escuro: #1c1c1e; --cinza: #48484a; --cinza-med: #8e8e93;
+    --cinza-claro: #f2f2f7; --branco: #ffffff; --borda: #d1d1d6;
+    --raio: 14px; --raio-sm: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #f5f5f0; color: var(--cinza-escuro); min-height: 100vh; line-height: 1.6; }
+
+  /* HEADER */
+  header { background: var(--roxo); color: white; padding: 3rem 2rem 2rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.02) 40px,rgba(255,255,255,0.02) 80px); }
+  .kicker { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:.75rem; }
+  header h1 { font-family:'Instrument Serif',serif; font-size:clamp(2rem,5vw,3.2rem); font-weight:400; line-height:1.15; margin-bottom:.75rem; position:relative; }
+  header h1 em { font-style:italic; color:#b39dfc; }
+  header p.sub { font-size:15px; color:rgba(255,255,255,.65); max-width:540px; margin:0 auto 1.5rem; position:relative; }
+  .chips { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; position:relative; }
+  .chip { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); border-radius:20px; padding:4px 14px; font-size:12px; color:rgba(255,255,255,.8); font-family:'DM Mono',monospace; }
+
+  /* NAV */
+  .nav-wrap { position:sticky; top:0; z-index:100; background:white; border-bottom:1px solid var(--borda); box-shadow:0 2px 8px rgba(0,0,0,.06); }
+  .nav-tabs { display:flex; max-width:960px; margin:0 auto; overflow-x:auto; scrollbar-width:none; }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .nav-tab { flex:1; min-width:180px; padding:.9rem 1rem; border:none; background:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--cinza-med); border-bottom:3px solid transparent; transition:all .2s; text-align:center; display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .nav-tab .tab-num { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.08em; opacity:.55; }
+  .nav-tab:hover { color:var(--cinza-escuro); background:var(--cinza-claro); }
+  .nav-tab.active { color:var(--roxo); border-bottom-color:var(--roxo-med); font-weight:500; }
+  .nav-tab[data-p="e2"].active { color:var(--verde); border-bottom-color:var(--verde-med); }
+  .nav-tab[data-p="e3"].active { color:var(--laranja); border-bottom-color:var(--laranja-med); }
+  .nav-tab[data-p="e4"].active { color:var(--azul); border-bottom-color:var(--azul-med); }
+  .nav-tab[data-p="e5"].active { color:var(--agua); border-bottom-color:var(--agua-med); }
+
+  /* MAIN */
+  main { max-width:960px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  .panel { display:none; animation:fadeIn .3s ease; }
+  .panel.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+  /* SCENARIO HEADER */
+  .scenario-tag { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-family:'DM Mono',monospace; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:.75rem; font-weight:500; }
+  .tag-inelastica { background:var(--verde-claro); color:var(--verde); }
+  .tag-elastica { background:var(--laranja-claro); color:var(--laranja); }
+  .tag-unitaria { background:var(--roxo-claro); color:var(--roxo); }
+  .tag-cruzada { background:var(--azul-claro); color:var(--azul); }
+  .tag-tarifa { background:var(--agua-claro); color:var(--agua); }
+  .scenario-title { font-family:'Instrument Serif',serif; font-size:clamp(1.4rem,3vw,2rem); font-weight:400; line-height:1.2; }
+  .scenario-sub { font-size:13px; color:var(--cinza-med); margin-top:.4rem; font-family:'DM Mono',monospace; }
+
+  /* FORMULA BOX */
+  .formula-box { background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1rem 1.5rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+  .formula { font-family:'DM Mono',monospace; font-size:16px; font-weight:500; color:var(--cinza-escuro); background:var(--cinza-claro); padding:.5rem 1rem; border-radius:var(--raio-sm); }
+  .formula-desc { font-size:13px; color:var(--cinza-med); }
+
+  /* CONTROL PANEL */
+  .control-panel { background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1.25rem 1.5rem; margin-bottom:1.5rem; }
+  .control-row { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:.75rem; }
+  .control-row:last-child { margin-bottom:0; }
+  .ctrl-label { font-size:13px; color:var(--cinza-med); min-width:200px; flex-shrink:0; }
+  .slider-wrap { flex:1; min-width:160px; display:flex; align-items:center; gap:10px; }
+  .slider-wrap input[type=range] { flex:1; -webkit-appearance:none; height:4px; border-radius:2px; outline:none; cursor:pointer; }
+  .slider-wrap input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:white; border:2px solid var(--roxo-med); box-shadow:0 1px 4px rgba(0,0,0,.15); }
+  .slider-val { font-family:'DM Mono',monospace; font-size:13px; font-weight:500; min-width:70px; text-align:right; }
+  .btn-reset { padding:7px 16px; border-radius:var(--raio-sm); border:1px solid var(--borda); background:var(--cinza-claro); font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; color:var(--cinza); transition:all .15s; white-space:nowrap; }
+  .btn-reset:hover { background:#e5e5ea; }
+
+  /* EPSILON DISPLAY */
+  .epsilon-display { display:flex; align-items:stretch; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+  .eps-big { background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1.25rem 1.5rem; flex:0 0 auto; min-width:160px; text-align:center; }
+  .eps-big .eps-label { font-size:11px; font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:.06em; color:var(--cinza-med); margin-bottom:.4rem; display:block; }
+  .eps-big .eps-value { font-family:'DM Mono',monospace; font-size:2.8rem; font-weight:500; line-height:1; transition:all .3s; }
+  .eps-big .eps-type { font-size:12px; font-weight:500; margin-top:.5rem; padding:3px 10px; border-radius:20px; display:inline-block; font-family:'DM Mono',monospace; }
+  .eps-bar-wrap { flex:1; background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1.25rem 1.5rem; min-width:220px; }
+  .eps-bar-wrap .bar-label { font-size:12px; color:var(--cinza-med); margin-bottom:.6rem; display:flex; justify-content:space-between; font-family:'DM Mono',monospace; }
+  .eps-spectrum { position:relative; height:24px; border-radius:12px; overflow:hidden; background:linear-gradient(to right, #d5f0e0 0%, #ede8fb 45%, #55%, #fde8d5 100%); margin-bottom:.5rem; }
+  .eps-needle { position:absolute; top:2px; bottom:2px; width:3px; border-radius:2px; background:var(--cinza-escuro); transition:left .3s; transform:translateX(-50%); }
+  .eps-ticks { display:flex; justify-content:space-between; font-size:10px; color:var(--cinza-med); font-family:'DM Mono',monospace; }
+
+  /* GRAPH */
+  .graph-card { background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1.5rem; margin-bottom:1.5rem; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+  .graph-legend { display:flex; flex-wrap:wrap; gap:10px 18px; margin-bottom:1.25rem; font-size:12px; color:var(--cinza); }
+  .leg { display:flex; align-items:center; gap:6px; }
+  .leg-line { width:24px; height:3px; border-radius:2px; flex-shrink:0; }
+  .leg-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  svg.main-chart { display:block; width:100%; overflow:visible; }
+
+  /* TWO-CHART GRID */
+  .two-charts { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
+  @media(max-width:640px){ .two-charts { grid-template-columns:1fr; } }
+  .chart-sub { background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1.25rem; }
+  .chart-sub h4 { font-size:12px; font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:.05em; color:var(--cinza-med); margin-bottom:.75rem; }
+
+  /* METRICS */
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:.7rem; margin-bottom:1.5rem; }
+  .metric { background:white; border:1px solid var(--borda); border-radius:var(--raio-sm); padding:.9rem 1.1rem; position:relative; overflow:hidden; }
+  .metric::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+  .metric.roxo::before { background:var(--roxo-med); }
+  .metric.verde::before { background:var(--verde-med); }
+  .metric.laranja::before { background:var(--laranja-med); }
+  .metric.azul::before { background:var(--azul-med); }
+  .metric.neutro::before { background:var(--cinza-med); }
+  .metric.agua::before { background:var(--agua-med); }
+  .metric span { display:block; font-size:11px; color:var(--cinza-med); text-transform:uppercase; letter-spacing:.04em; font-family:'DM Mono',monospace; margin-bottom:4px; }
+  .metric strong { font-size:16px; font-weight:500; color:var(--cinza-escuro); font-family:'DM Mono',monospace; display:block; transition:all .3s; }
+  .metric .delta { font-size:12px; margin-top:2px; font-family:'DM Mono',monospace; }
+  .up { color:var(--verde-med); } .dn { color:var(--laranja-med); } .neu { color:var(--cinza-med); }
+
+  /* RECEITA BAR */
+  .receita-section { background:white; border:1px solid var(--borda); border-radius:var(--raio); padding:1.25rem 1.5rem; margin-bottom:1.5rem; }
+  .receita-section h4 { font-size:12px; font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:.05em; color:var(--cinza-med); margin-bottom:1rem; }
+  .rec-row { display:flex; align-items:center; gap:10px; margin-bottom:.6rem; font-size:13px; }
+  .rec-row .rec-label { min-width:90px; color:var(--cinza); font-size:12px; font-family:'DM Mono',monospace; }
+  .rec-bar-bg { flex:1; height:22px; background:var(--cinza-claro); border-radius:4px; overflow:hidden; }
+  .rec-bar-fill { height:100%; border-radius:4px; transition:width .4s cubic-bezier(.4,0,.2,1); display:flex; align-items:center; padding-left:8px; font-size:11px; font-weight:500; white-space:nowrap; }
+  .rec-row .rec-val { min-width:110px; text-align:right; font-family:'DM Mono',monospace; font-size:13px; font-weight:500; }
+
+  /* CALLOUT */
+  .callout { border-radius:0 var(--raio-sm) var(--raio-sm) 0; border-left:4px solid; padding:1rem 1.25rem; font-size:14px; line-height:1.65; margin-bottom:1.5rem; }
+  .callout.roxo { background:var(--roxo-claro); border-color:var(--roxo-med); color:var(--roxo); }
+  .callout.verde { background:var(--verde-claro); border-color:var(--verde-med); color:var(--verde); }
+  .callout.laranja { background:var(--laranja-claro); border-color:var(--laranja-med); color:var(--laranja); }
+  .callout.azul { background:var(--azul-claro); border-color:var(--azul-med); color:var(--azul); }
+  .callout.agua { background:var(--agua-claro); border-color:var(--agua-med); color:var(--agua); }
+  .callout strong { font-weight:600; }
+
+  /* CONCEPT ROW */
+  .concept-row { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+  @media(max-width:600px){ .concept-row { grid-template-columns:1fr; } }
+  .concept-box { background:var(--cinza-claro); border-radius:var(--raio); padding:1.1rem 1.25rem; }
+  .concept-box h3 { font-size:12px; font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:.05em; color:var(--cinza-med); margin-bottom:.6rem; }
+  .concept-box p { font-size:13.5px; color:var(--cinza-escuro); line-height:1.55; }
+
+  .fonte { font-size:12px; line-height:1.6; color:var(--cinza-med); border-top:1px solid var(--borda); padding-top:.9rem; margin-top:1rem; }
+  .fonte strong { color:var(--cinza); font-weight:500; }
+  @media (prefers-reduced-motion: reduce) { .panel { animation:none; } html { scroll-behavior:auto; } }
+  footer { text-align:center; padding:2rem; font-size:12px; color:var(--cinza-med); font-family:'DM Mono',monospace; border-top:1px solid var(--borda); margin-top:1rem; }
+
+/* faixa institucional da Especialização em Gestão Pública */
+.gp-strip{background:#fff;border-bottom:3px solid #e8c65a;font-family:'DM Sans',sans-serif}
+.gp-strip .gp-in{max-width:1000px;margin:0 auto;padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.gp-strip a{color:#13294b;font-size:13px;font-weight:600;text-decoration:none}
+.gp-strip a:hover{text-decoration:underline}
+.gp-strip .gp-logos{display:flex;align-items:center;gap:1.1rem}
+.gp-strip img{height:34px;width:auto;display:block}
+@media(max-width:560px){.gp-strip img{height:24px}.gp-strip .gp-logos{gap:.6rem}}
+@media print{.gp-strip{display:none}}
+</style>
+</head>
+<body>
+<div class="gp-strip"><div class="gp-in">
+  <a href="../index.html#casos">← Estado, Governo e Mercado · Estudos de caso</a>
+  <div class="gp-logos"><img src="../../img/logo-unemat.png" alt="UNEMAT"><img src="../../img/logo-dead.png" alt="DEAD"><img src="../../img/logo-uab.png" alt="UAB"></div>
+</div></div>
+
+<header>
+  <p class="kicker">UNEMAT · DEAD/UAB · Especialização em Gestão Pública · Estado, Governo e Mercado</p>
+  <h1>Elasticidade<br><em>em Mato Grosso</em></h1>
+  <p class="sub">Quatro cenários — três da pecuária mato-grossense e um da tarifa de água de um município do interior — para entender como preço e quantidade se relacionam.</p>
+  <div class="chips">
+    <span class="chip">ε = ΔQ% / ΔP%</span>
+    <span class="chip">Boi gordo · Oferta inelástica</span>
+    <span class="chip">Frango · Oferta elástica</span>
+    <span class="chip">Elasticidade cruzada</span>
+    <span class="chip">Tarifa de água · município</span>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-p="e1" onclick="showPanel('e1',this)">
+      <span class="tab-num">Conceito base</span>ε-Preço interativo
+    </button>
+    <button class="nav-tab" data-p="e2" onclick="showPanel('e2',this)">
+      <span class="tab-num">Cenário 01</span>Boi gordo · oferta inelástica
+    </button>
+    <button class="nav-tab" data-p="e3" onclick="showPanel('e3',this)">
+      <span class="tab-num">Cenário 02</span>Frango · oferta elástica
+    </button>
+    <button class="nav-tab" data-p="e4" onclick="showPanel('e4',this)">
+      <span class="tab-num">Cenário 03</span>Cruzada · carne × frango
+    </button>
+    <button class="nav-tab" data-p="e5" onclick="showPanel('e5',this)">
+      <span class="tab-num">Cenário 04</span>Tarifa de água · município
+    </button>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════ PAINEL 1 — CONCEITO BASE -->
+<div id="e1" class="panel active">
+  <span class="scenario-tag tag-unitaria">Conceito fundamental</span>
+  <h2 class="scenario-title" style="margin-bottom:.4rem">Elasticidade-preço da demanda</h2>
+  <p class="scenario-sub" style="margin-bottom:1.5rem">Ajuste os controles e veja como ε muda a curva de demanda e a receita total</p>
+
+  <div class="formula-box">
+    <span class="formula">ε = ΔQ% / ΔP%</span>
+    <span class="formula-desc">Mede a sensibilidade da quantidade demandada a variações no preço do próprio bem. Quanto maior ε, mais sensível o consumidor.</span>
+  </div>
+
+  <div class="control-panel">
+    <div class="control-row">
+      <span class="ctrl-label">Variação do preço (ΔP%)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-dp" min="5" max="50" step="1" value="20" oninput="updateE1()" style="accent-color:var(--roxo-med)">
+        <span class="slider-val" id="sv-dp" style="color:var(--roxo-med)">+20%</span>
+      </div>
+    </div>
+    <div class="control-row">
+      <span class="ctrl-label">Variação da quantidade (ΔQ%)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-dq" min="1" max="60" step="1" value="20" oninput="updateE1()" style="accent-color:var(--roxo-med)">
+        <span class="slider-val" id="sv-dq" style="color:var(--roxo-med)">−20%</span>
+      </div>
+    </div>
+    <div class="control-row" style="justify-content:flex-end; margin-top:.25rem">
+      <button class="btn-reset" onclick="resetE1()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="epsilon-display">
+    <div class="eps-big">
+      <span class="eps-label">Elasticidade ε</span>
+      <div class="eps-value" id="eps-val">1,00</div>
+      <div class="eps-type" id="eps-type">Unitária</div>
+    </div>
+    <div class="eps-bar-wrap">
+      <div class="bar-label"><span>Inelástica (ε&lt;1)</span><span>Unitária</span><span>Elástica (ε&gt;1)</span></div>
+      <div class="eps-spectrum"><div class="eps-needle" id="eps-needle"></div></div>
+      <div class="eps-ticks"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0+</span></div>
+    </div>
+  </div>
+
+  <div class="two-charts">
+    <div class="chart-sub">
+      <h4>Curva de demanda</h4>
+      <svg id="svg-e1-d" class="main-chart" viewBox="0 0 260 220"></svg>
+    </div>
+    <div class="chart-sub">
+      <h4>Receita total do produtor</h4>
+      <svg id="svg-e1-r" class="main-chart" viewBox="0 0 260 220"></svg>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric neutro"><span>Preço original</span><strong>R$ 100</strong></div>
+    <div class="metric roxo"><span>Novo preço</span><strong id="m-e1-p2">R$ 120</strong></div>
+    <div class="metric neutro"><span>Qtd. original</span><strong>100 un</strong></div>
+    <div class="metric roxo"><span>Nova qtd.</span><strong id="m-e1-q2">80 un</strong></div>
+    <div class="metric neutro"><span>Receita original</span><strong>R$ 10.000</strong></div>
+    <div class="metric roxo"><span>Nova receita</span><strong id="m-e1-r2">R$ 9.600</strong></div>
+    <div class="metric roxo"><span>Variação receita</span><strong id="m-e1-dr" class="dn">−4%</strong></div>
+  </div>
+
+  <div class="callout roxo" id="e1-callout">
+    <strong>Regra de ouro da receita:</strong> quando ε &gt; 1 (elástica), subir o preço <em>reduz</em> a receita. Quando ε &lt; 1 (inelástica), subir o preço <em>aumenta</em> a receita. Quando ε = 1 (unitária), a receita <em>não muda</em>.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Inclinação da curva</h3>
+      <p>Curva mais <strong>vertical</strong> = inelástica (ε &lt; 1): o consumidor compra quase o mesmo independente do preço. Curva mais <strong>horizontal</strong> = elástica (ε &gt; 1): pequena alta de preço derruba muito a quantidade.</p>
+    </div>
+    <div class="concept-box">
+      <h3>Por que importa para o gestor</h3>
+      <p>Impostos sobre bens inelásticos arrecadam mais e distorcem menos o consumo. Tributos sobre bens elásticos reduzem muito o consumo sem gerar muita receita fiscal.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAINEL 2 — BOI GORDO INELÁSTICO -->
+<div id="e2" class="panel">
+  <span class="scenario-tag tag-inelastica">ε &lt; 1 · Inelástica</span>
+  <h2 class="scenario-title">Oferta de boi gordo em MT:<br>presa ao relógio biológico</h2>
+  <p class="scenario-sub" style="margin-bottom:1.5rem">Mercado de boi gordo · Mato Grosso · Oferta de curto prazo</p>
+
+  <div class="formula-box">
+    <span class="formula">ε ≈ 0,20</span>
+    <span class="formula-desc">O boi que será abatido este ano nasceu há três anos. Por mais que a arroba suba, o rebanho pronto não cresce dentro da safra.</span>
+  </div>
+
+  <div class="control-panel">
+    <div class="control-row">
+      <span class="ctrl-label">Variação do preço da arroba (ΔP%)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-e2" min="0" max="60" step="1" value="0" oninput="updateE2()" style="accent-color:var(--verde-med)">
+        <span class="slider-val" id="sv-e2" style="color:var(--verde-med)">+0%</span>
+      </div>
+      <button class="btn-reset" onclick="resetE2()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="epsilon-display">
+    <div class="eps-big">
+      <span class="eps-label">ε oferta boi gordo</span>
+      <div class="eps-value" style="color:var(--verde-med)">0,20</div>
+      <div class="eps-type" style="background:var(--verde-claro);color:var(--verde)">Inelástica</div>
+    </div>
+    <div class="eps-bar-wrap">
+      <div class="bar-label"><span>Inelástica</span><span>Unitária</span><span>Elástica</span></div>
+      <div class="eps-spectrum"><div class="eps-needle" style="left:10%"></div></div>
+      <div class="eps-ticks"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0+</span></div>
+    </div>
+  </div>
+
+  <div class="graph-card">
+    <div class="graph-legend">
+      <span class="leg"><span class="leg-line" style="background:var(--verde-med)"></span>Oferta (S) — quase vertical no curto prazo</span>
+      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Demanda (D)</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--verde-med)"></span>E1 original</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E2 novo preço</span>
+    </div>
+    <svg id="svg-e2" class="main-chart" viewBox="0 0 520 300"></svg>
+  </div>
+
+  <div class="metrics">
+    <div class="metric verde"><span>Preço original</span><strong id="m-e2-p1">R$ 300/@</strong></div>
+    <div class="metric verde"><span>Novo preço</span><strong id="m-e2-p2">R$ 300/@</strong></div>
+    <div class="metric verde"><span>Abate original</span><strong>6,50 M cab.</strong></div>
+    <div class="metric verde"><span>Novo abate ofertado</span><strong id="m-e2-q2">6,50 M cab.</strong></div>
+    <div class="metric verde"><span>ΔP%</span><strong id="m-e2-dp">+0%</strong></div>
+    <div class="metric verde"><span>ΔQ%</span><strong id="m-e2-dq">+0%</strong></div>
+  </div>
+
+  <div class="receita-section">
+    <h4>Receita bruta do setor (R$ bilhões/ano)</h4>
+    <div class="rec-row">
+      <span class="rec-label">Original</span>
+      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#9FE1CB;width:60%" id="rbar-e2-1">R$ 35,10 bi</div></div>
+      <span class="rec-val">R$ 35,10 bi</span>
+    </div>
+    <div class="rec-row">
+      <span class="rec-label">Novo preço</span>
+      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#2e9e5e;width:60%" id="rbar-e2-2">R$ 35,10 bi</div></div>
+      <span class="rec-val" id="rv-e2">R$ 35,10 bi</span>
+    </div>
+  </div>
+
+  <div class="callout verde">
+    <strong>Por que inelástica?</strong> Não existe atalho biológico. O animal que entra no frigorífico este ano precisou de dois a três anos de pasto,
+    e a alta da arroba não encurta esse tempo. No <strong>curto prazo</strong> a oferta é fisicamente rígida; no longo prazo, com mais bezerros nascidos e
+    pastagem recuperada, ε cresce. Em fases de retenção de matrizes a resposta chega a ser <em>negativa</em>: o produtor segura fêmeas e o abate cai.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Assinatura inelástica</h3>
+      <p>ε &lt; 1: a quantidade varia <em>menos</em> que o preço proporcionalmente. Arroba sobe 50%, abate sobe 10%. Curva quase vertical.</p>
+    </div>
+    <div class="concept-box">
+      <h3>Efeito na receita</h3>
+      <p>Como ε &lt; 1, quando o preço sobe a <strong>receita total aumenta</strong>: vende-se praticamente a mesma quantidade por um preço bem maior.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAINEL 3 — FRANGO ELÁSTICO -->
+<div id="e3" class="panel">
+  <span class="scenario-tag tag-elastica">ε &gt; 1 · Elástica</span>
+  <h2 class="scenario-title">Oferta de frango:<br>45 dias do pinto ao abate</h2>
+  <p class="scenario-sub" style="margin-bottom:1.5rem">Avicultura integrada · Sorriso, Lucas do Rio Verde e Nova Mutum, MT</p>
+
+  <div class="formula-box">
+    <span class="formula">ε ≈ 1,35</span>
+    <span class="formula-desc">Mesmo produto na prateleira do boi — carne —, elasticidade oposta. O lote de frango se ajusta em semanas, e o integrador reduz alojamento na hora em que o preço cai.</span>
+  </div>
+
+  <div class="control-panel">
+    <div class="control-row">
+      <span class="ctrl-label">Queda de preço do frango (ΔP%)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-e3" min="0" max="50" step="1" value="0" oninput="updateE3()" style="accent-color:var(--laranja-med)">
+        <span class="slider-val" id="sv-e3" style="color:var(--laranja-med)">−0%</span>
+      </div>
+      <button class="btn-reset" onclick="resetE3()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="epsilon-display">
+    <div class="eps-big">
+      <span class="eps-label">ε oferta frango</span>
+      <div class="eps-value" style="color:var(--laranja-med)">1,35</div>
+      <div class="eps-type" style="background:var(--laranja-claro);color:var(--laranja)">Elástica</div>
+    </div>
+    <div class="eps-bar-wrap">
+      <div class="bar-label"><span>Inelástica</span><span>Unitária</span><span>Elástica</span></div>
+      <div class="eps-spectrum"><div class="eps-needle" style="left:67.5%"></div></div>
+      <div class="eps-ticks"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0+</span></div>
+    </div>
+  </div>
+
+  <div class="graph-card">
+    <div class="graph-legend">
+      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Oferta frango (S) — elástica</span>
+      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>Demanda (D)</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E1 original</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>E2 novo preço</span>
+    </div>
+    <svg id="svg-e3" class="main-chart" viewBox="0 0 520 300"></svg>
+  </div>
+
+  <div class="metrics">
+    <div class="metric laranja"><span>Preço original</span><strong>R$ 6,50/kg</strong></div>
+    <div class="metric laranja"><span>Novo preço</span><strong id="m-e3-p2">R$ 6,50/kg</strong></div>
+    <div class="metric laranja"><span>Produção original</span><strong>900 mil t</strong></div>
+    <div class="metric laranja"><span>Nova produção</span><strong id="m-e3-q2">900 mil t</strong></div>
+    <div class="metric laranja"><span>ΔP%</span><strong id="m-e3-dp">−0%</strong></div>
+    <div class="metric laranja"><span>ΔQ%</span><strong id="m-e3-dq">−0%</strong></div>
+  </div>
+
+  <div class="receita-section">
+    <h4>Receita bruta do setor (R$ bilhões/ano)</h4>
+    <div class="rec-row">
+      <span class="rec-label">Original</span>
+      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#f5c6a0;width:70%" id="rbar-e3-1">R$ 5,85 bi</div></div>
+      <span class="rec-val">R$ 5,85 bi</span>
+    </div>
+    <div class="rec-row">
+      <span class="rec-label">Novo preço</span>
+      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#c4561a;width:70%" id="rbar-e3-2">R$ 5,85 bi</div></div>
+      <span class="rec-val" id="rv-e3">R$ 5,85 bi</span>
+    </div>
+  </div>
+
+  <div class="callout laranja">
+    <strong>Por que elástica?</strong> Do pinto de um dia ao abate são cerca de 45 dias. O integrador decide alojar ou não alojar o próximo lote a cada mês e meio,
+    e o produtor tem galpão ocioso pronto para responder. O que separa o frango do boi não é o mercado — <strong>é o ciclo de produção</strong>.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Assinatura elástica</h3>
+      <p>ε &gt; 1: a quantidade varia <em>mais</em> que o preço proporcionalmente. Curva bem inclinada, quase deitada.</p>
+    </div>
+    <div class="concept-box">
+      <h3>Efeito na receita</h3>
+      <p>Com ε &gt; 1, uma queda de preço derruba a receita mais que proporcionalmente: perde-se no preço e na quantidade ao mesmo tempo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAINEL 4 — CRUZADA CARNE × FRANGO -->
+<div id="e4" class="panel">
+  <span class="scenario-tag tag-cruzada">Elasticidade cruzada</span>
+  <h2 class="scenario-title">Carne bovina × frango:<br>substitutos no prato</h2>
+  <p class="scenario-sub" style="margin-bottom:1.5rem">Quando a picanha sobe, o consumidor troca de bandeja — não de refeição</p>
+
+  <div class="formula-box">
+    <span class="formula">ε<sub>AB</sub> = ΔQ<sub>A</sub>% / ΔP<sub>B</sub>%</span>
+    <span class="formula-desc">Mede como a quantidade do bem A reage à variação de preço do bem B. Se positivo → bens substitutos. Se negativo → bens complementares.</span>
+  </div>
+
+  <div class="control-panel">
+    <div class="control-row">
+      <span class="ctrl-label">Alta do preço da carne bovina (ΔP%)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-e4" min="0" max="60" step="5" value="0" oninput="updateE4()" style="accent-color:var(--azul-med)">
+        <span class="slider-val" id="sv-e4" style="color:var(--azul-med)">+0%</span>
+      </div>
+      <button class="btn-reset" onclick="resetE4()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="epsilon-display">
+    <div class="eps-big">
+      <span class="eps-label">ε cruzada</span>
+      <div class="eps-value" style="color:var(--azul-med)" id="eps-e4-val">+0,35</div>
+      <div class="eps-type" style="background:var(--azul-claro);color:var(--azul)" id="eps-e4-type">Substitutos</div>
+    </div>
+    <div class="eps-bar-wrap">
+      <div class="bar-label"><span>Complementares (ε&lt;0)</span><span>0</span><span>Substitutos (ε&gt;0)</span></div>
+      <div class="eps-spectrum" style="background:linear-gradient(to right,#fde8d5,#f5f5f0 50%,#ddeaf7)">
+        <div class="eps-needle" id="eps-e4-needle" style="left:67.5%"></div>
+      </div>
+      <div class="eps-ticks"><span>−1,0</span><span>−0,5</span><span>0</span><span>+0,5</span><span>+1,0</span></div>
+    </div>
+  </div>
+
+  <div class="two-charts">
+    <div class="chart-sub">
+      <h4>Preço da carne bovina no varejo</h4>
+      <svg id="svg-e4-f" class="main-chart" viewBox="0 0 260 200"></svg>
+    </div>
+    <div class="chart-sub">
+      <h4>Consumo de frango por habitante</h4>
+      <svg id="svg-e4-s" class="main-chart" viewBox="0 0 260 200"></svg>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric azul"><span>Carne bovina — original</span><strong>R$ 32,00/kg</strong></div>
+    <div class="metric azul"><span>Carne bovina — novo</span><strong id="m-e4-pf">R$ 32,00/kg</strong></div>
+    <div class="metric azul"><span>Frango — original</span><strong>45,0 kg/hab./ano</strong></div>
+    <div class="metric azul"><span>Frango — novo consumo</span><strong id="m-e4-qs">45,0 kg/hab./ano</strong></div>
+    <div class="metric azul"><span>ΔP carne bovina</span><strong id="m-e4-dp">+0%</strong></div>
+    <div class="metric azul"><span>ΔQ frango</span><strong id="m-e4-dq">+0%</strong></div>
+  </div>
+
+  <div class="callout azul">
+    <strong>Substitutos:</strong> carne bovina e frango disputam o mesmo lugar no prato. Quando a bovina encarece, parte do consumo migra para o frango —
+    e a elasticidade cruzada positiva (ε ≈ +0,35) mede exatamente esse desvio. O sinal <strong>positivo</strong> é a marca dos bens substitutos.
+    Repare que o efeito é parcial: ε &lt; 1 significa que a troca acontece, mas não na mesma proporção da alta.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Sinal da elasticidade cruzada</h3>
+      <p><strong>Positivo</strong> = substitutos (carne bovina e frango, manteiga e margarina). <strong>Negativo</strong> = complementares (bezerro e milho do confinamento, gasolina e carros).</p>
+    </div>
+    <div class="concept-box">
+      <h3>Para o gestor público</h3>
+      <p>Numa alta da carne bovina, a pressão sobre a cesta básica e sobre a merenda escolar não some — ela se desloca para o frango e para o ovo.
+         Quem compra alimentação escolar precisa antecipar esse desvio de demanda antes que ele chegue ao preço do próprio substituto.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAINEL 5 — TARIFA DE ÁGUA MUNICIPAL -->
+<div id="e5" class="panel">
+  <span class="scenario-tag tag-tarifa">Política tarifária · escala municipal</span>
+  <h2 class="scenario-title">Reajuste da tarifa de água:<br>quanto o serviço municipal arrecada?</h2>
+  <p class="scenario-sub" style="margin-bottom:1.5rem">Serviço autônomo de água de um município de cerca de 20 mil habitantes no interior de MT</p>
+
+  <div class="formula-box">
+    <span class="formula">ε = ΔQ% / ΔP%</span>
+    <span class="formula-desc">A mesma fórmula dos cenários da pecuária, agora aplicada a um serviço público.
+      A diferença é quem decide o preço: aqui não é o mercado, é o gestor.</span>
+  </div>
+
+  <div class="control-panel">
+    <div class="control-row">
+      <span class="ctrl-label">Reajuste da tarifa (ΔP%)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-e5p" min="0" max="40" step="1" value="15" oninput="updateE5()" style="accent-color:var(--agua-med)">
+        <span class="slider-val" id="sv-e5p" style="color:var(--agua-med)">+15%</span>
+      </div>
+    </div>
+    <div class="control-row">
+      <span class="ctrl-label">Elasticidade da demanda por água (ε)</span>
+      <div class="slider-wrap">
+        <input type="range" id="sl-e5e" min="10" max="160" step="5" value="25" oninput="updateE5()" style="accent-color:var(--agua-med)">
+        <span class="slider-val" id="sv-e5e" style="color:var(--agua-med)">0,25</span>
+      </div>
+    </div>
+    <div class="control-row" style="justify-content:flex-end; margin-top:.25rem">
+      <button class="btn-reset" onclick="resetE5()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="epsilon-display">
+    <div class="eps-big">
+      <span class="eps-label">Elasticidade ε</span>
+      <div class="eps-value" id="e5-eps">0,25</div>
+      <div class="eps-type" id="e5-tipo">Inelástica</div>
+    </div>
+    <div class="eps-bar-wrap">
+      <div class="bar-label"><span>Inelástica (ε&lt;1)</span><span>Unitária</span><span>Elástica (ε&gt;1)</span></div>
+      <div class="eps-spectrum"><div class="eps-needle" id="e5-needle"></div></div>
+      <div class="eps-ticks"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0+</span></div>
+    </div>
+  </div>
+
+  <div class="two-charts">
+    <div class="chart-sub">
+      <h4>Demanda por água da ligação média</h4>
+      <svg id="svg-e5-d" class="main-chart" viewBox="0 0 260 220"></svg>
+    </div>
+    <div class="chart-sub">
+      <h4>Receita mensal do serviço</h4>
+      <svg id="svg-e5-r" class="main-chart" viewBox="0 0 260 220"></svg>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric neutro"><span>Tarifa atual</span><strong>R$ 4,50/m³</strong></div>
+    <div class="metric agua"><span>Nova tarifa</span><strong id="m-e5-tar">R$ 5,17/m³</strong></div>
+    <div class="metric neutro"><span>Consumo médio atual</span><strong>12,0 m³/mês</strong></div>
+    <div class="metric agua"><span>Novo consumo médio</span><strong id="m-e5-cons">11,6 m³/mês</strong><span class="delta" id="m-e5-dcons">−3,8%</span></div>
+    <div class="metric neutro"><span>Receita mensal atual</span><strong>R$ 324 mil</strong></div>
+    <div class="metric agua"><span>Nova receita mensal</span><strong id="m-e5-rec">R$ 359 mil</strong><span class="delta" id="m-e5-drec">+10,7%</span></div>
+    <div class="metric laranja"><span>Conta de quem consome 10 m³</span><strong id="m-e5-conta">R$ 51,75</strong><span class="delta" id="m-e5-dconta">+R$ 6,75</span></div>
+  </div>
+
+  <div class="callout agua" id="e5-callout"></div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Por que a demanda por água é inelástica</h3>
+      <p>Beber, cozinhar e tomar banho não têm substituto. A resposta ao preço vem dos usos secundários — lavar calçada, regar quintal,
+         consertar vazamento — e esses usos já são pequenos em quem consome pouco. Daí ε baixo no curto prazo.</p>
+    </div>
+    <div class="concept-box">
+      <h3>A regra da receita vale igual</h3>
+      <p>Com ε &lt; 1, reajustar a tarifa <strong>aumenta</strong> a receita do serviço. Com ε &gt; 1, o reajuste <em>derruba</em> a receita:
+         o consumo cai proporcionalmente mais que o preço sobe. Mova o segundo controle até ε = 1,0 e veja a virada.</p>
+    </div>
+  </div>
+
+  <div class="concept-row" style="margin-top:.75rem">
+    <div class="concept-box">
+      <h3>O outro lado da inelasticidade</h3>
+      <p>O que faz da água uma boa base de arrecadação é o mesmo que a torna um problema distributivo:
+         quem não consegue reduzir o consumo paga o reajuste inteiro. É esse o argumento econômico por trás da tarifa social
+         e da estrutura em faixas de consumo.</p>
+    </div>
+    <div class="concept-box">
+      <h3>Estime ε no seu município</h3>
+      <p>Peça ao serviço de água o último reajuste e o volume faturado antes e depois. A razão ΔQ%/ΔP% é uma
+         <strong>elasticidade-arco aparente</strong>, não uma estimativa: no mesmo período mudaram chuva, renda e número de ligações.
+         Separar o efeito do preço dos demais exige controlar esses fatores — e reconhecer isso já é metade do trabalho.</p>
+    </div>
+  </div>
+
+  <p class="fonte">
+    <strong>Fonte e limites.</strong> Parâmetros ilustrativos na ordem de grandeza de serviços autônomos de água em municípios
+    de pequeno porte (SNIS): 6.000 ligações residenciais, consumo médio de 12 m³ por ligação/mês e tarifa média de R$ 4,50/m³.
+    A faixa de ε oferecida no controle cobre o que a literatura costuma reportar para demanda residencial de água no curto prazo;
+    o valor exato do seu município é desconhecido — por isso ele é um controle, e não um número fixo na tela.
+  </p>
+</div>
+
+</main>
+<footer>UNEMAT · DEAD/UAB · Especialização em Gestão Pública (EaD) · Estado, Governo e Mercado · Prof. Dr. Cleiton Franco</footer>
+
+<script>
+// ─── SVG UTILS ───────────────────────────────────────────────
+const NS='http://www.w3.org/2000/svg';
+function se(tag,attrs,parent){
+  const e=document.createElementNS(NS,tag);
+  for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);
+  if(parent)parent.appendChild(e);
+  return e;
+}
+function clr(id){const s=document.getElementById(id);while(s.firstChild)s.removeChild(s.firstChild);return s;}
+function px(v,vMin,vMax,pMin,pMax){return pMin+(v-vMin)/(vMax-vMin)*(pMax-pMin);}
+
+function fmtTick(v, step){
+  const dec = Number.isInteger(step) ? 0 : 1;
+  return v.toFixed(dec).replace('.', ',');
+}
+function axes(svg,W,H,ml,mb,mt,mr,xl,yl,xMin,xMax,xStep,yMin,yMax,yStep,color){
+  color=color||'#aaa';
+  const defs=se('defs',{},svg);
+  const mkId='mk'+svg.id;
+  const mk=se('marker',{id:mkId,markerWidth:'7',markerHeight:'7',refX:'5',refY:'3',orient:'auto'},defs);
+  se('path',{d:'M0,0 L0,6 L7,3 z',fill:color},mk);
+  se('line',{x1:ml,y1:mt,x2:ml,y2:H-mb,stroke:color,'stroke-width':'1.1','marker-end':'url(#'+mkId+')'},svg);
+  se('line',{x1:ml-4,y1:H-mb,x2:W-mr,y2:H-mb,stroke:color,'stroke-width':'1.1','marker-end':'url(#'+mkId+')'},svg);
+  // Y label
+  const yl2=se('text',{x:12,y:(H-mb+mt)/2,'font-size':'10',fill:'#aaa','text-anchor':'middle',transform:'rotate(-90,12,'+(H-mb+mt)/2+')',
+    'font-family':'DM Mono,monospace'},svg);
+  yl2.textContent=yl;
+  // X label
+  const xl2=se('text',{x:(ml+W-mr)/2,y:H-2,'font-size':'10',fill:'#aaa','text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+  xl2.textContent=xl;
+  // Y ticks
+  for(let v=yMin;v<=yMax;v+=yStep){
+    const y=px(v,yMin,yMax,H-mb,mt);
+    se('line',{x1:ml-3,y1:y,x2:ml+3,y2:y,stroke:color,'stroke-width':'0.8'},svg);
+    se('line',{x1:ml,y1:y,x2:W-mr,y2:y,stroke:'#f0f0f0','stroke-width':'0.5'},svg);
+    const t=se('text',{x:ml-5,y:y+4,'font-size':'9',fill:'#bbb','text-anchor':'end','font-family':'DM Mono,monospace'},svg);
+    t.textContent=fmtTick(v,yStep);
+  }
+  // X ticks
+  for(let v=xMin;v<=xMax;v+=xStep){
+    const x=px(v,xMin,xMax,ml,W-mr);
+    se('line',{x1:x,y1:H-mb+3,x2:x,y2:H-mb-3,stroke:color,'stroke-width':'0.8'},svg);
+    const t=se('text',{x:x,y:H-mb+13,'font-size':'9',fill:'#bbb','text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+    t.textContent=v;
+  }
+}
+
+function curve(svg,pts,color,dash,lbl,lx,ly){
+  const poly=se('polyline',{points:pts.map(p=>p[0]+','+p[1]).join(' '),stroke:color,'stroke-width':'2.5',fill:'none',
+    'stroke-dasharray':dash||'none','stroke-linecap':'round','stroke-linejoin':'round'},svg);
+  if(lbl){const t=se('text',{x:lx,y:ly,'font-size':'12.5',fill:color,'font-weight':'600','font-family':'DM Sans,sans-serif'},svg);t.textContent=lbl;}
+  return poly;
+}
+function dot(svg,x,y,color,lbl,lx,ly){
+  se('circle',{cx:x,cy:y,r:'6.5',fill:color,stroke:'white','stroke-width':'2'},svg);
+  if(lbl){const t=se('text',{x:lx||x+9,y:ly||y-8,'font-size':'11',fill:color,'font-weight':'600','font-family':'DM Sans,sans-serif'},svg);t.textContent=lbl;}
+}
+function dashLine(svg,x1,y1,x2,y2,color){
+  se('line',{x1,y1,x2,y2,stroke:color,'stroke-width':'1','stroke-dasharray':'4,3',opacity:'.45'},svg);
+}
+
+// ─── PAINEL 1 — ε interativo ──────────────────────────────────
+function updateE1(){
+  const dp=parseInt(document.getElementById('sl-dp').value);
+  const dq=parseInt(document.getElementById('sl-dq').value);
+  document.getElementById('sv-dp').textContent='+'+dp+'%';
+  document.getElementById('sv-dq').textContent='−'+dq+'%';
+  const eps=dq/dp;
+  const epsStr=eps.toFixed(2).replace('.',',');
+  document.getElementById('eps-val').textContent=epsStr;
+  // tipo
+  let tipo,bg,tc;
+  if(eps<0.9){tipo='Inelástica (ε<1)';bg='#d5f0e0';tc='#1a5c3a';}
+  else if(eps>1.1){tipo='Elástica (ε>1)';bg='#fde8d5';tc='#8c3a0e';}
+  else{tipo='Unitária (ε≈1)';bg='#ede8fb';tc='#3d1a7a';}
+  const et=document.getElementById('eps-type');
+  et.textContent=tipo;et.style.background=bg;et.style.color=tc;
+  document.getElementById('eps-val').style.color=tc;
+  // agulha: ε de 0 a 2+ mapeado 0%..100%, ε=1 em 50%
+  const needlePct=Math.min(98,Math.max(2,(eps/2)*100));
+  document.getElementById('eps-needle').style.left=needlePct+'%';
+
+  // preços/qtds
+  const p2=Math.round(100*(1+dp/100));
+  const q2=Math.round(100*(1-dq/100));
+  const r1=10000, r2=p2*q2;
+  const dr=((r2-r1)/r1*100).toFixed(1);
+  document.getElementById('m-e1-p2').textContent='R$ '+p2;
+  document.getElementById('m-e1-q2').textContent=q2+' un';
+  document.getElementById('m-e1-r2').textContent='R$ '+r2.toLocaleString('pt-BR');
+  const drEl=document.getElementById('m-e1-dr');
+  drEl.textContent=(r2>=r1?'+':'')+dr+'%';
+  drEl.className=r2>=r1?'up':'dn';
+
+  // callout dinâmico
+  const co=document.getElementById('e1-callout');
+  if(eps<0.9){co.innerHTML='<strong>Inelástica (ε='+epsStr+'):</strong> a quantidade caiu proporcionalmente <em>menos</em> do que o preço subiu. O produtor sobe o preço e a receita <strong>aumenta</strong>. Ex.: insulina, gasolina, sal.';}
+  else if(eps>1.1){co.innerHTML='<strong>Elástica (ε='+epsStr+'):</strong> a quantidade caiu proporcionalmente <em>mais</em> do que o preço subiu. O produtor sobe o preço e a receita <strong>diminui</strong>. Ex.: turismo, roupas de grife, restaurantes.';}
+  else{co.innerHTML='<strong>Unitária (ε≈'+epsStr+'):</strong> a quantidade caiu na mesma proporção que o preço subiu. A receita total <strong>não muda</strong>. É o ponto de indiferença — nem ganho nem perda para o produtor ao alterar o preço.';}
+
+  // slider bg
+  const sl=document.getElementById('sl-dp');
+  const pct1=((dp-5)/(50-5))*100;
+  sl.style.background=`linear-gradient(to right,#6d3ec4 ${pct1}%,#ddd ${pct1}%)`;
+  const sl2=document.getElementById('sl-dq');
+  const pct2=((dq-1)/(60-1))*100;
+  sl2.style.background=`linear-gradient(to right,#6d3ec4 ${pct2}%,#ddd ${pct2}%)`;
+
+  drawE1Demand(dp,dq,eps);
+  drawE1Revenue(p2,q2,r1,r2);
+}
+
+function drawE1Demand(dp,dq,eps){
+  const svg=clr('svg-e1-d');
+  const W=260,H=220,ml=38,mb=28,mt=12,mr=15;
+  // inclinação da curva depende de ε: slope=-P0/(ε*Q0)
+  // Para visualizar: D original passa por (50,150) e (150,50) eixo Q=0..200,P=0..200
+  // D' tem inclinação diferente passando pelo mesmo ponto de equilíbrio (100,100)
+  // ε=dq/dp; slope real=-100/(ε*100)=-1/ε
+  axes(svg,W,H,ml,mb,mt,mr,'Qtd','Preço',0,200,50,0,200,50);
+  // ponto original (100,100)
+  const x0=px(100,0,200,ml,W-mr), y0=px(100,0,200,H-mb,mt);
+  // curva original: slope=-1
+  const d0=[
+    [px(0,0,200,ml,W-mr),px(200,0,200,H-mb,mt)],
+    [px(200,0,200,ml,W-mr),px(0,0,200,H-mb,mt)]
+  ];
+  curve(svg,d0,'#ccc',null,'D₀',W-mr+2,px(5,0,200,H-mb,mt));
+  // curva nova com elasticidade ε
+  const slope=-1/eps;
+  // passa por (100,100): P-100=slope*(Q-100) → P=100+slope*(Q-100)
+  const q1n=Math.max(0, 100 - 100/Math.abs(slope));
+  const q2n=Math.min(200, 100 + 100/Math.abs(slope));
+  const dn=[
+    [px(q1n,0,200,ml,W-mr), px(100+slope*(q1n-100),0,200,H-mb,mt)],
+    [px(q2n,0,200,ml,W-mr), px(100+slope*(q2n-100),0,200,H-mb,mt)]
+  ];
+  curve(svg,dn,'#6d3ec4',null,'D',W-mr+2,px(100+slope*(q2n-100),0,200,H-mb,mt));
+  // E1
+  dashLine(svg,x0,y0,x0,H-mb,'#6d3ec4');
+  dashLine(svg,ml,y0,x0,y0,'#6d3ec4');
+  dot(svg,x0,y0,'#6d3ec4','E1',x0+6,y0-8);
+  // E2
+  const q2v=100*(1-dq/100), p2v=100*(1+dp/100);
+  if(q2v>=0&&q2v<=200&&p2v>=0&&p2v<=200){
+    const xe=px(q2v,0,200,ml,W-mr), ye=px(p2v,0,200,H-mb,mt);
+    dashLine(svg,xe,ye,xe,H-mb,'#c4561a');
+    dashLine(svg,ml,ye,xe,ye,'#c4561a');
+    dot(svg,xe,ye,'#c4561a','E2',xe+6,ye-8);
+  }
+}
+
+function drawE1Revenue(p2,q2,r1,r2){
+  const svg=clr('svg-e1-r');
+  const W=260,H=220,ml=42,mb=28,mt=12,mr=15;
+  const maxR=Math.max(r1,r2)*1.3;
+  axes(svg,W,H,ml,mb,mt,mr,'','R$ receita',0,1,1,0,Math.ceil(maxR/2000)*2000,Math.ceil(maxR/4000)*2000);
+  // barra original
+  const bw=50;
+  const xb1=px(0.25,0,1,ml,W-mr)-bw/2;
+  const xb2=px(0.75,0,1,ml,W-mr)-bw/2;
+  const yb1=px(r1,0,Math.ceil(maxR/2000)*2000,H-mb,mt);
+  const yb2=px(r2,0,Math.ceil(maxR/2000)*2000,H-mb,mt);
+  const yBase=H-mb;
+  se('rect',{x:xb1,y:yb1,width:bw,height:yBase-yb1,fill:'#ccc','rx':'3'},svg);
+  const lb1=se('text',{x:xb1+bw/2,y:yBase+13,'font-size':'9',fill:'#999','text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+  lb1.textContent='Original';
+  const v1=se('text',{x:xb1+bw/2,y:yb1-4,'font-size':'9',fill:'#666','text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+  v1.textContent='R$'+Math.round(r1/1000)+'k';
+  const col=r2>=r1?'#2e9e5e':'#c4561a';
+  se('rect',{x:xb2,y:yb2,width:bw,height:yBase-yb2,fill:col,'rx':'3'},svg);
+  const lb2=se('text',{x:xb2+bw/2,y:yBase+13,'font-size':'9',fill:'#999','text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+  lb2.textContent='Novo';
+  const v2=se('text',{x:xb2+bw/2,y:yb2-4,'font-size':'9',fill:col,'text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+  v2.textContent='R$'+Math.round(r2/1000)+'k';
+  // seta entre barras
+  const ax1=xb1+bw+4, ax2=xb2-4, ay=(Math.min(yb1,yb2)+yBase)/2;
+  se('line',{x1:ax1,y1:ay,x2:ax2,y2:ay,stroke:'#ccc','stroke-width':'1','stroke-dasharray':'3,2'},svg);
+}
+
+function resetE1(){document.getElementById('sl-dp').value=20;document.getElementById('sl-dq').value=20;updateE1();}
+
+// ─── PAINEL 2 — BOI GORDO INELÁSTICO ────────────────
+const E2_P = 300, E2_Q = 6.5, E2_EPS = 0.20, E2_ARR = 18; // @ por cabeça
+function nb(v,c){ return v.toFixed(c).replace('.', ','); }
+
+function updateE2(){
+  const dp = parseInt(document.getElementById('sl-e2').value);
+  document.getElementById('sv-e2').textContent = '+' + dp + '%';
+  const sl = document.getElementById('sl-e2'), p = (dp/60)*100;
+  sl.style.background = `linear-gradient(to right,#2e9e5e ${p}%,#ddd ${p}%)`;
+  const p2 = E2_P * (1 + dp/100);
+  const dq = E2_EPS * dp;
+  const q2 = E2_Q * (1 + dq/100);
+  document.getElementById('m-e2-p1').textContent = 'R$ ' + E2_P + '/@';
+  document.getElementById('m-e2-p2').textContent = 'R$ ' + Math.round(p2) + '/@';
+  document.getElementById('m-e2-q2').textContent = nb(q2,2) + ' M cab.';
+  document.getElementById('m-e2-dp').textContent = '+' + dp + '%';
+  document.getElementById('m-e2-dq').textContent = '+' + nb(dq,1) + '%';
+  const r1 = E2_P*E2_Q*E2_ARR/1000, r2 = p2*q2*E2_ARR/1000; // R$ bi
+  document.getElementById('rbar-e2-2').style.width = Math.min(100, Math.round((r2/r1)*60)) + '%';
+  document.getElementById('rbar-e2-2').textContent = 'R$ ' + nb(r2,2) + ' bi';
+  document.getElementById('rv-e2').textContent = 'R$ ' + nb(r2,2) + ' bi';
+  drawE2(p2, q2);
+}
+
+function drawE2(p2, q2){
+  const svg = clr('svg-e2');
+  const W=520,H=300,ml=58,mb=30,mt=20,mr=30;
+  const xMin=5,xMax=8,xStep=1,yMin=280,yMax=520,yStep=40;
+  axes(svg,W,H,ml,mb,mt,mr,'Abate anual (milh\u00f5es de cabe\u00e7as)','Pre\u00e7o da arroba (R$/@)',xMin,xMax,xStep,yMin,yMax,yStep);
+  const X = q => px(q,xMin,xMax,ml,W-mr);
+  const Y = v => px(v,yMin,yMax,H-mb,mt);
+  // Oferta quase vertical: dP/dQ = P/(\u03b5\u00b7Q)
+  const inc = E2_P/(E2_EPS*E2_Q);
+  const sPts = [];
+  for (let v = yMin; v <= yMax; v += 20) sPts.push([E2_Q + (v-E2_P)/inc, v]);
+  curve(svg, sPts.map(a=>[X(a[0]),Y(a[1])]), '#2e9e5e', null, 'S', X(sPts[sPts.length-1][0])+6, Y(yMax)+2);
+  // Demanda descendente passando por (6,5 ; 300)
+  const dPts = [];
+  for (let v = yMin; v <= yMax; v += 20) dPts.push([E2_Q - (v-E2_P)/150, v]);
+  const dVis = dPts.filter(a => a[0] >= xMin && a[0] <= xMax);
+  curve(svg, dVis.map(a=>[X(a[0]),Y(a[1])]), '#c4561a', null, 'D', X(dVis[dVis.length-1][0])-24, Y(dVis[dVis.length-1][1])-8);
+  const e1x=X(E2_Q), e1y=Y(E2_P);
+  dashLine(svg,e1x,e1y,e1x,H-mb,'#2e9e5e'); dashLine(svg,ml,e1y,e1x,e1y,'#2e9e5e');
+  dot(svg,e1x,e1y,'#2e9e5e','E1',e1x-30,e1y+18);
+  if (p2 > E2_P + 1 && p2 <= yMax) {
+    const e2x=X(q2), e2y=Y(p2);
+    dashLine(svg,e2x,e2y,e2x,H-mb,'#c4561a'); dashLine(svg,ml,e2y,e2x,e2y,'#c4561a');
+    dot(svg,e2x,e2y,'#c4561a','E2',e2x+8,e2y-8);
+  }
+}
+function resetE2(){ document.getElementById('sl-e2').value=0; updateE2(); }
+
+// ─── PAINEL 3 — FRANGO ELÁSTICO ───────────────────
+const E3_P = 6.50, E3_Q = 900, E3_EPS = 1.35; // R$/kg ; mil toneladas
+
+function updateE3(){
+  const dp = parseInt(document.getElementById('sl-e3').value);
+  document.getElementById('sv-e3').textContent = '\u2212' + dp + '%';
+  const sl = document.getElementById('sl-e3'), p = (dp/50)*100;
+  sl.style.background = `linear-gradient(to right,#c4561a ${p}%,#ddd ${p}%)`;
+  const p2 = E3_P * (1 - dp/100);
+  const dq = E3_EPS * dp;
+  const q2 = Math.max(0, E3_Q * (1 - dq/100));
+  document.getElementById('m-e3-p2').textContent = 'R$ ' + nb(p2,2) + '/kg';
+  document.getElementById('m-e3-q2').textContent = Math.round(q2) + ' mil t';
+  document.getElementById('m-e3-dp').textContent = '\u2212' + dp + '%';
+  document.getElementById('m-e3-dq').textContent = '\u2212' + nb(dq,1) + '%';
+  const r1 = E3_P*E3_Q/1000, r2 = p2*q2/1000; // R$ bi
+  document.getElementById('rbar-e3-2').style.width = Math.max(2, Math.min(100, Math.round((r2/r1)*70))) + '%';
+  document.getElementById('rbar-e3-2').textContent = 'R$ ' + nb(r2,2) + ' bi';
+  document.getElementById('rv-e3').textContent = 'R$ ' + nb(r2,2) + ' bi';
+  drawE3(p2, q2);
+}
+
+function drawE3(p2, q2){
+  const svg = clr('svg-e3');
+  const W=520,H=300,ml=58,mb=30,mt=20,mr=30;
+  const xMin=200,xMax=1000,xStep=200,yMin=2,yMax=8,yStep=1;
+  axes(svg,W,H,ml,mb,mt,mr,'Produ\u00e7\u00e3o anual (mil toneladas)','Pre\u00e7o (R$/kg)',xMin,xMax,xStep,yMin,yMax,yStep);
+  const X = q => px(q,xMin,xMax,ml,W-mr);
+  const Y = v => px(v,yMin,yMax,H-mb,mt);
+  const inc = E3_P/(E3_EPS*E3_Q); // dP/dQ da oferta
+  const sPts = [];
+  for (let v = yMin; v <= yMax; v += 0.5) sPts.push([E3_Q + (v-E3_P)/inc, v]);
+  const sVis = sPts.filter(a => a[0] >= xMin && a[0] <= xMax);
+  curve(svg, sVis.map(a=>[X(a[0]),Y(a[1])]), '#c4561a', null, 'S', X(sVis[sVis.length-1][0])-20, Y(sVis[sVis.length-1][1])-8);
+  const dPts = [];
+  for (let v = yMin; v <= yMax; v += 0.5) dPts.push([E3_Q - (v-E3_P)/0.004, v]);
+  const dVis = dPts.filter(a => a[0] >= xMin && a[0] <= xMax);
+  curve(svg, dVis.map(a=>[X(a[0]),Y(a[1])]), '#2e6da4', null, 'D', X(dVis[0][0])+6, Y(dVis[0][1])+4);
+  const e1x=X(E3_Q), e1y=Y(E3_P);
+  dashLine(svg,e1x,e1y,e1x,H-mb,'#c4561a'); dashLine(svg,ml,e1y,e1x,e1y,'#c4561a');
+  dot(svg,e1x,e1y,'#c4561a','E1',e1x+8,e1y-8);
+  if (p2 < E3_P - 0.02 && q2 >= xMin) {
+    const e2x=X(q2), e2y=Y(p2);
+    dashLine(svg,e2x,e2y,e2x,H-mb,'#2e6da4'); dashLine(svg,ml,e2y,e2x,e2y,'#2e6da4');
+    dot(svg,e2x,e2y,'#2e6da4','E2',e2x+8,e2y+16);
+  }
+}
+function resetE3(){ document.getElementById('sl-e3').value=0; updateE3(); }
+
+// ─── PAINEL 4 — CRUZADA CARNE × FRANGO ──────────────
+const E4_PB = 32.0, E4_QF = 45.0, E4_EPS = 0.35;
+
+function updateE4(){
+  const dp = parseInt(document.getElementById('sl-e4').value);
+  document.getElementById('sv-e4').textContent = '+' + dp + '%';
+  const sl = document.getElementById('sl-e4'), p = (dp/60)*100;
+  sl.style.background = `linear-gradient(to right,#2e6da4 ${p}%,#ddd ${p}%)`;
+  const pb2 = E4_PB * (1 + dp/100);
+  const dqf = E4_EPS * dp;
+  const qf2 = E4_QF * (1 + dqf/100);
+  document.getElementById('m-e4-pf').textContent = 'R$ ' + nb(pb2,2) + '/kg';
+  document.getElementById('m-e4-qs').textContent = nb(qf2,1) + ' kg/hab./ano';
+  document.getElementById('m-e4-dp').textContent = '+' + dp + '%';
+  document.getElementById('m-e4-dq').textContent = '+' + nb(dqf,1) + '%';
+  document.getElementById('eps-e4-val').textContent = '+' + nb(E4_EPS,2);
+  drawE4Bovina(dp, pb2);
+  drawE4Frango(qf2);
+}
+
+function drawE4Bovina(dp, pb2){
+  const svg = clr('svg-e4-f');
+  const W=260,H=200,ml=45,mb=25,mt=15,mr=15;
+  axes(svg,W,H,ml,mb,mt,mr,'Tempo','R$/kg',0,4,1,0,60,20);
+  const Y = v => px(v,0,60,H-mb,mt);
+  const y0 = Y(E4_PB), y1 = Y(Math.min(58, pb2));
+  const x0=px(0,0,4,ml,W-mr), x1=px(1.5,0,4,ml,W-mr), x2=px(4,0,4,ml,W-mr);
+  se('line',{x1:x0,y1:y0,x2:x1,y2:y0,stroke:'#ccc','stroke-width':'2','stroke-linecap':'round'},svg);
+  if (dp>0) {
+    se('line',{x1:x1,y1:y0,x2:x1,y2:y1,stroke:'#2e6da4','stroke-width':'1.5','stroke-dasharray':'3,2'},svg);
+    se('line',{x1:x1,y1:y1,x2:x2,y2:y1,stroke:'#2e6da4','stroke-width':'2.5','stroke-linecap':'round'},svg);
+    const lb2=se('text',{x:x1+4,y:y1-5,'font-size':'9.5',fill:'#2e6da4','font-family':'DM Mono,monospace'},svg);
+    lb2.textContent='R$ '+nb(pb2,2)+'/kg';
+    se('circle',{cx:x1,cy:y1,r:'5',fill:'#2e6da4',stroke:'white','stroke-width':'1.5'},svg);
+  }
+  const lb=se('text',{x:x0+6,y:y0+14,'font-size':'9.5',fill:'#aaa','font-family':'DM Mono,monospace'},svg);
+  lb.textContent='R$ 32,00/kg';
+  se('circle',{cx:x1,cy:y0,r:'4',fill:'#ccc',stroke:'white','stroke-width':'1.5'},svg);
+}
+
+function drawE4Frango(qf2){
+  const svg = clr('svg-e4-s');
+  const W=260,H=200,ml=42,mb=25,mt=15,mr=15;
+  axes(svg,W,H,ml,mb,mt,mr,'Tempo','kg/hab./ano',0,4,1,0,80,20);
+  const Y = v => px(v,0,80,H-mb,mt);
+  const y0 = Y(E4_QF), y1 = Y(Math.min(78, qf2));
+  const x0=px(0,0,4,ml,W-mr), x1=px(1.5,0,4,ml,W-mr), x2=px(4,0,4,ml,W-mr);
+  se('line',{x1:x0,y1:y0,x2:x1,y2:y0,stroke:'#ccc','stroke-width':'2','stroke-linecap':'round'},svg);
+  if (qf2 > E4_QF + 0.1) {
+    se('line',{x1:x1,y1:y0,x2:x1,y2:y1,stroke:'#2e9e5e','stroke-width':'1.5','stroke-dasharray':'3,2'},svg);
+    se('line',{x1:x1,y1:y1,x2:x2,y2:y1,stroke:'#2e9e5e','stroke-width':'2.5','stroke-linecap':'round'},svg);
+    const lb2=se('text',{x:x1+4,y:y1-5,'font-size':'9.5',fill:'#2e9e5e','font-family':'DM Mono,monospace'},svg);
+    lb2.textContent=nb(qf2,1)+' kg';
+    se('circle',{cx:x1,cy:y1,r:'5',fill:'#2e9e5e',stroke:'white','stroke-width':'1.5'},svg);
+  }
+  const lb=se('text',{x:x0+6,y:y0+14,'font-size':'9.5',fill:'#aaa','font-family':'DM Mono,monospace'},svg);
+  lb.textContent='45,0 kg';
+  se('circle',{cx:x1,cy:y0,r:'4',fill:'#ccc',stroke:'white','stroke-width':'1.5'},svg);
+}
+function resetE4(){ document.getElementById('sl-e4').value=0; updateE4(); }
+
+// ─── PAINEL 5 — TARIFA DE ÁGUA MUNICIPAL ───────────────
+const E5_LIG = 6000;    // ligações residenciais
+const E5_CONS = 12;     // m³ por ligação/mês
+const E5_TAR = 4.50;    // R$/m³
+function e5n(v,c){ return v.toFixed(c).replace('.', ','); }
+
+function updateE5(){
+  const dp = parseInt(document.getElementById('sl-e5p').value);
+  const eps = parseInt(document.getElementById('sl-e5e').value)/100;
+  document.getElementById('sv-e5p').textContent = '+' + dp + '%';
+  document.getElementById('sv-e5e').textContent = e5n(eps,2);
+
+  const dq = -eps * dp;                       // variação % do consumo
+  const tar2 = E5_TAR * (1 + dp/100);
+  const cons2 = E5_CONS * (1 + dq/100);
+  const rec1 = E5_LIG * E5_CONS * E5_TAR;
+  const rec2 = E5_LIG * cons2 * tar2;
+  const drec = ((rec2 - rec1)/rec1) * 100;
+
+  // ε no visor
+  document.getElementById('e5-eps').textContent = e5n(eps,2);
+  let tipo, bg, tc;
+  if (eps < 0.95) { tipo = 'Inel\u00e1stica (\u03b5<1)'; bg = '#d9eef3'; tc = '#0d4a5c'; }
+  else if (eps > 1.05) { tipo = 'El\u00e1stica (\u03b5>1)'; bg = '#fde8d5'; tc = '#8c3a0e'; }
+  else { tipo = 'Unit\u00e1ria (\u03b5\u22481)'; bg = '#ede8fb'; tc = '#3d1a7a'; }
+  const et = document.getElementById('e5-tipo');
+  et.textContent = tipo; et.style.background = bg; et.style.color = tc;
+  document.getElementById('e5-eps').style.color = tc;
+  document.getElementById('e5-needle').style.left = Math.min(98, Math.max(2, (eps/2)*100)) + '%';
+
+  // métricas
+  document.getElementById('m-e5-tar').textContent = 'R$ ' + e5n(tar2,2) + '/m\u00b3';
+  document.getElementById('m-e5-cons').textContent = e5n(cons2,1) + ' m\u00b3/m\u00eas';
+  const dc = document.getElementById('m-e5-dcons');
+  dc.textContent = (dq >= 0 ? '+' : '\u2212') + e5n(Math.abs(dq),1) + '%';
+  dc.className = 'delta ' + (dq >= 0 ? 'up' : 'dn');
+  document.getElementById('m-e5-rec').textContent = 'R$ ' + Math.round(rec2/1000) + ' mil';
+  const dr = document.getElementById('m-e5-drec');
+  dr.textContent = (drec >= 0 ? '+' : '\u2212') + e5n(Math.abs(drec),1) + '%';
+  dr.className = 'delta ' + (drec >= 0 ? 'up' : 'dn');
+  const conta1 = 10 * E5_TAR, conta2 = 10 * tar2;
+  document.getElementById('m-e5-conta').textContent = 'R$ ' + e5n(conta2,2);
+  document.getElementById('m-e5-dconta').textContent = '+R$ ' + e5n(conta2-conta1,2);
+
+  // callout
+  const cl = document.getElementById('e5-callout');
+  if (dp === 0) {
+    cl.innerHTML = '<strong>Sem reajuste.</strong> Mova o primeiro controle para aplicar um aumento de tarifa e o segundo para testar '
+      + 'qu\u00e3o sens\u00edvel \u00e9 o consumo. A pergunta do gestor \u00e9 sempre a mesma: o reajuste cobre o custo do servi\u00e7o sem derrubar o volume faturado?';
+  } else if (eps < 0.95) {
+    cl.innerHTML = '<strong>Demanda inel\u00e1stica \u2014 a receita sobe.</strong> Um reajuste de ' + dp + '% reduz o consumo em apenas '
+      + e5n(Math.abs(dq),1) + '%, e a receita mensal cresce ' + e5n(drec,1) + '%, de R$ ' + Math.round(rec1/1000)
+      + ' mil para R$ ' + Math.round(rec2/1000) + ' mil. O caixa do servi\u00e7o melhora \u2014 e a conta de quem consome 10 m\u00b3 sobe R$ '
+      + e5n(conta2-conta1,2) + ' por m\u00eas, venha ou n\u00e3o acompanhada de aumento de renda.';
+  } else if (eps > 1.05) {
+    cl.innerHTML = '<strong>Demanda el\u00e1stica \u2014 a receita cai.</strong> Com \u03b5 = ' + e5n(eps,2) + ', o reajuste de ' + dp
+      + '% derruba o consumo em ' + e5n(Math.abs(dq),1) + '% e a receita mensal recua ' + e5n(Math.abs(drec),1)
+      + '%, para R$ ' + Math.round(rec2/1000) + ' mil. O gestor aumentou o pre\u00e7o e arrecadou menos: \u00e9 o caso em que a tarifa passou do ponto.';
+  } else {
+    cl.innerHTML = '<strong>Elasticidade pr\u00f3xima de 1 \u2014 o ponto de virada.</strong> A queda do consumo quase anula a alta da tarifa: '
+      + 'a receita fica praticamente onde estava (' + e5n(drec,1) + '%). \u00c9 a fronteira entre reajustar e arrecadar mais, e reajustar e arrecadar menos.';
+  }
+
+  const s1 = document.getElementById('sl-e5p'), s2 = document.getElementById('sl-e5e');
+  s1.style.background = `linear-gradient(to right,#1f7f96 ${(dp/40)*100}%,#ddd ${(dp/40)*100}%)`;
+  s2.style.background = `linear-gradient(to right,#1f7f96 ${((eps*100-10)/150)*100}%,#ddd ${((eps*100-10)/150)*100}%)`;
+
+  drawE5Demanda(eps, cons2, tar2);
+  drawE5Receita(rec1, rec2);
+}
+
+function drawE5Demanda(eps, cons2, tar2){
+  const svg = clr('svg-e5-d');
+  const W=260,H=220,ml=40,mb=28,mt=12,mr=15;
+  const xMin=0,xMax=24,yMin=0,yMax=9;
+  axes(svg,W,H,ml,mb,mt,mr,'m\u00b3/m\u00eas','R$/m\u00b3',xMin,xMax,6,yMin,yMax,3);
+  const X = q => px(q,xMin,xMax,ml,W-mr);
+  const Y = p => px(p,yMin,yMax,H-mb,mt);
+  // demanda passando por (12; 4,50) com inclina\u00e7\u00e3o dP/dQ = -P/(\u03b5 Q)
+  const slope = -E5_TAR/(eps*E5_CONS);
+  const qa = Math.max(xMin, E5_CONS + (yMax-E5_TAR)/slope);
+  const qb = Math.min(xMax, E5_CONS + (yMin-E5_TAR)/slope);
+  const pa = E5_TAR + slope*(qa-E5_CONS), pb = E5_TAR + slope*(qb-E5_CONS);
+  curve(svg,[[X(qa),Y(pa)],[X(qb),Y(pb)]],'#1f7f96',null,'D',X(Math.min(xMax,qb))-14,Y(Math.max(yMin,pb))-6);
+  // ponto atual
+  const x1=X(E5_CONS), y1=Y(E5_TAR);
+  dashLine(svg,x1,y1,x1,H-mb,'#8e8e93'); dashLine(svg,ml,y1,x1,y1,'#8e8e93');
+  dot(svg,x1,y1,'#8e8e93','hoje',x1+6,y1-8);
+  // ponto ap\u00f3s reajuste
+  if (tar2 > E5_TAR + 0.02 && tar2 <= yMax) {
+    const x2=X(cons2), y2=Y(tar2);
+    dashLine(svg,x2,y2,x2,H-mb,'#0d4a5c'); dashLine(svg,ml,y2,x2,y2,'#0d4a5c');
+    dot(svg,x2,y2,'#0d4a5c','novo',x2+6,y2-8);
+  }
+}
+
+function drawE5Receita(r1, r2){
+  const svg = clr('svg-e5-r');
+  const W=260,H=220,ml=46,mb=28,mt=12,mr=15;
+  const m1 = r1/1000, m2 = r2/1000;
+  const topo = Math.ceil(Math.max(m1,m2)*1.25/100)*100;
+  axes(svg,W,H,ml,mb,mt,mr,'','R$ mil/m\u00eas',0,1,1,0,topo,topo/4);
+  const bw=50, base=H-mb;
+  const xb1=px(0.25,0,1,ml,W-mr)-bw/2, xb2=px(0.75,0,1,ml,W-mr)-bw/2;
+  const yb1=px(m1,0,topo,base,mt), yb2=px(m2,0,topo,base,mt);
+  se('rect',{x:xb1,y:yb1,width:bw,height:base-yb1,fill:'#ccc',rx:'3'},svg);
+  const col = r2>=r1 ? '#1f7f96' : '#c4561a';
+  se('rect',{x:xb2,y:yb2,width:bw,height:base-yb2,fill:col,rx:'3'},svg);
+  function rot(x,y,txt,cor){
+    const t=se('text',{x:x,y:y,'font-size':'9',fill:cor,'text-anchor':'middle','font-family':'DM Mono,monospace'},svg);
+    t.textContent=txt; return t;
+  }
+  rot(xb1+bw/2, base+13, 'Hoje', '#999');
+  rot(xb2+bw/2, base+13, 'Reajustada', '#999');
+  rot(xb1+bw/2, yb1-5, 'R$'+Math.round(r1/1000)+'k', '#666');
+  rot(xb2+bw/2, yb2-5, 'R$'+Math.round(r2/1000)+'k', col);
+}
+
+function resetE5(){
+  document.getElementById('sl-e5p').value=15;
+  document.getElementById('sl-e5e').value=25;
+  updateE5();
+}
+
+// ─── TAB NAV ─────────────────────────────────────────────────
+function showPanel(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
+  updateE1(); updateE2(); updateE3(); updateE4(); updateE5();
+});
+</script>
+</body>
+</html>

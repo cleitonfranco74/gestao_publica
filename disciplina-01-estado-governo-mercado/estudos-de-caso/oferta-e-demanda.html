@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta & Demanda — a pecuária de Mato Grosso</title>
+<meta name="description" content="Oferta e demanda na pecuária de Mato Grosso: movimentos ao longo da curva, deslocamentos e ciclo pecuário. Estudo de caso interativo.">
+<link rel="icon" type="image/png" href="../../img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Estudo de caso 2 · Oferta e demanda · Estado, Governo e Mercado">
+<meta property="og:description" content="Oferta e demanda na pecuária de Mato Grosso: movimentos ao longo da curva, deslocamentos e ciclo pecuário. Estudo de caso interativo.">
+<meta property="og:url" content="https://cleitonfranco74.github.io/gestao_publica/disciplina-01-estado-governo-mercado/estudos-de-caso/oferta-e-demanda.html">
+<meta property="og:image" content="https://cleitonfranco74.github.io/gestao_publica/img/og-estado-governo-mercado.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul: #1a3a5c;
+    --azul-med: #2e6da4;
+    --azul-claro: #ddeaf7;
+    --verde: #1a5c3a;
+    --verde-med: #2e9e5e;
+    --verde-claro: #d5f0e0;
+    --laranja: #8c3a0e;
+    --laranja-med: #c4561a;
+    --laranja-claro: #fde8d5;
+    --amarelo: #7a5500;
+    --amarelo-med: #c48a00;
+    --amarelo-claro: #fff3cc;
+    --vinho: #6b2440;
+    --vinho-med: #a83b5e;
+    --vinho-claro: #fae3ea;
+    --cinza-escuro: #1c1c1e;
+    --cinza: #48484a;
+    --cinza-med: #8e8e93;
+    --cinza-claro: #f2f2f7;
+    --branco: #ffffff;
+    --borda: #d1d1d6;
+    --sombra: 0 2px 16px rgba(0,0,0,0.08);
+    --raio: 14px;
+    --raio-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f5f0;
+    color: var(--cinza-escuro);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--azul);
+    color: white;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 40px,
+      rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 80px
+    );
+  }
+  header .kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: .75rem;
+  }
+  header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: .75rem;
+    position: relative;
+  }
+  header h1 em { font-style: italic; color: #7bbfef; }
+  header p.sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+  }
+  .chips {
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    position: relative;
+  }
+  .chip {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* NAV TABS */
+  .nav-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: white;
+    border-bottom: 1px solid var(--borda);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-tabs {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex: 1;
+    min-width: 160px;
+    padding: 1rem 1.25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cinza-med);
+    border-bottom: 3px solid transparent;
+    transition: all .2s;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-tab .tab-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    opacity: .6;
+  }
+  .nav-tab:hover { color: var(--cinza-escuro); background: var(--cinza-claro); }
+  .nav-tab.active { color: var(--azul); border-bottom-color: var(--azul-med); font-weight: 500; }
+  .nav-tab[data-panel="c2"].active { color: var(--verde); border-bottom-color: var(--verde-med); }
+  .nav-tab[data-panel="c3"].active { color: var(--amarelo); border-bottom-color: var(--amarelo-med); }
+  .nav-tab[data-panel="c4"].active { color: var(--vinho); border-bottom-color: var(--vinho-med); }
+
+  /* MAIN */
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .panel { display: none; animation: fadeIn .3s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+  /* SCENARIO HEADER */
+  .scenario-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 1.5rem;
+  }
+  .scenario-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: .75rem;
+    font-weight: 500;
+  }
+  .tag-move { background: var(--azul-claro); color: var(--azul); }
+  .tag-shift-s { background: var(--verde-claro); color: var(--verde); }
+  .tag-shift-d { background: var(--amarelo-claro); color: var(--amarelo); }
+  .tag-oferta-cp { background: var(--vinho-claro); color: var(--vinho); }
+  .scenario-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cinza-escuro);
+  }
+  .scenario-sub {
+    font-size: 13px;
+    color: var(--cinza-med);
+    margin-top: .4rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* CONTROL PANEL */
+  .control-panel {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .control-panel label {
+    font-size: 13px;
+    color: var(--cinza-med);
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+  .slider-wrap {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .slider-wrap input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  #c1 .slider-wrap input { background: linear-gradient(to right, var(--azul-med) 50%, #ddd 50%); accent-color: var(--azul-med); }
+  #c2 .slider-wrap input { background: linear-gradient(to right, var(--verde-med) 50%, #ddd 50%); accent-color: var(--verde-med); }
+  #c3 .slider-wrap input { background: linear-gradient(to right, var(--amarelo-med) 50%, #ddd 50%); accent-color: var(--amarelo-med); }
+  #c4 .slider-wrap input { background: linear-gradient(to right, var(--vinho-med) 50%, #ddd 50%); accent-color: var(--vinho-med); }
+  .slider-wrap input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid currentColor;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .slider-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: right;
+  }
+  .btn-reset {
+    padding: 7px 16px;
+    border-radius: var(--raio-sm);
+    border: 1px solid var(--borda);
+    background: var(--cinza-claro);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--cinza);
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .btn-reset:hover { background: #e5e5ea; }
+
+  /* GRAPH CARD */
+  .graph-card {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--sombra);
+  }
+  .graph-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-bottom: 1.25rem;
+    font-size: 12px;
+    color: var(--cinza);
+  }
+  .leg { display: flex; align-items: center; gap: 6px; }
+  .leg-line { width: 24px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+  .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  svg.main-chart { display: block; width: 100%; overflow: visible; }
+
+  /* METRICS */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+  }
+  .metric {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-sm);
+    padding: .9rem 1.1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .metric.azul::before { background: var(--azul-med); }
+  .metric.verde::before { background: var(--verde-med); }
+  .metric.laranja::before { background: var(--laranja-med); }
+  .metric.amarelo::before { background: var(--amarelo-med); }
+  .metric.vinho::before { background: var(--vinho-med); }
+  .metric span {
+    display: block;
+    font-size: 11px;
+    color: var(--cinza-med);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 4px;
+  }
+  .metric strong {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--cinza-escuro);
+    font-family: 'DM Mono', monospace;
+    display: block;
+    transition: all .3s;
+  }
+  .metric .delta {
+    font-size: 12px;
+    margin-top: 2px;
+    font-family: 'DM Mono', monospace;
+  }
+  .up { color: var(--verde-med); }
+  .dn { color: var(--laranja-med); }
+
+  /* CALLOUT */
+  .callout {
+    border-radius: 0 var(--raio-sm) var(--raio-sm) 0;
+    border-left: 4px solid;
+    padding: 1rem 1.25rem;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .callout.azul { background: var(--azul-claro); border-color: var(--azul-med); color: var(--azul); }
+  .callout.verde { background: var(--verde-claro); border-color: var(--verde-med); color: var(--verde); }
+  .callout.amarelo { background: var(--amarelo-claro); border-color: var(--amarelo-med); color: var(--amarelo); }
+  .callout.vinho { background: var(--vinho-claro); border-color: var(--vinho-med); color: var(--vinho); }
+  .callout strong { font-weight: 600; }
+
+  /* CONCEPT BOX */
+  .concept-box {
+    background: var(--cinza-claro);
+    border-radius: var(--raio);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .concept-box h3 {
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--cinza-med);
+    margin-bottom: .75rem;
+  }
+  .concept-box p { font-size: 14px; color: var(--cinza-escuro); }
+  .concept-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+  }
+  @media (max-width: 600px) {
+    .concept-row { grid-template-columns: 1fr; }
+    .scenario-header { grid-template-columns: 1fr; }
+  }
+
+  /* REGRA */
+  .regra {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-sm);
+    padding: 1rem 1.25rem;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .regra-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* PREVISAO ANTES DO SLIDER */
+  .predict {
+    background: white;
+    border: 1px solid var(--borda);
+    border-left: 4px solid var(--vinho-med);
+    border-radius: 0 var(--raio) var(--raio) 0;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--sombra);
+  }
+  .predict h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: .5rem;
+    color: var(--cinza-escuro);
+  }
+  .predict p.q { font-size: 14px; color: var(--cinza); margin-bottom: 1rem; }
+  .predict-opts { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .predict-btn {
+    flex: 1 1 160px;
+    padding: .8rem 1rem;
+    border-radius: var(--raio-sm);
+    border: 1px solid var(--borda);
+    background: var(--cinza-claro);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--cinza-escuro);
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.4;
+    transition: background .15s, border-color .15s;
+  }
+  .predict-btn:hover { background: #e8e8ed; }
+  .predict-btn:focus-visible { outline: 2px solid var(--vinho-med); outline-offset: 2px; }
+  .predict-btn.chosen {
+    background: var(--vinho-claro);
+    border-color: var(--vinho-med);
+    color: var(--vinho);
+    font-weight: 500;
+  }
+  .predict-fb {
+    margin-top: 1rem;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--vinho);
+    background: var(--vinho-claro);
+    border-radius: var(--raio-sm);
+    padding: .85rem 1.1rem;
+  }
+  .oculto { display: none; }
+
+  .btn-preset {
+    padding: 7px 16px;
+    border-radius: var(--raio-sm);
+    border: 1px solid var(--vinho-med);
+    background: var(--vinho-claro);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--vinho);
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .btn-preset:hover { background: #f6d3de; }
+
+  .fonte {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--cinza-med);
+    border-top: 1px solid var(--borda);
+    padding-top: .9rem;
+    margin-top: 1rem;
+  }
+  .fonte strong { color: var(--cinza); font-weight: 500; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--cinza-med);
+    font-family: 'DM Mono', monospace;
+    border-top: 1px solid var(--borda);
+    margin-top: 1rem;
+  }
+
+/* faixa institucional da Especialização em Gestão Pública */
+.gp-strip{background:#fff;border-bottom:3px solid #e8c65a;font-family:'DM Sans',sans-serif}
+.gp-strip .gp-in{max-width:1000px;margin:0 auto;padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.gp-strip a{color:#13294b;font-size:13px;font-weight:600;text-decoration:none}
+.gp-strip a:hover{text-decoration:underline}
+.gp-strip .gp-logos{display:flex;align-items:center;gap:1.1rem}
+.gp-strip img{height:34px;width:auto;display:block}
+@media(max-width:560px){.gp-strip img{height:24px}.gp-strip .gp-logos{gap:.6rem}}
+@media print{.gp-strip{display:none}}
+</style>
+</head>
+<body>
+<div class="gp-strip"><div class="gp-in">
+  <a href="../index.html#casos">← Estado, Governo e Mercado · Estudos de caso</a>
+  <div class="gp-logos"><img src="../../img/logo-unemat.png" alt="UNEMAT"><img src="../../img/logo-dead.png" alt="DEAD"><img src="../../img/logo-uab.png" alt="UAB"></div>
+</div></div>
+
+<header>
+  <p class="kicker">UNEMAT · DEAD/UAB · Especialização em Gestão Pública · Estado, Governo e Mercado</p>
+  <h1>Oferta & Demanda<br><em>na pecuária de MT</em></h1>
+  <p class="sub">Quatro cenários reais da pecuária mato-grossense para entender movimentos ao longo da curva e deslocamentos de curva.</p>
+  <div class="chips">
+    <span class="chip">Leite · Arenápolis</span>
+    <span class="chip">Bezerro · reposição</span>
+    <span class="chip">Carne · exportação China</span>
+    <span class="chip">Boi gordo · Araguaia</span>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-panel="c1" onclick="showPanel('c1',this)">
+      <span class="tab-num">Cenário 01</span>
+      Leite valoriza — movimento na curva
+    </button>
+    <button class="nav-tab" data-panel="c2" onclick="showPanel('c2',this)">
+      <span class="tab-num">Cenário 02</span>
+      Bezerro encarece — oferta recua
+    </button>
+    <button class="nav-tab" data-panel="c3" onclick="showPanel('c3',this)">
+      <span class="tab-num">Cenário 03</span>
+      China compra carne — demanda avança
+    </button>
+    <button class="nav-tab" data-panel="c4" onclick="showPanel('c4',this)">
+      <span class="tab-num">Cenário 04</span>
+      Arroba sobe — o abate cai
+    </button>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════ CENÁRIO 1 -->
+<div id="c1" class="panel active">
+  <div class="scenario-header">
+    <div>
+      <span class="scenario-tag tag-move">Movimento ao longo da curva</span>
+      <h2 class="scenario-title">O laticínio anuncia<br>preço maior pelo litro</h2>
+      <p class="scenario-sub">Bacia leiteira de Arenápolis e Nortelândia, MT</p>
+    </div>
+  </div>
+
+  <div class="control-panel">
+    <label>Preço pago ao produtor (R$/litro):</label>
+    <div class="slider-wrap">
+      <input type="range" id="sl1" min="160" max="280" value="220" step="5" oninput="updateC1()">
+      <span class="slider-val" id="sv1" style="color:var(--azul-med)">R$ 2,20</span>
+    </div>
+    <button class="btn-reset" onclick="resetC1()">↺ Resetar</button>
+  </div>
+
+  <div class="graph-card">
+    <div class="graph-legend">
+      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>Oferta (S)</span>
+      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Demanda (D)</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>E1 — ponto original</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E2 — ponto atual</span>
+    </div>
+    <svg id="svg1" class="main-chart" viewBox="0 0 520 300"></svg>
+  </div>
+
+  <div class="metrics">
+    <div class="metric azul">
+      <span>Preço original (E1)</span>
+      <strong>R$ 2,20/L</strong>
+    </div>
+    <div class="metric laranja">
+      <span>Novo preço (E2)</span>
+      <strong id="m1-p">R$ 2,20/L</strong>
+      <span class="delta" id="m1-dp">+0%</span>
+    </div>
+    <div class="metric azul">
+      <span>Qtd. original (E1)</span>
+      <strong>8,0 M L/mês</strong>
+    </div>
+    <div class="metric laranja">
+      <span>Nova quantidade (E2)</span>
+      <strong id="m1-q">8,0 M L/mês</strong>
+      <span class="delta" id="m1-dq">+0%</span>
+    </div>
+  </div>
+
+  <div class="callout azul">
+    <strong>O que observar:</strong> as curvas S e D não se movem. Apenas o <strong>ponto de equilíbrio sobe sobre a curva de oferta</strong>.
+    O preço maior sinalizou ao produtor que valia a pena entregar mais leite — e ele respondeu deslocando o ponto, não a curva.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Regra fundamental</h3>
+      <p>Mudança no <strong>preço do próprio bem</strong> → o ponto se move <em>sobre</em> a curva. Nenhuma curva é deslocada.</p>
+    </div>
+    <div class="concept-box">
+      <h3>No curral</h3>
+      <p>O produtor responde em semanas: mais concentrado no cocho, mais vacas em ordenha, menos leite desviado para o bezerro.
+         São ajustes rápidos e reversíveis — por isso o leite responde ao preço muito mais rápido que o boi.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ CENÁRIO 2 -->
+<div id="c2" class="panel">
+  <div class="scenario-header">
+    <div>
+      <span class="scenario-tag tag-shift-s">Deslocamento da oferta ←</span>
+      <h2 class="scenario-title">O bezerro de reposição<br>encarece e aperta o terminador</h2>
+      <p class="scenario-sub">Mercado de boi gordo · Mato Grosso</p>
+    </div>
+  </div>
+
+  <div class="control-panel">
+    <label>Preço do bezerro (R$/cabeça):</label>
+    <div class="slider-wrap">
+      <input type="range" id="sl2" min="1800" max="3600" value="1800" step="50" oninput="updateC2()">
+      <span class="slider-val" id="sv2" style="color:var(--verde-med)">R$ 1.800</span>
+    </div>
+    <button class="btn-reset" onclick="resetC2()">↺ Resetar</button>
+  </div>
+
+  <div class="graph-card">
+    <div class="graph-legend">
+      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>S1 — oferta original</span>
+      <span class="leg"><span class="leg-line" style="background:var(--verde-med); opacity:.7"></span>S2 — nova oferta</span>
+      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Demanda D (não muda)</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>E1</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--verde-med)"></span>E2</span>
+    </div>
+    <svg id="svg2" class="main-chart" viewBox="0 0 520 300"></svg>
+  </div>
+
+  <div class="metrics">
+    <div class="metric azul">
+      <span>E1 — preço equilíbrio</span>
+      <strong>R$ 300/@</strong>
+    </div>
+    <div class="metric verde">
+      <span>E2 — novo preço</span>
+      <strong id="m2-p">R$ 300/@</strong>
+      <span class="delta" id="m2-dp">+0%</span>
+    </div>
+    <div class="metric azul">
+      <span>E1 — quantidade</span>
+      <strong>6,50 M cab.</strong>
+    </div>
+    <div class="metric verde">
+      <span>E2 — nova qtd.</span>
+      <strong id="m2-q">6,50 M cab.</strong>
+      <span class="delta" id="m2-dq">−0%</span>
+    </div>
+  </div>
+
+  <div class="callout verde">
+    <strong>O que observar:</strong> a demanda (D) não mudou — os frigoríficos continuam os mesmos. Foi o <strong>custo do animal de reposição</strong>
+    que deslocou a curva S inteira para a esquerda. Ao preço antigo, engordar boi deixou de fechar a conta para parte dos terminadores.
+    Novo equilíbrio E2 com <strong>preço mais alto e quantidade menor</strong>.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Fatores que deslocam a oferta</h3>
+      <p>Custo de insumos (bezerro, milho, sal mineral) · Tecnologia · Expectativas · Número de vendedores · Clima e pastagem</p>
+    </div>
+    <div class="concept-box">
+      <h3>Assinatura do choque</h3>
+      <p>Oferta recua ← : E2 fica <strong>acima e à esquerda</strong> de E1. Preço sobe, quantidade cai — juntos.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ CENÁRIO 3 -->
+<div id="c3" class="panel">
+  <div class="scenario-header">
+    <div>
+      <span class="scenario-tag tag-shift-d">Deslocamento da demanda →</span>
+      <h2 class="scenario-title">China amplia as compras<br>de carne bovina brasileira</h2>
+      <p class="scenario-sub">Mercado de boi gordo · Mato Grosso</p>
+    </div>
+  </div>
+
+  <div class="control-panel">
+    <label>Compras extras da China (mil cab./ano):</label>
+    <div class="slider-wrap">
+      <input type="range" id="sl3" min="0" max="1500" value="0" step="100" oninput="updateC3()">
+      <span class="slider-val" id="sv3" style="color:var(--amarelo-med)">+0 mil</span>
+    </div>
+    <button class="btn-reset" onclick="resetC3()">↺ Resetar</button>
+  </div>
+
+  <div class="graph-card">
+    <div class="graph-legend">
+      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>Oferta S (não muda)</span>
+      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>D1 — demanda original</span>
+      <span class="leg"><span class="leg-line" style="background:var(--amarelo-med); opacity:.8"></span>D2 — nova demanda</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E1</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--amarelo-med)"></span>E2</span>
+    </div>
+    <svg id="svg3" class="main-chart" viewBox="0 0 520 300"></svg>
+  </div>
+
+  <div class="metrics">
+    <div class="metric azul">
+      <span>E1 — preço equilíbrio</span>
+      <strong>R$ 300/@</strong>
+    </div>
+    <div class="metric amarelo">
+      <span>E2 — novo preço</span>
+      <strong id="m3-p">R$ 300/@</strong>
+      <span class="delta" id="m3-dp">+0%</span>
+    </div>
+    <div class="metric azul">
+      <span>E1 — quantidade</span>
+      <strong>6,50 M cab.</strong>
+    </div>
+    <div class="metric amarelo">
+      <span>E2 — nova qtd.</span>
+      <strong id="m3-q">6,50 M cab.</strong>
+      <span class="delta" id="m3-dq">+0%</span>
+    </div>
+  </div>
+
+  <div class="callout amarelo">
+    <strong>O que observar:</strong> a oferta (S) não mudou — o rebanho de MT é o mesmo. Foi o <strong>número de compradores</strong>
+    que deslocou D inteira para a direita. Resultado: E2 tem <strong>preço maior e quantidade maior ao mesmo tempo</strong>.
+    O espelho deste cenário é um embargo sanitário: a mesma curva desloca para a esquerda e a arroba despenca com o rebanho parado no pasto.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Fatores que deslocam a demanda</h3>
+      <p>Renda · Gosto · Bens substitutos · Bens complementares · Número de compradores · Expectativas · Habilitação sanitária de plantas</p>
+    </div>
+    <div class="concept-box">
+      <h3>Assinatura do choque</h3>
+      <p>Demanda avança → : E2 fica <strong>acima e à direita</strong> de E1. Preço sobe e quantidade sobe — juntos.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ CENÁRIO 4 -->
+<div id="c4" class="panel">
+  <div class="scenario-header">
+    <div>
+      <span class="scenario-tag tag-oferta-cp">Oferta com defasagem biológica</span>
+      <h2 class="scenario-title">A arroba sobe e o abate cai:<br>a retenção de matrizes</h2>
+      <p class="scenario-sub">Boi gordo · Vale do Araguaia e norte de MT</p>
+    </div>
+  </div>
+
+  <div class="predict">
+    <h3>Antes de mexer no gráfico, arrisque uma resposta</h3>
+    <p class="q">O preço da arroba do boi gordo sobe de R$ 300 para R$ 380 e a alta se sustenta.
+       O que acontece com o número de cabeças abatidas em Mato Grosso <strong>nos 12 meses seguintes</strong>?</p>
+    <div class="predict-opts">
+      <button class="predict-btn" id="pv-sobe" onclick="votarC4('sobe')">O abate aumenta<br><span style="color:var(--cinza-med);font-size:12px">preço maior, mais oferta</span></button>
+      <button class="predict-btn" id="pv-cai" onclick="votarC4('cai')">O abate diminui<br><span style="color:var(--cinza-med);font-size:12px">o produtor segura o gado</span></button>
+      <button class="predict-btn" id="pv-igual" onclick="votarC4('igual')">Praticamente não muda<br><span style="color:var(--cinza-med);font-size:12px">o rebanho já está dado</span></button>
+    </div>
+    <div class="predict-fb oculto" id="pv-fb"></div>
+  </div>
+
+  <div id="c4-reveal" class="oculto">
+
+  <div class="control-panel">
+    <label>Preço da arroba (R$/@):</label>
+    <div class="slider-wrap">
+      <input type="range" id="sl4" min="250" max="400" value="300" step="5" oninput="updateC4()">
+      <span class="slider-val" id="sv4" style="color:var(--vinho-med)">R$ 300</span>
+    </div>
+    <button class="btn-preset" onclick="presetC4()">Aplicar alta → R$ 380</button>
+    <button class="btn-reset" onclick="resetC4()">↺ Resetar</button>
+  </div>
+
+  <div class="graph-card">
+    <div class="graph-legend">
+      <span class="leg"><span class="leg-line" style="background:var(--vinho-med)"></span>Oferta de curto prazo (até 12 meses)</span>
+      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>Oferta de longo prazo (24 a 36 meses)</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--cinza-med)"></span>Ponto de partida</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--vinho-med)"></span>Abate no curto prazo</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>Abate no longo prazo</span>
+    </div>
+    <svg id="svg4" class="main-chart" viewBox="0 0 520 300" role="img" aria-label="Curvas de oferta de boi gordo no curto e no longo prazo"></svg>
+  </div>
+
+  <div class="metrics">
+    <div class="metric vinho">
+      <span>Preço da arroba</span>
+      <strong id="m4-p">R$ 300/@</strong>
+      <span class="delta" id="m4-dp">+0%</span>
+    </div>
+    <div class="metric vinho">
+      <span>Abate até 12 meses</span>
+      <strong id="m4-qcp">6,50 M cab.</strong>
+      <span class="delta" id="m4-dqcp">+0%</span>
+    </div>
+    <div class="metric azul">
+      <span>Abate em 24 a 36 meses</span>
+      <strong id="m4-qlp">6,50 M cab.</strong>
+      <span class="delta" id="m4-dqlp">+0%</span>
+    </div>
+    <div class="metric laranja">
+      <span>Fêmeas no abate</span>
+      <strong id="m4-fem">40%</strong>
+      <span class="delta" id="m4-dfem">referência</span>
+    </div>
+  </div>
+
+  <div class="callout vinho" id="co-c4">
+    <strong>Mova o preço.</strong> Repare que as duas curvas de oferta se cruzam no ponto de partida e depois se separam:
+    acima de R$ 300 a curva de curto prazo vai para a <em>esquerda</em> da de longo prazo, e abaixo de R$ 300 vai para a direita.
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Por que a oferta cai quando o preço sobe</h3>
+      <p>A vaca é produto e máquina ao mesmo tempo. Abater uma matriz hoje dá receita imediata; mantê-la produz um bezerro por ano.
+         Quando a arroba sobe, cada bezerro futuro vale mais — e reter a matriz vira <strong>investimento</strong>.
+         O produtor tira fêmeas do abate, e a oferta de curto prazo encolhe.</p>
+    </div>
+    <div class="concept-box">
+      <h3>A lei da oferta continua valendo</h3>
+      <p>O que muda é o <strong>prazo</strong>. Os bezerros retidos hoje chegam ao abate em 24 a 36 meses:
+         aí a oferta responde no sentido esperado. A curva de longo prazo sobe da esquerda para a direita, como a do leite no Cenário 01.</p>
+    </div>
+  </div>
+
+  <div class="concept-row">
+    <div class="concept-box">
+      <h3>Quando o preço cai</h3>
+      <p>O sinal se inverte: manter matriz deixa de compensar, o produtor descarta fêmeas e o abate <strong>aumenta</strong> no curto prazo.
+         É a fase de liquidação do rebanho — mais carne na praça hoje, menos bezerro em três anos.</p>
+    </div>
+    <div class="concept-box">
+      <h3>O ciclo pecuário</h3>
+      <p>Retenção → oferta escassa → preço sobe mais → nova safra de bois em três anos → oferta abundante → preço cai → descarte.
+         O próprio mercado gera a oscilação, sem nenhum choque externo novo.</p>
+    </div>
+  </div>
+
+  <div class="regra" style="margin-top:1rem">
+    <span class="regra-icon" style="background:var(--vinho-claro);color:var(--vinho)">?</span>
+    <div><strong>Para o gestor público:</strong> na fase de retenção, a arrecadação de ICMS sobre o abate cai justamente quando o preço da arroba está no topo,
+    e frigoríficos reduzem turnos. Um município que depende de um frigorífico sente o ciclo no orçamento e no emprego — com defasagem de anos, não de meses.</div>
+  </div>
+
+  <p class="fonte">
+    <strong>Fonte e limites.</strong> Valores calibrados na ordem de grandeza do rebanho e do abate de Mato Grosso
+    (IBGE — Pesquisa da Pecuária Municipal e Pesquisa Trimestral do Abate) e do indicador do boi gordo CEPEA/B3.
+    As curvas são <strong>estilizadas para fins didáticos</strong>, não estimativas econométricas: a inclinação negativa da oferta
+    de curto prazo representa o efeito de retenção, não um parâmetro estimado. Atualize os níveis pelo IMEA antes de usar em aula.
+  </p>
+
+  </div>
+</div>
+
+</main>
+
+<footer>UNEMAT · DEAD/UAB · Especialização em Gestão Pública (EaD) · Estado, Governo e Mercado · Prof. Dr. Cleiton Franco</footer>
+
+<script>
+// ─── UTILITÁRIOS ──────────────────────────────────────────────
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(SVG_NS, tag);
+  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function pct(v, s, e) { return (v - s) / (e - s); }
+
+// Converte valor real em pixel SVG
+// xMin..xMax → px 60..480; yMin..yMax → py 260..20 (invertido)
+function px(x, xMin, xMax) { return 60 + pct(x, xMin, xMax) * 420; }
+function py(y, yMin, yMax) { return 260 - pct(y, yMin, yMax) * 240; }
+
+function clearSVG(id) {
+  const s = document.getElementById(id);
+  while (s.firstChild) s.removeChild(s.firstChild);
+  return s;
+}
+
+function drawAxes(svg, xLabel, yLabel, xMin, xMax, xStep, yMin, yMax, yStep) {
+  const defs = el('defs', {}, svg);
+  const mk = el('marker', { id:'arr'+svg.id, markerWidth:'8', markerHeight:'8', refX:'6', refY:'3', orient:'auto' }, defs);
+  el('path', { d:'M0,0 L0,6 L8,3 z', fill:'#aaa' }, mk);
+
+  // Eixo Y
+  el('line', { x1:60, y1:15, x2:60, y2:265, stroke:'#bbb', 'stroke-width':'1.2', 'marker-end':'url(#arr'+svg.id+')' }, svg);
+  // Eixo X
+  el('line', { x1:55, y1:260, x2:490, y2:260, stroke:'#bbb', 'stroke-width':'1.2', 'marker-end':'url(#arr'+svg.id+')' }, svg);
+
+  // Labels
+  const yl = el('text', { x:18, y:140, 'font-size':'11', fill:'#999', 'text-anchor':'middle', transform:'rotate(-90,18,140)', 'font-family':'DM Mono, monospace' }, svg);
+  yl.textContent = yLabel;
+  const xl = el('text', { x:275, y:292, 'font-size':'11', fill:'#999', 'text-anchor':'middle', 'font-family':'DM Mono, monospace' }, svg);
+  xl.textContent = xLabel;
+
+  // Ticks Y + gridlines
+  for (let v = yMin; v <= yMax; v += yStep) {
+    const y = py(v, yMin, yMax);
+    el('line', { x1:56, y1:y, x2:64, y2:y, stroke:'#bbb', 'stroke-width':'1' }, svg);
+    el('line', { x1:60, y1:y, x2:485, y2:y, stroke:'#f0f0f0', 'stroke-width':'0.6' }, svg);
+    const t = el('text', { x:52, y:y+4, 'font-size':'10', fill:'#aaa', 'text-anchor':'end', 'font-family':'DM Mono, monospace' }, svg);
+    t.textContent = fmtTick(v, yStep);
+  }
+  // Ticks X
+  for (let v = xMin; v <= xMax; v += xStep) {
+    const x = px(v, xMin, xMax);
+    el('line', { x1:x, y1:256, x2:x, y2:264, stroke:'#bbb', 'stroke-width':'1' }, svg);
+    const t = el('text', { x:x, y:275, 'font-size':'10', fill:'#aaa', 'text-anchor':'middle', 'font-family':'DM Mono, monospace' }, svg);
+    t.textContent = fmtTick(v, xStep);
+  }
+}
+
+function fmtTick(v, step) {
+  const dec = Number.isInteger(step) ? 0 : 2;
+  return v.toFixed(dec).replace('.', ',');
+}
+
+function linePoints(pts, xMin, xMax, yMin, yMax) {
+  return pts.map(p => px(p[0],xMin,xMax)+','+py(p[1],yMin,yMax)).join(' ');
+}
+
+function drawCurve(svg, pts, xMin, xMax, yMin, yMax, color, dash, label, lx, ly) {
+  const poly = el('polyline', {
+    points: linePoints(pts, xMin, xMax, yMin, yMax),
+    stroke: color, 'stroke-width':'2.5', fill:'none',
+    'stroke-dasharray': dash || 'none',
+    'stroke-linecap':'round', 'stroke-linejoin':'round'
+  }, svg);
+  if (label) {
+    const t = el('text', { x:lx, y:ly, 'font-size':'13', fill:color, 'font-weight':'600', 'font-family':'DM Sans, sans-serif' }, svg);
+    t.textContent = label;
+  }
+  return poly;
+}
+
+function drawDash(svg, x1, y1, x2, y2, color) {
+  el('line', { x1, y1, x2, y2, stroke:color, 'stroke-width':'1', 'stroke-dasharray':'4,3', opacity:'.5' }, svg);
+}
+
+function drawDot(svg, cx, cy, color, label, lx, ly) {
+  el('circle', { cx, cy, r:'7', fill:color, stroke:'white', 'stroke-width':'2' }, svg);
+  if (label) {
+    const t = el('text', { x:lx||cx+10, y:ly||cy-8, 'font-size':'11.5', fill:color, 'font-weight':'600', 'font-family':'DM Sans, sans-serif' }, svg);
+    t.textContent = label;
+  }
+}
+
+function drawArrow(svg, x1, y1, x2, y2, color, label) {
+  const mk = svg.querySelector('defs');
+  const mkId = 'arw'+Math.random().toString(36).slice(2);
+  const m = el('marker', { id:mkId, markerWidth:'8', markerHeight:'8', refX:'6', refY:'3', orient:'auto' }, mk);
+  el('path', { d:'M0,0 L0,6 L8,3 z', fill:color }, m);
+  el('line', { x1, y1, x2, y2, stroke:color, 'stroke-width':'1.8', 'stroke-dasharray':'5,3', 'marker-end':'url(#'+mkId+')' }, svg);
+  if (label) {
+    const t = el('text', { x:(x1+x2)/2, y:y1-8, 'font-size':'10.5', fill:color, 'text-anchor':'middle', 'font-family':'DM Mono, monospace' }, svg);
+    t.textContent = label;
+  }
+}
+
+// ─── CENÁRIO 1 — MOVIMENTO AO LONGO (LEITE) ─────────────
+// S: P = 1,40 + 0,10·Q   D: P = 3,00 − 0,10·Q   E1 = (8 M L/mês ; R$ 2,20/L)
+const C1 = { xMin:2, xMax:14, yMin:1.4, yMax:3.0, xStep:2, yStep:0.2 };
+function c1QdaOferta(p) { return (p - 1.40) / 0.10; }
+function n1(v, c) { return v.toFixed(c).replace('.', ','); }
+
+function drawC1(price) {
+  const svg = clearSVG('svg1');
+  drawAxes(svg, 'Quantidade (milh\u00f5es de litros/m\u00eas)', 'Pre\u00e7o (R$/litro)',
+           C1.xMin, C1.xMax, C1.xStep, C1.yMin, C1.yMax, C1.yStep);
+  const sPts = [[2,1.6],[4,1.8],[6,2.0],[8,2.2],[10,2.4],[12,2.6],[14,2.8]];
+  const dPts = [[2,2.8],[4,2.6],[6,2.4],[8,2.2],[10,2.0],[12,1.8],[14,1.6]];
+  drawCurve(svg, sPts, C1.xMin, C1.xMax, C1.yMin, C1.yMax, '#2e6da4', null, 'S', 486, py(2.85,C1.yMin,C1.yMax));
+  drawCurve(svg, dPts, C1.xMin, C1.xMax, C1.yMin, C1.yMax, '#c4561a', null, 'D', 486, py(1.55,C1.yMin,C1.yMax));
+  const e1x = px(8, C1.xMin, C1.xMax), e1y = py(2.2, C1.yMin, C1.yMax);
+  drawDash(svg, e1x, e1y, e1x, py(C1.yMin, C1.yMin, C1.yMax), '#2e6da4');
+  drawDash(svg, px(C1.xMin,C1.xMin,C1.xMax), e1y, e1x, e1y, '#2e6da4');
+  drawDot(svg, e1x, e1y, '#2e6da4', 'E1', e1x+10, e1y-10);
+  if (Math.abs(price - 2.20) > 0.001) {
+    const q2 = c1QdaOferta(price);
+    const e2x = px(q2, C1.xMin, C1.xMax), e2y = py(price, C1.yMin, C1.yMax);
+    drawDash(svg, e2x, e2y, e2x, py(C1.yMin, C1.yMin, C1.yMax), '#c4561a');
+    drawDash(svg, px(C1.xMin,C1.xMin,C1.xMax), e2y, e2x, e2y, '#c4561a');
+    drawDot(svg, e2x, e2y, '#c4561a', 'E2', e2x+10, e2y-10);
+  }
+}
+
+function updateC1() {
+  const cent = parseInt(document.getElementById('sl1').value);
+  const price = cent / 100;
+  document.getElementById('sv1').textContent = 'R$ ' + n1(price,2);
+  drawC1(price);
+  const dp = ((price - 2.20) / 2.20) * 100;
+  const q2 = c1QdaOferta(price);
+  const dq = ((q2 - 8) / 8) * 100;
+  document.getElementById('m1-p').textContent = 'R$ ' + n1(price,2) + '/L';
+  document.getElementById('m1-dp').textContent = (dp>=0?'+':'\u2212') + n1(Math.abs(dp),1) + '%';
+  document.getElementById('m1-dp').className = 'delta ' + (dp>=0?'up':'dn');
+  document.getElementById('m1-q').textContent = n1(q2,1) + ' M L/m\u00eas';
+  document.getElementById('m1-dq').textContent = (dq>=0?'+':'\u2212') + n1(Math.abs(dq),1) + '%';
+  document.getElementById('m1-dq').className = 'delta ' + (dq>=0?'up':'dn');
+  const sl = document.getElementById('sl1');
+  const p = ((cent-160)/(280-160))*100;
+  sl.style.background = `linear-gradient(to right, #2e6da4 ${p}%, #ddd ${p}%)`;
+}
+function resetC1() { document.getElementById('sl1').value=220; updateC1(); }
+
+// ─── CENÁRIO 2 — DESLOCAMENTO DA OFERTA (BEZERRO) ────────
+// S1: P = 40 + 40·Q    D: P = 560 − 40·Q    E1 = (6,5 M cab. ; R$ 300/@)
+const C2 = { xMin:5, xMax:8, yMin:240, yMax:400, xStep:1, yStep:20 };
+function c2ShiftFromBezerro(preco) { return Math.min(80, ((preco-1800)/1800)*80); }
+
+function drawC2(preco) {
+  const svg = clearSVG('svg2');
+  drawAxes(svg, 'Abate anual (milh\u00f5es de cabe\u00e7as)', 'Pre\u00e7o da arroba (R$/@)',
+           C2.xMin, C2.xMax, C2.xStep, C2.yMin, C2.yMax, C2.yStep);
+  const extra = c2ShiftFromBezerro(preco);
+  const s1Pts = [[5,240],[5.5,260],[6,280],[6.5,300],[7,320],[7.5,340],[8,360]];
+  drawCurve(svg, s1Pts, C2.xMin, C2.xMax, C2.yMin, C2.yMax, '#2e6da4', null, 'S1', 486, py(365,C2.yMin,C2.yMax));
+  if (extra > 0.5) {
+    const s2Pts = s1Pts.map(p => [p[0], p[1]+extra]).filter(p => p[1] <= C2.yMax);
+    drawCurve(svg, s2Pts, C2.xMin, C2.xMax, C2.yMin, C2.yMax, '#2e9e5e', '7,4', 'S2', 486, py(Math.min(C2.yMax, 365+extra),C2.yMin,C2.yMax));
+    const mx = px(6.5,C2.xMin,C2.xMax);
+    drawArrow(svg, mx, py(305,C2.yMin,C2.yMax), mx, py(295+extra,C2.yMin,C2.yMax), '#555', '');
+    const ta = el('text', { x:mx+8, y:py(300+extra/2,C2.yMin,C2.yMax)+4, 'font-size':'10', fill:'#666', 'font-family':'DM Mono, monospace' }, svg);
+    ta.textContent = 'S desloca \u2191 (bezerro \u2191)';
+  }
+  const dPts = [[5,360],[5.5,340],[6,320],[6.5,300],[7,280],[7.5,260],[8,240]];
+  drawCurve(svg, dPts, C2.xMin, C2.xMax, C2.yMin, C2.yMax, '#c4561a', null, 'D', 486, py(235,C2.yMin,C2.yMax));
+  const e1x = px(6.5,C2.xMin,C2.xMax), e1y = py(300,C2.yMin,C2.yMax);
+  drawDash(svg, e1x, e1y, e1x, py(C2.yMin,C2.yMin,C2.yMax), '#2e6da4');
+  drawDash(svg, px(C2.xMin,C2.xMin,C2.xMax), e1y, e1x, e1y, '#2e6da4');
+  drawDot(svg, e1x, e1y, '#2e6da4', 'E1', e1x+10, e1y-10);
+  if (extra > 0.5) {
+    const q2 = (520-extra)/80, p2 = 560 - 40*q2;
+    const e2x = px(q2,C2.xMin,C2.xMax), e2y = py(p2,C2.yMin,C2.yMax);
+    drawDash(svg, e2x, e2y, e2x, py(C2.yMin,C2.yMin,C2.yMax), '#2e9e5e');
+    drawDash(svg, px(C2.xMin,C2.xMin,C2.xMax), e2y, e2x, e2y, '#2e9e5e');
+    drawDot(svg, e2x, e2y, '#2e9e5e', 'E2', e2x+10, e2y-10);
+  }
+}
+
+function updateC2() {
+  const preco = parseInt(document.getElementById('sl2').value);
+  document.getElementById('sv2').textContent = 'R$ ' + preco.toLocaleString('pt-BR');
+  drawC2(preco);
+  const extra = c2ShiftFromBezerro(preco);
+  const q2 = (520-extra)/80, p2 = 560 - 40*q2;
+  const dp = ((p2-300)/300)*100, dq = ((q2-6.5)/6.5)*100;
+  document.getElementById('m2-p').textContent = 'R$ '+Math.round(p2)+'/@';
+  document.getElementById('m2-dp').textContent = (dp>=0?'+':'\u2212')+n1(Math.abs(dp),1)+'%';
+  document.getElementById('m2-dp').className = 'delta '+(dp>=0?'up':'dn');
+  document.getElementById('m2-q').textContent = n1(q2,2)+' M cab.';
+  document.getElementById('m2-dq').textContent = (dq>=0?'+':'\u2212')+n1(Math.abs(dq),1)+'%';
+  document.getElementById('m2-dq').className = 'delta '+(dq>=0?'up':'dn');
+  const sl = document.getElementById('sl2');
+  const p = ((preco-1800)/(3600-1800))*100;
+  sl.style.background = `linear-gradient(to right, #2e9e5e ${p}%, #ddd ${p}%)`;
+}
+function resetC2() { document.getElementById('sl2').value=1800; updateC2(); }
+
+// ─── CENÁRIO 3 — DESLOCAMENTO DA DEMANDA (CHINA) ────────
+// S: P = 40 + 40·Q    D1: P = 560 − 40·Q    D2: P = 560 + shift − 40·Q
+const C3 = { xMin:5, xMax:8, yMin:240, yMax:400, xStep:1, yStep:20 };
+function c3ShiftFromChina(mil) { return (mil/1500)*80; }
+
+function drawC3(shift) {
+  const svg = clearSVG('svg3');
+  drawAxes(svg, 'Abate anual (milh\u00f5es de cabe\u00e7as)', 'Pre\u00e7o da arroba (R$/@)',
+           C3.xMin, C3.xMax, C3.xStep, C3.yMin, C3.yMax, C3.yStep);
+  const sPts = [[5,240],[5.5,260],[6,280],[6.5,300],[7,320],[7.5,340],[8,360]];
+  drawCurve(svg, sPts, C3.xMin, C3.xMax, C3.yMin, C3.yMax, '#2e6da4', null, 'S', 486, py(365,C3.yMin,C3.yMax));
+  const d1Pts = [[5,360],[5.5,340],[6,320],[6.5,300],[7,280],[7.5,260],[8,240]];
+  drawCurve(svg, d1Pts, C3.xMin, C3.xMax, C3.yMin, C3.yMax, '#c4561a', null, 'D1', 486, py(235,C3.yMin,C3.yMax));
+  if (shift > 0.5) {
+    const dq = shift/40; // deslocamento horizontal equivalente
+    const d2Pts = d1Pts.map(p => [p[0]+dq, p[1]]).filter(p => p[0] <= C3.xMax);
+    drawCurve(svg, d2Pts, C3.xMin, C3.xMax, C3.yMin, C3.yMax, '#c48a00', '7,4', 'D2', 486, py(Math.max(C3.yMin, 240+shift),C3.yMin,C3.yMax));
+    const refP = 340, refQ = 5.5; // ao preço de R$ 340 as duas curvas cabem no gráfico
+    drawArrow(svg, px(refQ+0.05,C3.xMin,C3.xMax), py(refP,C3.yMin,C3.yMax), px(Math.min(C3.xMax-0.05, refQ+dq-0.05),C3.xMin,C3.xMax), py(refP,C3.yMin,C3.yMax), '#555', '');
+    const ta = el('text', { x:px(refQ+dq/2,C3.xMin,C3.xMax), y:py(refP,C3.yMin,C3.yMax)-10, 'font-size':'10', fill:'#666', 'text-anchor':'middle', 'font-family':'DM Mono, monospace' }, svg);
+    ta.textContent = 'D desloca \u2192';
+  }
+  const e1x = px(6.5,C3.xMin,C3.xMax), e1y = py(300,C3.yMin,C3.yMax);
+  drawDash(svg, e1x, e1y, e1x, py(C3.yMin,C3.yMin,C3.yMax), '#c4561a');
+  drawDash(svg, px(C3.xMin,C3.xMin,C3.xMax), e1y, e1x, e1y, '#c4561a');
+  drawDot(svg, e1x, e1y, '#c4561a', 'E1', e1x-38, e1y+20);
+  if (shift > 0.5) {
+    const q2 = (520+shift)/80, p2 = 40 + 40*q2;
+    const e2x = px(q2,C3.xMin,C3.xMax), e2y = py(p2,C3.yMin,C3.yMax);
+    drawDash(svg, e2x, e2y, e2x, py(C3.yMin,C3.yMin,C3.yMax), '#c48a00');
+    drawDash(svg, px(C3.xMin,C3.xMin,C3.xMax), e2y, e2x, e2y, '#c48a00');
+    drawDot(svg, e2x, e2y, '#c48a00', 'E2', e2x+10, e2y-10);
+  }
+}
+
+function updateC3() {
+  const mil = parseInt(document.getElementById('sl3').value);
+  document.getElementById('sv3').textContent = '+' + mil.toLocaleString('pt-BR') + ' mil';
+  const shift = c3ShiftFromChina(mil);
+  drawC3(shift);
+  const q2 = (520+shift)/80, p2 = 40 + 40*q2;
+  const dp = ((p2-300)/300)*100, dq = ((q2-6.5)/6.5)*100;
+  document.getElementById('m3-p').textContent = 'R$ '+Math.round(p2)+'/@';
+  document.getElementById('m3-dp').textContent = (dp>=0?'+':'\u2212')+n1(Math.abs(dp),1)+'%';
+  document.getElementById('m3-dp').className = 'delta '+(dp>=0?'up':'dn');
+  document.getElementById('m3-q').textContent = n1(q2,2)+' M cab.';
+  document.getElementById('m3-dq').textContent = (dq>=0?'+':'\u2212')+n1(Math.abs(dq),1)+'%';
+  document.getElementById('m3-dq').className = 'delta '+(dq>=0?'up':'dn');
+  const sl = document.getElementById('sl3');
+  const p = (mil/1500)*100;
+  sl.style.background = `linear-gradient(to right, #c48a00 ${p}%, #ddd ${p}%)`;
+}
+function resetC3() { document.getElementById('sl3').value=0; updateC3(); }
+
+// ─── CENÁRIO 4 — RETENÇÃO DE MATRIZES ───────────────────
+// Eixo X: abate anual (milhões de cabeças). Eixo Y: preço da arroba (R$/@).
+// Base: P0 = 300 R$/@, Q0 = 6,5 M cabeças/ano.
+// Oferta de curto prazo (<=12 meses): inclinação NEGATIVA — preço maior, mais retenção de fêmeas, menos abate.
+// Oferta de longo prazo (24–36 meses): inclinação positiva usual.
+const C4 = { xMin:5, xMax:8, yMin:240, yMax:400, xStep:1, yStep:20 };
+const C4_P0 = 300, C4_Q0 = 6.5;
+function c4Qcp(p) { return C4_Q0 - 0.012*(p - C4_P0); }
+function c4Qlp(p) { return C4_Q0 + 0.010*(p - C4_P0); }
+function c4Fem(p) { return 40 - 0.06*(p - C4_P0); }
+function c4n(v, casas) { return v.toFixed(casas).replace('.', ','); }
+
+function drawC4(price) {
+  const svg = clearSVG('svg4');
+  drawAxes(svg, 'Abate anual (milh\u00f5es de cabe\u00e7as)', 'Pre\u00e7o da arroba (R$/@)',
+           C4.xMin, C4.xMax, C4.xStep, C4.yMin, C4.yMax, C4.yStep);
+
+  const precos = [250, 275, 300, 325, 350, 375, 400];
+  const cpPts = precos.map(p => [c4Qcp(p), p]);
+  const lpPts = precos.map(p => [c4Qlp(p), p]);
+
+  drawCurve(svg, lpPts, C4.xMin, C4.xMax, C4.yMin, C4.yMax, '#2e6da4', '7,4', 'S longo prazo', 414, 26);
+  drawCurve(svg, cpPts, C4.xMin, C4.xMax, C4.yMin, C4.yMax, '#a83b5e', null, 'S curto prazo', 108, 18);
+
+  // ponto de partida
+  const e0x = px(C4_Q0,C4.xMin,C4.xMax), e0y = py(C4_P0,C4.yMin,C4.yMax);
+  drawDash(svg, px(C4.xMin,C4.xMin,C4.xMax), e0y, e0x, e0y, '#8e8e93');
+  drawDot(svg, e0x, e0y, '#8e8e93', 'R$ 300', e0x-62, e0y-10);
+
+  if (Math.abs(price - C4_P0) > 2) {
+    const y = py(price, C4.yMin, C4.yMax);
+    const qcp = c4Qcp(price), qlp = c4Qlp(price);
+    const xcp = px(qcp,C4.xMin,C4.xMax), xlp = px(qlp,C4.xMin,C4.xMax);
+    // linha de preço
+    drawDash(svg, px(C4.xMin,C4.xMin,C4.xMax), y, Math.max(xcp,xlp), y, '#a83b5e');
+    // seta entre os dois abates, no mesmo preço
+    drawArrow(svg, xlp, y, xcp, y, '#555', '');
+    const ta = el('text', { x:(xcp+xlp)/2, y:Math.max(14, y-11), 'font-size':'10', fill:'#666',
+      'text-anchor':'middle', 'font-family':'DM Mono, monospace' }, svg);
+    ta.textContent = (price > C4_P0) ? 'reten\u00e7\u00e3o de f\u00eameas' : 'descarte de f\u00eameas';
+    drawDash(svg, xlp, y, xlp, py(C4.yMin,C4.yMin,C4.yMax), '#2e6da4');
+    drawDash(svg, xcp, y, xcp, py(C4.yMin,C4.yMin,C4.yMax), '#a83b5e');
+    drawDot(svg, xlp, y, '#2e6da4');
+    drawDot(svg, xcp, y, '#a83b5e');
+  }
+}
+
+function updateC4() {
+  const p = parseInt(document.getElementById('sl4').value);
+  document.getElementById('sv4').textContent = 'R$ ' + p;
+  drawC4(p);
+
+  const qcp = c4Qcp(p), qlp = c4Qlp(p), fem = c4Fem(p);
+  const dp   = ((p - C4_P0) / C4_P0) * 100;
+  const dqcp = ((qcp - C4_Q0) / C4_Q0) * 100;
+  const dqlp = ((qlp - C4_Q0) / C4_Q0) * 100;
+
+  function setDelta(id, valor, sufixo) {
+    const e = document.getElementById(id);
+    e.textContent = (valor >= 0 ? '+' : '\u2212') + c4n(Math.abs(valor),1) + (sufixo || '%');
+    e.className = 'delta ' + (valor >= 0 ? 'up' : 'dn');
+  }
+  document.getElementById('m4-p').textContent = 'R$ ' + p + '/@';
+  setDelta('m4-dp', dp);
+  document.getElementById('m4-qcp').textContent = c4n(qcp,2) + ' M cab.';
+  setDelta('m4-dqcp', dqcp);
+  document.getElementById('m4-qlp').textContent = c4n(qlp,2) + ' M cab.';
+  setDelta('m4-dqlp', dqlp);
+  document.getElementById('m4-fem').textContent = c4n(fem,1) + '%';
+  const dfem = document.getElementById('m4-dfem');
+  dfem.textContent = (fem >= 40 ? '+' : '\u2212') + c4n(Math.abs(fem-40),1) + ' p.p.';
+  dfem.className = 'delta ' + (fem >= 40 ? 'up' : 'dn');
+
+  const co = document.getElementById('co-c4');
+  if (p > C4_P0 + 2) {
+    co.innerHTML = '<strong>Fase de reten\u00e7\u00e3o.</strong> A R$ ' + p + '/@ o produtor tira f\u00eameas do abate para produzir bezerro: '
+      + 'o abate do ano cai para ' + c4n(qcp,2) + ' milh\u00f5es de cabe\u00e7as (\u2212' + c4n(Math.abs(dqcp),1) + '%), '
+      + 'enquanto a participa\u00e7\u00e3o de f\u00eameas recua para ' + c4n(fem,1) + '%. '
+      + 'Pre\u00e7o mais alto e oferta menor <em>ao mesmo tempo</em> \u2014 e a alta se realimenta. '
+      + 'Em 24 a 36 meses os bezerros retidos chegam ao ponto e o abate sobe para ' + c4n(qlp,2) + ' milh\u00f5es.';
+  } else if (p < C4_P0 - 2) {
+    co.innerHTML = '<strong>Fase de descarte.</strong> A R$ ' + p + '/@ manter matriz deixa de compensar: '
+      + 'o produtor liquida f\u00eameas e o abate do ano <em>sobe</em> para ' + c4n(qcp,2) + ' milh\u00f5es de cabe\u00e7as, '
+      + 'com f\u00eameas em ' + c4n(fem,1) + '% do total. Mais carne na pra\u00e7a hoje, menos bezerro daqui a tr\u00eas anos: '
+      + 'no longo prazo o abate cai para ' + c4n(qlp,2) + ' milh\u00f5es.';
+  } else {
+    co.innerHTML = '<strong>Ponto de partida.</strong> A R$ 300/@ as duas curvas se cruzam: o abate de curto e o de longo prazo coincidem em '
+      + c4n(C4_Q0,2) + ' milh\u00f5es de cabe\u00e7as. Mova o pre\u00e7o para ver as curvas se separarem.';
+  }
+
+  const sl = document.getElementById('sl4');
+  const pct2 = ((p - 250) / (400 - 250)) * 100;
+  sl.style.background = `linear-gradient(to right, #a83b5e ${pct2}%, #ddd ${pct2}%)`;
+}
+
+function resetC4() { document.getElementById('sl4').value = 300; updateC4(); }
+function presetC4() { document.getElementById('sl4').value = 380; updateC4(); }
+
+// Previsão antes da revelação do gráfico
+const C4_FB = {
+  sobe:  'Resposta intuitiva, e \u00e9 o que a lei da oferta sugere \u00e0 primeira vista. Segure essa resposta e veja o gr\u00e1fico: '
+       + 'no primeiro ano o efeito \u00e9 o oposto \u2014 e o motivo n\u00e3o contraria a lei da oferta.',
+  cai:   '\u00c9 o que os dados de abate mostram nas altas sustentadas da arroba. O gr\u00e1fico mostra por qu\u00ea, '
+       + 'e por que isso deixa de valer quando o prazo passa de tr\u00eas anos.',
+  igual: 'Meia resposta certa: o boi pronto para abate deste ano j\u00e1 est\u00e1 no pasto. Mas a decis\u00e3o de abater ou n\u00e3o \u00e9 do produtor, '
+       + 'e a composi\u00e7\u00e3o do abate muda. Veja o gr\u00e1fico.'
+};
+let c4Votou = false;
+function votarC4(op) {
+  ['sobe','cai','igual'].forEach(k => document.getElementById('pv-'+k).classList.remove('chosen'));
+  document.getElementById('pv-'+op).classList.add('chosen');
+  const fb = document.getElementById('pv-fb');
+  fb.innerHTML = C4_FB[op];
+  fb.classList.remove('oculto');
+  if (!c4Votou) {
+    c4Votou = true;
+    document.getElementById('c4-reveal').classList.remove('oculto');
+    updateC4();
+  }
+}
+
+// ─── TAB NAVIGATION ───────────────────────────────────────────
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  updateC1();
+  updateC2();
+  updateC3();
+  drawC4(300);
+});
+</script>
+</body>
+</html>

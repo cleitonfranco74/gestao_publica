@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custo de Oportunidade — Mato Grosso</title>
+<meta name="description" content="Custo de oportunidade na pecuária e no orçamento municipal de Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
+<link rel="icon" type="image/png" href="../../img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Estudo de caso 1 · Custo de oportunidade · Estado, Governo e Mercado">
+<meta property="og:description" content="Custo de oportunidade na pecuária e no orçamento municipal de Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
+<meta property="og:url" content="https://cleitonfranco74.github.io/gestao_publica/disciplina-01-estado-governo-mercado/estudos-de-caso/custo-de-oportunidade.html">
+<meta property="og:image" content="https://cleitonfranco74.github.io/gestao_publica/img/og-estado-governo-mercado.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0f4a3c;--teal-med:#1d9e75;--teal-claro:#d5f0e8;
+  --amber:#6b3a00;--amber-med:#c48a00;--amber-claro:#fff3cc;
+  --coral:#7a1f0a;--coral-med:#d85a30;--coral-claro:#fde8d5;
+  --roxo:#2d1a6e;--roxo-med:#6d3ec4;--roxo-claro:#ede8fb;
+  --azul:#0f2a4a;--azul-med:#2e6da4;--azul-claro:#ddeaf7;
+  --cinza-escuro:#1c1c1e;--cinza:#48484a;--cinza-med:#8e8e93;
+  --cinza-claro:#f2f2f7;--borda:#d1d1d6;
+  --raio:14px;--raio-sm:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#f5f4ef;color:var(--cinza-escuro);min-height:100vh;line-height:1.6}
+
+/* HEADER */
+header{background:var(--teal);color:white;padding:3rem 2rem 2.25rem;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.025) 40px,rgba(255,255,255,.025) 80px)}
+.kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.75rem}
+header h1{font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.15;margin-bottom:.75rem;position:relative}
+header h1 em{font-style:italic;color:#7be8c0}
+header p.sub{font-size:15px;color:rgba(255,255,255,.65);max-width:560px;margin:0 auto 1.5rem;position:relative}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:12px;color:rgba(255,255,255,.8);font-family:'DM Mono',monospace}
+
+/* NAV */
+.nav-wrap{position:sticky;top:0;z-index:100;background:white;border-bottom:1px solid var(--borda);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav-tabs{display:flex;max-width:1000px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex:1;min-width:175px;padding:.9rem 1rem;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--cinza-med);border-bottom:3px solid transparent;transition:all .2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+.nav-tab .tn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;opacity:.55}
+.nav-tab:hover{color:var(--cinza-escuro);background:var(--cinza-claro)}
+.nav-tab.active{color:var(--teal);border-bottom-color:var(--teal-med);font-weight:500}
+.nav-tab[data-p="c2"].active{color:var(--amber);border-bottom-color:var(--amber-med)}
+.nav-tab[data-p="c3"].active{color:var(--coral);border-bottom-color:var(--coral-med)}
+.nav-tab[data-p="c4"].active{color:var(--roxo);border-bottom-color:var(--roxo-med)}
+
+/* MAIN */
+main{max-width:1000px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.panel{display:none;animation:fadeIn .3s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* TAGS */
+.stag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:.75rem;font-weight:500}
+.t-teal{background:var(--teal-claro);color:var(--teal)}
+.t-amber{background:var(--amber-claro);color:var(--amber)}
+.t-coral{background:var(--coral-claro);color:var(--coral)}
+.t-roxo{background:var(--roxo-claro);color:var(--roxo)}
+.t-azul{background:var(--azul-claro);color:var(--azul)}
+
+/* TITLES */
+.stitle{font-family:'Instrument Serif',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:400;line-height:1.2}
+.ssub{font-size:13px;color:var(--cinza-med);margin-top:.4rem;font-family:'DM Mono',monospace;margin-bottom:1.5rem}
+
+/* FORMULA */
+.fbox{background:white;border:1px solid var(--borda);border-radius:var(--raio);padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.fml{font-family:'DM Mono',monospace;font-size:15px;font-weight:500;background:var(--cinza-claro);padding:.5rem 1rem;border-radius:var(--raio-sm);white-space:nowrap}
+.fdesc{font-size:13px;color:var(--cinza-med);line-height:1.55}
+
+/* CONTROL */
+.ctrl{background:white;border:1px solid var(--borda);border-radius:var(--raio);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.ctrl-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem}
+.ctrl-row:last-child{margin-bottom:0}
+.clabel{font-size:13px;color:var(--cinza-med);min-width:220px;flex-shrink:0}
+.sw{flex:1;min-width:160px;display:flex;align-items:center;gap:10px}
+.sw input[type=range]{flex:1;-webkit-appearance:none;height:4px;border-radius:2px;outline:none;cursor:pointer}
+.sw input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:white;border:2px solid var(--teal-med);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.sval{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;min-width:80px;text-align:right}
+.breset{padding:7px 16px;border-radius:var(--raio-sm);border:1px solid var(--borda);background:var(--cinza-claro);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;color:var(--cinza);transition:all .15s;white-space:nowrap}
+.breset:hover{background:#e5e5ea}
+
+/* ICEBERG VISUAL */
+.iceberg-wrap{position:relative;background:white;border:1px solid var(--borda);border-radius:var(--raio);overflow:hidden;margin-bottom:1.5rem}
+.ice-water-line{position:absolute;left:0;right:0;height:2px;background:var(--azul-med);opacity:.4}
+.ice-above{background:var(--azul-claro);padding:1.5rem;text-align:center;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:min-height .4s}
+.ice-below{background:var(--azul);padding:1.5rem;text-align:center;transition:min-height .4s}
+.ice-label-top{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--azul);margin-bottom:.4rem}
+.ice-label-bot{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.4rem}
+.ice-val-top{font-size:2rem;font-weight:500;color:var(--azul);font-family:'DM Mono',monospace;transition:all .3s}
+.ice-val-bot{font-size:2rem;font-weight:500;color:white;font-family:'DM Mono',monospace;transition:all .3s}
+.ice-desc{font-size:13px;margin-top:.35rem}
+.ice-desc.top{color:var(--azul)}
+.ice-desc.bot{color:rgba(255,255,255,.7)}
+
+/* COMPARISON TABLE CARDS */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.cmp-grid{grid-template-columns:1fr}}
+.cmp-card{background:white;border:1px solid var(--borda);border-radius:var(--raio);overflow:hidden}
+.cmp-head{padding:.75rem 1.25rem;font-size:12px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+.cmp-head.teal{background:var(--teal-claro);color:var(--teal)}
+.cmp-head.amber{background:var(--amber-claro);color:var(--amber)}
+.cmp-head.coral{background:var(--coral-claro);color:var(--coral)}
+.cmp-head.roxo{background:var(--roxo-claro);color:var(--roxo)}
+.cmp-body{padding:.75rem 1.25rem}
+.cmp-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid var(--borda);font-size:13px}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row span{color:var(--cinza-med)}
+.cmp-row strong{font-weight:500;font-family:'DM Mono',monospace}
+.cmp-total{display:flex;justify-content:space-between;padding:.6rem 0 0;margin-top:.4rem;border-top:2px solid var(--borda);font-size:14px;font-weight:600;font-family:'DM Mono',monospace}
+.highlight-row{background:rgba(255,200,0,.12);border-radius:var(--raio-sm);padding:4px 8px;margin:4px -8px}
+
+/* BAR CHART */
+.bar-section{background:white;border:1px solid var(--borda);border-radius:var(--raio);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.bar-section h4{font-size:12px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--cinza-med);margin-bottom:1rem}
+.brow{display:flex;align-items:center;gap:10px;margin-bottom:.65rem}
+.blabel{font-size:12px;font-family:'DM Mono',monospace;color:var(--cinza);min-width:120px;flex-shrink:0}
+.bbg{flex:1;height:28px;background:var(--cinza-claro);border-radius:4px;overflow:hidden;position:relative}
+.bfill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;font-size:11.5px;font-weight:500;font-family:'DM Mono',monospace;white-space:nowrap;transition:width .5s cubic-bezier(.4,0,.2,1),background .3s}
+.bval{font-size:13px;font-family:'DM Mono',monospace;font-weight:500;min-width:90px;text-align:right}
+.hidden-bar{border:2px dashed;border-radius:4px;padding:0 10px;display:flex;align-items:center;font-size:11.5px;font-weight:500;font-family:'DM Mono',monospace;height:28px;transition:width .5s}
+
+/* DECISION METER */
+.dec-meter{background:white;border:1px solid var(--borda);border-radius:var(--raio);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.dec-meter h4{font-size:12px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--cinza-med);margin-bottom:1rem}
+.meter-track{height:28px;border-radius:14px;background:linear-gradient(to right,#fde8d5,#fff3cc 40%,#d5f0e8);position:relative;margin:.5rem 0 .4rem}
+.meter-needle{position:absolute;top:50%;width:3px;height:36px;border-radius:2px;background:var(--cinza-escuro);transform:translate(-50%,-50%);transition:left .5s cubic-bezier(.4,0,.2,1)}
+.meter-labels{display:flex;justify-content:space-between;font-size:11px;font-family:'DM Mono',monospace;color:var(--cinza-med)}
+.dec-verdict{margin-top:1rem;padding:.75rem 1rem;border-radius:var(--raio-sm);font-size:13.5px;font-weight:500;text-align:center;transition:all .3s}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem;margin-bottom:1.5rem}
+.metric{background:white;border:1px solid var(--borda);border-radius:var(--raio-sm);padding:.9rem 1.1rem;position:relative;overflow:hidden}
+.metric::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.m-teal::before{background:var(--teal-med)}
+.m-amber::before{background:var(--amber-med)}
+.m-coral::before{background:var(--coral-med)}
+.m-roxo::before{background:var(--roxo-med)}
+.m-azul::before{background:var(--azul-med)}
+.m-gray::before{background:var(--cinza-med)}
+.metric span{display:block;font-size:11px;color:var(--cinza-med);text-transform:uppercase;letter-spacing:.04em;font-family:'DM Mono',monospace;margin-bottom:4px}
+.metric strong{font-size:16px;font-weight:500;color:var(--cinza-escuro);font-family:'DM Mono',monospace;display:block;transition:all .3s}
+.metric .dt{font-size:12px;margin-top:2px;font-family:'DM Mono',monospace}
+.up{color:var(--teal-med)}.dn{color:var(--coral-med)}.neu{color:var(--cinza-med)}
+
+/* CALLOUT */
+.callout{border-radius:0 var(--raio-sm) var(--raio-sm) 0;border-left:4px solid;padding:1rem 1.25rem;font-size:14px;line-height:1.65;margin-bottom:1.5rem}
+.cl-teal{background:var(--teal-claro);border-color:var(--teal-med);color:var(--teal)}
+.cl-amber{background:var(--amber-claro);border-color:var(--amber-med);color:var(--amber)}
+.cl-coral{background:var(--coral-claro);border-color:var(--coral-med);color:var(--coral)}
+.cl-roxo{background:var(--roxo-claro);border-color:var(--roxo-med);color:var(--roxo)}
+.callout strong{font-weight:600}
+
+/* CONCEPT ROW */
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:600px){.crow{grid-template-columns:1fr}}
+.cbox{background:var(--cinza-claro);border-radius:var(--raio);padding:1.1rem 1.25rem}
+.cbox h3{font-size:12px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--cinza-med);margin-bottom:.6rem}
+.cbox p{font-size:13.5px;color:var(--cinza-escuro);line-height:1.55}
+
+/* TREE DIAGRAM */
+.tree{background:white;border:1px solid var(--borda);border-radius:var(--raio);padding:1.5rem;margin-bottom:1.5rem;overflow-x:auto}
+svg.treechart{display:block;min-width:480px}
+
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--cinza-med);font-family:'DM Mono',monospace;border-top:1px solid var(--borda);margin-top:1rem}
+
+/* faixa institucional da Especialização em Gestão Pública */
+.gp-strip{background:#fff;border-bottom:3px solid #e8c65a;font-family:'DM Sans',sans-serif}
+.gp-strip .gp-in{max-width:1000px;margin:0 auto;padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.gp-strip a{color:#13294b;font-size:13px;font-weight:600;text-decoration:none}
+.gp-strip a:hover{text-decoration:underline}
+.gp-strip .gp-logos{display:flex;align-items:center;gap:1.1rem}
+.gp-strip img{height:34px;width:auto;display:block}
+@media(max-width:560px){.gp-strip img{height:24px}.gp-strip .gp-logos{gap:.6rem}}
+@media print{.gp-strip{display:none}}
+</style>
+</head>
+<body>
+<div class="gp-strip"><div class="gp-in">
+  <a href="../index.html#casos">← Estado, Governo e Mercado · Estudos de caso</a>
+  <div class="gp-logos"><img src="../../img/logo-unemat.png" alt="UNEMAT"><img src="../../img/logo-dead.png" alt="DEAD"><img src="../../img/logo-uab.png" alt="UAB"></div>
+</div></div>
+
+<header>
+  <p class="kicker">UNEMAT · DEAD/UAB · Especialização em Gestão Pública · Estado, Governo e Mercado</p>
+  <h1>Custo de<br><em>Oportunidade</em></h1>
+  <p class="sub">O custo invisível que todo decisor precisa enxergar — quatro cenários reais da pecuária e da gestão pública em Mato Grosso.</p>
+  <div class="chips">
+    <span class="chip">CO = melhor alternativa abandonada</span>
+    <span class="chip">Cria × ciclo completo · Araguaia</span>
+    <span class="chip">Pastagem própria · arrendamento</span>
+    <span class="chip">Orçamento municipal · interior de MT</span>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-p="c1" onclick="show('c1',this)">
+      <span class="tn">Conceito base</span>O iceberg do custo
+    </button>
+    <button class="nav-tab" data-p="c2" onclick="show('c2',this)">
+      <span class="tn">Cenário 01</span>Cria ou ciclo completo?
+    </button>
+    <button class="nav-tab" data-p="c3" onclick="show('c3',this)">
+      <span class="tn">Cenário 02</span>Pastagem própria
+    </button>
+    <button class="nav-tab" data-p="c4" onclick="show('c4',this)">
+      <span class="tn">Cenário 03</span>Orçamento municipal
+    </button>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════ C1 — CONCEITO BASE -->
+<div id="c1" class="panel active">
+  <span class="stag t-teal">Conceito fundamental</span>
+  <h2 class="stitle">O iceberg do custo:<br>o que o contador não vê</h2>
+  <p class="ssub">Ajuste a renda mensal e veja como o custo real de estudar muda</p>
+
+  <div class="fbox">
+    <span class="fml">CO = valor da melhor alternativa abandonada</span>
+    <span class="fdesc">Custo de oportunidade não é o que você pagou — é o que você abriu mão de receber ou produzir ao fazer essa escolha. Inclui custos explícitos (desembolso) e implícitos (receita não obtida).</span>
+  </div>
+
+  <div class="ctrl">
+    <div class="ctrl-row">
+      <span class="clabel">Salário mensal que você abre mão (R$)</span>
+      <div class="sw">
+        <input type="range" id="sl-c1" min="1000" max="8000" step="500" value="3000" oninput="updateC1()" style="accent-color:var(--teal-med)">
+        <span class="sval" id="sv-c1" style="color:var(--teal-med)">R$ 3.000</span>
+      </div>
+      <button class="breset" onclick="document.getElementById('sl-c1').value=3000;updateC1()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <!-- Iceberg -->
+  <div class="iceberg-wrap">
+    <div class="ice-above" id="ice-above">
+      <p class="ice-label-top">O que o contador vê — custos explícitos</p>
+      <div class="ice-val-top" id="ice-top">R$ 1.400</div>
+      <p class="ice-desc top">Mensalidade + livros + transporte + alimentação</p>
+    </div>
+    <div class="ice-water-line" style="top:calc(var(--above-h, 140px))"></div>
+    <div class="ice-below" id="ice-below">
+      <p class="ice-label-bot">O que o economista também vê — custo implícito</p>
+      <div class="ice-val-bot" id="ice-bot">R$ 3.000</div>
+      <p class="ice-desc bot">Salário mensal que você deixou de receber</p>
+    </div>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-head teal">Visão do contador</div>
+      <div class="cmp-body">
+        <div class="cmp-row"><span>Mensalidade</span><strong>R$ 800</strong></div>
+        <div class="cmp-row"><span>Livros e material</span><strong>R$ 200</strong></div>
+        <div class="cmp-row"><span>Transporte</span><strong>R$ 150</strong></div>
+        <div class="cmp-row"><span>Alimentação extra</span><strong>R$ 250</strong></div>
+        <div class="cmp-total"><span>Custo contábil</span><span>R$ 1.400</span></div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-head amber">Visão do economista</div>
+      <div class="cmp-body">
+        <div class="cmp-row"><span>Mensalidade</span><strong>R$ 800</strong></div>
+        <div class="cmp-row"><span>Livros e material</span><strong>R$ 200</strong></div>
+        <div class="cmp-row"><span>Transporte</span><strong>R$ 150</strong></div>
+        <div class="cmp-row"><span>Alimentação extra</span><strong>R$ 250</strong></div>
+        <div class="cmp-row highlight-row"><span>+ Salário não recebido</span><strong id="sal-eco">R$ 3.000</strong></div>
+        <div class="cmp-total"><span>Custo de oportunidade</span><span id="co-total">R$ 4.400</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric m-gray"><span>Custo explícito</span><strong>R$ 1.400</strong></div>
+    <div class="metric m-amber"><span>Custo implícito</span><strong id="m-c1-imp">R$ 3.000</strong></div>
+    <div class="metric m-teal"><span>Custo de oportunidade total</span><strong id="m-c1-tot">R$ 4.400</strong></div>
+    <div class="metric m-amber"><span>Quanto o diploma precisa render/mês</span><strong id="m-c1-ret">R$ 4.400</strong></div>
+  </div>
+
+  <div class="callout cl-teal">
+    <strong>A regra do economista:</strong> a decisão de estudar só é racional se o benefício futuro esperado (aumento salarial ao longo da carreira) superar o custo de oportunidade total — não apenas a mensalidade. Para quem ganha R$ 8.000/mês, o diploma precisa render muito mais do que para quem ganha R$ 1.000/mês.
+  </div>
+
+  <div class="crow">
+    <div class="cbox">
+      <h3>Custos explícitos</h3>
+      <p>São desembolsos reais de dinheiro — mensalidade, livros, transporte. O contador enxerga todos eles facilmente na planilha.</p>
+    </div>
+    <div class="cbox">
+      <h3>Custos implícitos</h3>
+      <p>São receitas que você deixou de ter — salário, arrendamento da terra, juros do capital investido. Não aparecem na contabilidade, mas são reais para o economista.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ C2 — CRIA OU CICLO COMPLETO -->
+<div id="c2" class="panel">
+  <span class="stag t-amber">Cenário 01 · Decisão de sistema</span>
+  <h2 class="stitle">Vender o bezerro ou terminar o boi?<br>O dilema do pecuarista do Araguaia</h2>
+  <p class="ssub">Fazenda de 1.000 ha de pastagem · Vale do Araguaia, MT</p>
+
+  <div class="fbox">
+    <span class="fml">CO(cria) = receita do ciclo completo não realizada</span>
+    <span class="fdesc">Quem vende o bezerro na desmama abre mão da receita que teria recriando e terminando o mesmo animal na própria fazenda. Essa diferença é o custo de oportunidade da decisão.</span>
+  </div>
+
+  <div class="ctrl">
+    <div class="ctrl-row">
+      <span class="clabel">Receita do ciclo completo (R$/ha/ano)</span>
+      <div class="sw">
+        <input type="range" id="sl-soja" min="600" max="2600" step="50" value="1500" oninput="updateC2()" style="accent-color:var(--teal-med)">
+        <span class="sval" id="sv-soja" style="color:var(--teal-med)">R$ 1.500</span>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="clabel">Receita só da cria (R$/ha/ano)</span>
+      <div class="sw">
+        <input type="range" id="sl-milho" min="400" max="1800" step="50" value="1100" oninput="updateC2()" style="accent-color:var(--amber-med)">
+        <span class="sval" id="sv-milho" style="color:var(--amber-med)">R$ 1.100</span>
+      </div>
+    </div>
+    <div class="ctrl-row" style="justify-content:flex-end">
+      <button class="breset" onclick="document.getElementById('sl-soja').value=1500;document.getElementById('sl-milho').value=1100;updateC2()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <!-- Árvore de decisão -->
+  <div class="tree">
+    <svg id="svg-tree" class="treechart" viewBox="0 0 580 200" width="100%"></svg>
+  </div>
+
+  <div class="bar-section">
+    <h4>Comparativo de receita por hectare ao ano</h4>
+    <div class="brow">
+      <span class="blabel">Ciclo completo</span>
+      <div class="bbg"><div class="bfill" id="bar-soja" style="background:var(--teal-med);width:58%;color:white">R$ 1.500/ha</div></div>
+      <span class="bval" id="bv-soja">R$ 1.500/ha</span>
+    </div>
+    <div class="brow">
+      <span class="blabel">Só cria (escolhido)</span>
+      <div class="bbg"><div class="bfill" id="bar-milho" style="background:var(--amber-med);width:42%;color:white">R$ 1.100/ha</div></div>
+      <span class="bval" id="bv-milho">R$ 1.100/ha</span>
+    </div>
+    <div class="brow">
+      <span class="blabel">CO da cria</span>
+      <div class="bbg"><div class="hidden-bar" id="bar-co" style="border-color:var(--coral-med);color:var(--coral);width:16%">R$ 400/ha perdido</div></div>
+      <span class="bval" id="bv-co" style="color:var(--coral-med)">R$ 400/ha</span>
+    </div>
+  </div>
+
+  <!-- Medidor de decisão -->
+  <div class="dec-meter">
+    <h4>Veredicto econômico — 1.000 ha</h4>
+    <div class="meter-track">
+      <div class="meter-needle" id="needle-c2"></div>
+    </div>
+    <div class="meter-labels"><span>Cria muito melhor</span><span>Indiferente</span><span>Ciclo completo muito melhor</span></div>
+    <div class="dec-verdict" id="verdict-c2"></div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric m-teal"><span>Ciclo completo (1.000 ha)</span><strong id="m-c2-s">R$ 1,50 M</strong></div>
+    <div class="metric m-amber"><span>Só cria (1.000 ha)</span><strong id="m-c2-m">R$ 1,10 M</strong></div>
+    <div class="metric m-coral"><span>Custo de oportunidade total</span><strong id="m-c2-co">R$ 400 mil</strong></div>
+    <div class="metric m-gray"><span>A cria é lucrativa?</span><strong id="m-c2-luc">Sim (contábil)</strong></div>
+  </div>
+
+  <div class="callout cl-amber">
+    <strong>A armadilha contábil:</strong> o contador diz que a cria deu lucro — e é verdade, em termos absolutos. Mas o economista pergunta: lucro <em>em relação a quê?</em> Se o ciclo completo renderia R$ 400/ha a mais, o pecuarista deixou R$ 400 mil na mesa ao ficar só na cria. Lucro contábil positivo não significa decisão racional.
+  </div>
+
+  <div class="crow">
+    <div class="cbox">
+      <h3>Regra de decisão</h3>
+      <p>Escolha o sistema cuja receita <em>supera</em> a melhor alternativa. Se a cria rende mais que o ciclo completo, fique na cria — e o custo de oportunidade da cria passa a ser negativo, ou seja, vira ganho.</p>
+    </div>
+    <div class="cbox">
+      <h3>O que a receita por hectare esconde</h3>
+      <p>O ciclo completo prende capital de giro por mais tempo, exige cocho, cerca e capacidade de suporte maior, e expõe o produtor à arroba
+         por dois anos em vez de vender o bezerro e sair. Receita maior por hectare não significa retorno maior sobre o capital nem risco igual —
+         é por isso que muita fazenda do Araguaia fica na cria mesmo com custo de oportunidade positivo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ C3 — PASTAGEM PRÓPRIA -->
+<div id="c3" class="panel">
+  <span class="stag t-coral">Cenário 02 · Custo implícito</span>
+  <h2 class="stitle">Pastagem própria quitada:<br>o custo que o contador ignora</h2>
+  <p class="ssub">Pecuarista · 1.000 ha de pastagem própria · Terra quitada há 10 anos</p>
+
+  <div class="fbox">
+    <span class="fml">CO(pecuária própria) = arrendamento de pasto não recebido</span>
+    <span class="fdesc">Se o pecuarista usa o próprio pasto, o contador registra custo zero de arrendamento. Mas o economista sabe que esse pasto poderia ser arrendado a outro criador — e esse valor é um custo real da decisão de tocar a pecuária.</span>
+  </div>
+
+  <div class="ctrl">
+    <div class="ctrl-row">
+      <span class="clabel">Arrendamento do pasto (@/ha/ano)</span>
+      <div class="sw">
+        <input type="range" id="sl-arr" min="5" max="25" step="1" value="15" oninput="updateC3()" style="accent-color:var(--coral-med)">
+        <span class="sval" id="sv-arr" style="color:var(--coral-med)">1,5 @/ha</span>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="clabel">Preço da arroba (R$/@)</span>
+      <div class="sw">
+        <input type="range" id="sl-psoja" min="200" max="450" step="10" value="300" oninput="updateC3()" style="accent-color:var(--coral-med)">
+        <span class="sval" id="sv-psoja" style="color:var(--coral-med)">R$ 300</span>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="clabel">Produtividade da pecuária (@/ha/ano)</span>
+      <div class="sw">
+        <input type="range" id="sl-prod" min="20" max="120" step="5" value="40" oninput="updateC3()" style="accent-color:var(--coral-med)">
+        <span class="sval" id="sv-prod" style="color:var(--coral-med)">4,0 @/ha</span>
+      </div>
+    </div>
+    <div class="ctrl-row" style="justify-content:flex-end">
+      <button class="breset" onclick="document.getElementById('sl-arr').value=15;document.getElementById('sl-psoja').value=300;document.getElementById('sl-prod').value=40;updateC3()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-head teal">Resultado contábil (1.000 ha)</div>
+      <div class="cmp-body">
+        <div class="cmp-row"><span>Receita bruta</span><strong id="c3-rec">R$ 3.770.000</strong></div>
+        <div class="cmp-row"><span>Custo de produção (60%)</span><strong id="c3-cprod">R$ 2.639.000</strong></div>
+        <div class="cmp-row"><span>Custo da terra (contábil)</span><strong>R$ 0</strong></div>
+        <div class="cmp-total" style="color:var(--teal)"><span>Lucro contábil</span><span id="c3-lc">R$ 1.131.000</span></div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-head coral">Resultado econômico (1.000 ha)</div>
+      <div class="cmp-body">
+        <div class="cmp-row"><span>Receita bruta</span><strong id="c3-rec2">R$ 3.770.000</strong></div>
+        <div class="cmp-row"><span>Custo de produção (60%)</span><strong id="c3-cprod2">R$ 2.639.000</strong></div>
+        <div class="cmp-row highlight-row"><span>Arrendamento de pasto não recebido (CO)</span><strong id="c3-arr">R$ 1.625.000</strong></div>
+        <div class="cmp-total" id="c3-le-row"><span>Lucro econômico</span><span id="c3-le">−R$ 494.000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medidor -->
+  <div class="dec-meter">
+    <h4>Vale mais criar gado ou arrendar o pasto?</h4>
+    <div class="meter-track">
+      <div class="meter-needle" id="needle-c3"></div>
+    </div>
+    <div class="meter-labels"><span>Arrendar é melhor</span><span>Indiferente</span><span>Criar gado é melhor</span></div>
+    <div class="dec-verdict" id="verdict-c3"></div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric m-teal"><span>Lucro contábil</span><strong id="mm-c3-lc">R$ 1,13 M</strong></div>
+    <div class="metric m-coral"><span>Lucro econômico</span><strong id="mm-c3-le">−R$ 494 mil</strong></div>
+    <div class="metric m-coral"><span>CO do pasto (arrendamento)</span><strong id="mm-c3-arr">R$ 1,63 M</strong></div>
+    <div class="metric m-gray"><span>Produtiv. mínima para empatar</span><strong id="mm-c3-min">-- @/ha</strong></div>
+  </div>
+
+  <div class="callout cl-coral">
+    <strong>O paradoxo da terra própria:</strong> muitos pecuaristas acreditam que, por não pagarem arrendamento, têm custo menor que o arrendatário. O economista discorda — o arrendamento não recebido é um custo real. Se o lucro econômico for negativo, o produtor estaria melhor arrendando o pasto e aplicando o capital em outro negócio.
+  </div>
+
+  <div class="crow">
+    <div class="cbox">
+      <h3>Lucro contábil vs. econômico</h3>
+      <p>Lucro contábil &gt; 0 mas lucro econômico &lt; 0 significa que o produtor ganha dinheiro, mas <em>menos</em> do que ganharia na melhor alternativa. Economicamente, está destruindo valor.</p>
+    </div>
+    <div class="cbox">
+      <h3>O preço da arroba se cancela</h3>
+      <p>Aqui receita e arrendamento estão os dois cotados em arroba. Mexa só no preço da arroba: o lucro em reais muda, mas o
+         <strong>veredicto não</strong>. Quem decide é a produtividade do pasto em @/ha/ano contra o arrendamento em @/ha/ano — e é por isso
+         que recuperar pastagem degradada é a alavanca real dessa conta.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ C4 — ORÇAMENTO MUNICIPAL -->
+<div id="c4" class="panel">
+  <span class="stag t-roxo">Cenário 03 · Gestão pública municipal</span>
+  <h2 class="stitle">R$ 3 milhões livres no orçamento:<br>estrada vicinal ou creche?</h2>
+  <p class="ssub">Prefeitura de um município de cerca de 20 mil habitantes no interior de MT · recursos não vinculados do exercício</p>
+
+  <div class="fbox">
+    <span class="fml">CO = benefício da melhor alternativa preterida</span>
+    <span class="fdesc">Quase todo o orçamento municipal já chega comprometido: folha, custeio e os mínimos constitucionais de educação e saúde.
+      A decisão de verdade acontece na margem livre — e é exatamente nela que o custo de oportunidade aparece.</span>
+  </div>
+
+  <div class="ctrl">
+    <div class="ctrl-row">
+      <span class="clabel">Quanto vai para estradas vicinais</span>
+      <div class="sw">
+        <input type="range" id="sl-orca" min="0" max="3000" step="250" value="3000" oninput="updateC4()" style="accent-color:var(--roxo-med)">
+        <span class="sval" id="sv-orca" style="color:var(--roxo-med)">R$ 3,00 M</span>
+      </div>
+      <button class="breset" onclick="document.getElementById('sl-orca').value=3000;updateC4()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-head roxo">Opção A — Cascalhamento de estradas vicinais</div>
+      <div class="cmp-body">
+        <div class="cmp-row"><span>Recurso alocado</span><strong id="c4-oa">R$ 3,00 M</strong></div>
+        <div class="cmp-row"><span>Quilômetros recuperados</span><strong id="c4-km">60 km</strong></div>
+        <div class="cmp-row"><span>Famílias rurais atendidas</span><strong id="c4-fam">240 famílias</strong></div>
+        <div class="cmp-row"><span>Retorno por real investido</span><strong>R$ 1,50</strong></div>
+        <div class="cmp-total"><span>Benefício estimado em 5 anos</span><span id="c4-ben-a">R$ 4,50 M</span></div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-head teal">Opção B — Creche em tempo integral</div>
+      <div class="cmp-body">
+        <div class="cmp-row"><span>Recurso alocado</span><strong id="c4-ob">R$ 0,00 M</strong></div>
+        <div class="cmp-row"><span>Vagas criadas</span><strong id="c4-vagas">0 vagas</strong></div>
+        <div class="cmp-row"><span>Responsáveis liberados para trabalhar</span><strong id="c4-resp">0 pessoas</strong></div>
+        <div class="cmp-row"><span>Retorno por real investido</span><strong>R$ 1,80</strong></div>
+        <div class="cmp-total"><span>Benefício estimado em 5 anos</span><span id="c4-ben-b">R$ 0,00 M</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar-section">
+    <h4>Benefício gerado e benefício perdido (R$ milhões em 5 anos)</h4>
+    <div class="brow">
+      <span class="blabel">Estradas</span>
+      <div class="bbg"><div class="bfill" id="bar-c4a" style="background:var(--roxo-med);color:white;width:83%">R$ 4,50 M</div></div>
+      <span class="bval" id="bval-c4a">R$ 4,50 M</span>
+    </div>
+    <div class="brow">
+      <span class="blabel">Creche</span>
+      <div class="bbg"><div class="bfill" id="bar-c4b" style="background:var(--teal-med);color:white;width:0%">R$ 0,00 M</div></div>
+      <span class="bval" id="bval-c4b">R$ 0,00 M</span>
+    </div>
+    <div class="brow">
+      <span class="blabel">CO da escolha</span>
+      <div class="bbg"><div class="hidden-bar" id="bar-c4co" style="border-color:var(--coral-med);color:var(--coral);width:17%">R$ 0,90 M de benefício perdido</div></div>
+      <span class="bval" id="bval-c4co" style="color:var(--coral-med)">R$ 0,90 M</span>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric m-roxo"><span>Recurso livre</span><strong>R$ 3,00 M</strong></div>
+    <div class="metric m-roxo"><span>Benefício total gerado</span><strong id="mm-c4tot">R$ 4,50 M</strong></div>
+    <div class="metric m-teal"><span>Melhor alocação possível</span><strong id="mm-c4best">R$ 5,40 M</strong></div>
+    <div class="metric m-coral"><span>Custo de oportunidade</span><strong id="mm-c4co">R$ 0,90 M</strong></div>
+  </div>
+
+  <div class="callout cl-roxo" id="co-callout-c4">
+    <strong>Situação de partida:</strong> os R$ 3 milhões vão inteiros para as estradas.
+  </div>
+
+  <div class="crow">
+    <div class="cbox">
+      <h3>O que sobra de fato para decidir</h3>
+      <p>Do orçamento municipal, boa parte já está comprometida antes de qualquer reunião: folha de pessoal, custeio da máquina e os mínimos
+         de <strong>25% em educação</strong> e <strong>15% em saúde</strong>. O custo de oportunidade não se discute sobre o orçamento inteiro,
+         e sim sobre a fatia livre — pequena, e por isso mesmo cara.</p>
+    </div>
+    <div class="cbox">
+      <h3>Como ler o custo de oportunidade aqui</h3>
+      <p>CO = benefício da <em>melhor</em> alocação possível − benefício da alocação escolhida.
+         Aplicar tudo na opção de menor retorno não significa perder dinheiro: significa gerar menos valor do que se poderia.
+         O prejuízo é invisível no balanço e real na vida do município.</p>
+    </div>
+  </div>
+
+  <div class="crow" style="margin-top:.75rem">
+    <div class="cbox">
+      <h3>Por que na prática ninguém vai a 100%</h3>
+      <p>O modelo supõe retorno constante por real investido, e por isso o ótimo é sempre um extremo.
+         Na realidade o retorno cai conforme se investe (o 60º quilômetro rende menos que o primeiro), há vinculação legal de fontes,
+         há equilíbrio territorial entre distritos e há pressão política. Com retornos decrescentes, a melhor escolha passa a ser uma divisão.</p>
+    </div>
+    <div class="cbox">
+      <h3>Para a sua prática</h3>
+      <p>Converse com o(a) secretário(a) da sua área e pergunte qual proposta ficou de fora quando a atual foi aprovada, e por quê.
+         A resposta é o custo de oportunidade da secretaria, dito com as palavras de quem decidiu. Leve o exemplo ao fórum temático 1.</p>
+    </div>
+  </div>
+
+  <p style="font-size:12px;line-height:1.6;color:var(--cinza-med);border-top:1px solid var(--borda);padding-top:.9rem;margin-top:1rem">
+    <strong style="color:var(--cinza);font-weight:500">Fonte e limites.</strong> Ordens de grandeza compatíveis com orçamentos de municípios
+    mato-grossenses de pequeno porte (Siconfi/STN e FNDE). Os retornos de R$ 1,50 e R$ 1,80 por real investido são
+    <strong style="color:var(--cinza);font-weight:500">parâmetros didáticos</strong>, não resultados de avaliação de impacto:
+    servem para mostrar a mecânica do custo de oportunidade, não para ranquear políticas reais.
+    Substitua-os pelos números do seu município.
+  </p>
+</div>
+
+</main>
+<footer>UNEMAT · DEAD/UAB · Especialização em Gestão Pública (EaD) · Estado, Governo e Mercado · Prof. Dr. Cleiton Franco</footer>
+
+<script>
+// ─── TAB NAV ─────────────────────────────────────────────────
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function fmt(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR');}
+function fmtM(v){
+  const a=Math.abs(v);
+  const sign=v<0?'−':'';
+  if(a>=1e6) return sign+'R$ '+( a/1e6).toFixed(2).replace('.',',')+' M';
+  if(a>=1e3) return sign+'R$ '+(a/1e3).toFixed(0)+' mil';
+  return sign+'R$ '+Math.round(a);
+}
+
+// ─── C1 — ICEBERG ────────────────────────────────────────────
+function updateC1(){
+  const sal=parseInt(document.getElementById('sl-c1').value);
+  document.getElementById('sv-c1').textContent=fmt(sal);
+  document.getElementById('sal-eco').textContent=fmt(sal);
+  const tot=1400+sal;
+  document.getElementById('co-total').textContent=fmt(tot);
+  document.getElementById('ice-bot').textContent=fmt(sal);
+  document.getElementById('m-c1-imp').textContent=fmt(sal);
+  document.getElementById('m-c1-tot').textContent=fmt(tot);
+  document.getElementById('m-c1-ret').textContent=fmt(tot);
+  // iceberg size ratio
+  const above=120, below=Math.round(120*(sal/3000));
+  document.getElementById('ice-above').style.minHeight=above+'px';
+  document.getElementById('ice-below').style.minHeight=Math.max(60,below)+'px';
+  const sl=document.getElementById('sl-c1');
+  const p=((sal-1000)/(8000-1000))*100;
+  sl.style.background=`linear-gradient(to right,#1d9e75 ${p}%,#ddd ${p}%)`;
+}
+
+// ─── C2 — CRIA OU CICLO COMPLETO ─────────────────────────────
+function updateC2(){
+  const soja=parseInt(document.getElementById('sl-soja').value);
+  const milho=parseInt(document.getElementById('sl-milho').value);
+  document.getElementById('sv-soja').textContent=fmt(soja);
+  document.getElementById('sv-milho').textContent=fmt(milho);
+  const co=soja-milho;
+  // bars
+  const maxV=Math.max(soja,milho,500);
+  document.getElementById('bar-soja').style.width=Math.round((soja/maxV)*90)+'%';
+  document.getElementById('bar-soja').textContent=fmt(soja)+'/ha';
+  document.getElementById('bv-soja').textContent=fmt(soja)+'/ha';
+  document.getElementById('bar-milho').style.width=Math.round((milho/maxV)*90)+'%';
+  document.getElementById('bar-milho').textContent=fmt(milho)+'/ha';
+  document.getElementById('bv-milho').textContent=fmt(milho)+'/ha';
+  const coAbs=Math.abs(co);
+  document.getElementById('bar-co').style.width=Math.round((coAbs/maxV)*90)+'%';
+  document.getElementById('bar-co').style.borderColor=co>0?'var(--coral-med)':'var(--teal-med)';
+  document.getElementById('bar-co').style.color=co>0?'var(--coral)':'var(--teal)';
+  document.getElementById('bar-co').textContent=co>0?fmt(co)+'/ha perdido':fmt(coAbs)+'/ha ganho';
+  document.getElementById('bv-co').textContent=fmt(coAbs)+'/ha';
+  document.getElementById('bv-co').style.color=co>0?'var(--coral-med)':'var(--teal-med)';
+  // metrics
+  document.getElementById('m-c2-s').textContent=fmtM(soja*1000);
+  document.getElementById('m-c2-m').textContent=fmtM(milho*1000);
+  document.getElementById('m-c2-co').textContent=fmtM(coAbs*1000);
+  document.getElementById('m-c2-luc').textContent=milho>0?'Sim (contábil)':'Não';
+  // needle: soja vs milho, 50%=indiferente, 0%=milho muito melhor, 100%=soja muito melhor
+  const diff=(soja-milho)/(Math.max(soja,milho));
+  const needlePct=Math.min(95,Math.max(5,50+diff*50));
+  document.getElementById('needle-c2').style.left=needlePct+'%';
+  const vd=document.getElementById('verdict-c2');
+  if(co>250){vd.textContent='Terminar o boi rende mais — ficar só na cria custa '+fmt(co)+'/ha por ano';vd.style.background='var(--coral-claro)';vd.style.color='var(--coral)';}
+  else if(co<-250){vd.textContent='Ficar na cria rende mais — o ciclo completo teria custo de oportunidade de '+fmt(coAbs)+'/ha';vd.style.background='var(--teal-claro)';vd.style.color='var(--teal)';}
+  else{vd.textContent='Diferença pequena — pesem capital de giro, risco da arroba e capacidade de suporte do pasto';vd.style.background='var(--amber-claro)';vd.style.color='var(--amber)';}
+  // sliders bg
+  const s1=document.getElementById('sl-soja'),p1=((soja-600)/(2600-600))*100;
+  s1.style.background=`linear-gradient(to right,#1d9e75 ${p1}%,#ddd ${p1}%)`;
+  const s2=document.getElementById('sl-milho'),p2=((milho-400)/(1800-400))*100;
+  s2.style.background=`linear-gradient(to right,#c48a00 ${p2}%,#ddd ${p2}%)`;
+  drawTree(soja,milho,co);
+}
+
+function drawTree(soja,milho,co){
+  const svg=document.getElementById('svg-tree');
+  while(svg.firstChild)svg.removeChild(svg.firstChild);
+  const NS='http://www.w3.org/2000/svg';
+  function se(t,a){const e=document.createElementNS(NS,t);for(const[k,v]of Object.entries(a))e.setAttribute(k,v);return e;}
+  function txt(x,y,txt2,fs,color,anchor,fw){
+    const t=se('text',{x,y,'font-size':fs||13,fill:color||'#48484a','text-anchor':anchor||'middle','font-family':'DM Sans,sans-serif','font-weight':fw||400});
+    t.textContent=txt2;svg.appendChild(t);
+  }
+  function rect(x,y,w,h,color,rx){const r=se('rect',{x,y,width:w,height:h,fill:color,rx:rx||6});svg.appendChild(r);}
+  function line(x1,y1,x2,y2,color,dash){
+    const l=se('line',{x1,y1,x2,y2,stroke:color||'#ccc','stroke-width':1.5,'stroke-dasharray':dash||'none'});svg.appendChild(l);
+  }
+  // Nó raiz
+  rect(220,10,140,42,'#f2f2f7',8);
+  txt(290,26,'Decis\u00e3o do','12','#48484a');
+  txt(290,42,'pecuarista','12','#48484a');
+  // linhas
+  line(290,52,150,90,'#bbb');
+  line(290,52,430,90,'#bbb');
+  // Soja
+  const scol=soja>milho?'#1d9e75':'#aaa';
+  const scol2=soja>milho?'#d5f0e8':'#f5f5f5';
+  rect(70,90,160,50,scol2,8);
+  svg.appendChild(se('rect',{x:70,y:90,width:160,height:50,fill:'none',stroke:scol,'stroke-width':soja>milho?2:1,rx:8}));
+  txt(150,109,'CICLO COMPLETO','12.5',scol,'middle',soja>milho?600:400);
+  txt(150,127,fmt(soja)+'/ha','13',scol,'middle',600);
+  // Milho
+  const mcol=milho>soja?'#c48a00':'#aaa';
+  const mcol2=milho>soja?'#fff3cc':'#f5f5f5';
+  rect(350,90,160,50,mcol2,8);
+  svg.appendChild(se('rect',{x:350,y:90,width:160,height:50,fill:'none',stroke:mcol,'stroke-width':milho>soja?2:1,rx:8}));
+  txt(430,109,'S\u00d3 CRIA','12.5',mcol,'middle',milho>soja?600:400);
+  txt(430,127,fmt(milho)+'/ha','13',mcol,'middle',600);
+  // CO seta e label
+  if(co!==0){
+    const winner=co>0?'ciclo':'cria';
+    const coColor=co>0?'#d85a30':'#1d9e75';
+    line(230,140,370,140,coColor,'4,3');
+    const mid=se('text',{x:300,y:136,'font-size':11,fill:coColor,'text-anchor':'middle','font-family':'DM Mono,monospace'});
+    mid.textContent='CO = '+fmt(Math.abs(co))+'/ha';
+    svg.appendChild(mid);
+    const arr=se('text',{x:co>0?222:378,y:144,'font-size':14,fill:coColor,'text-anchor':'middle'});
+    arr.textContent=co>0?'←':'→';svg.appendChild(arr);
+  }
+}
+
+// ─── C3 — PASTAGEM PRÓPRIA ───────────────────────────────────
+function updateC3(){
+  const arr=parseInt(document.getElementById('sl-arr').value)/10;   // @/ha/ano
+  const ps=parseInt(document.getElementById('sl-psoja').value);     // R$/@
+  const prod=parseInt(document.getElementById('sl-prod').value)/10; // @/ha/ano
+  const dec=v=>v.toFixed(1).replace('.',',');
+  document.getElementById('sv-arr').textContent=dec(arr)+' @/ha';
+  document.getElementById('sv-psoja').textContent=fmt(ps);
+  document.getElementById('sv-prod').textContent=dec(prod)+' @/ha';
+  const ha=1000;
+  const recHa=prod*ps;
+  const recTotal=recHa*ha;
+  const cprod=recTotal*0.60;
+  const arrReais=arr*ps*ha; // valor do arrendamento em R$
+  const lc=recTotal-cprod;
+  const le=lc-arrReais;
+  document.getElementById('c3-rec').textContent=fmt(recTotal);
+  document.getElementById('c3-rec2').textContent=fmt(recTotal);
+  document.getElementById('c3-cprod').textContent=fmt(cprod);
+  document.getElementById('c3-cprod2').textContent=fmt(cprod);
+  document.getElementById('c3-arr').textContent=fmt(arrReais);
+  document.getElementById('c3-lc').textContent=fmt(lc);
+  const leEl=document.getElementById('c3-le');
+  leEl.textContent=(le>=0?'':'-')+fmt(Math.abs(le));
+  leEl.style.color=le>=0?'var(--teal-med)':'var(--coral-med)';
+  document.getElementById('c3-le-row').style.color=le>=0?'var(--teal)':'var(--coral)';
+  document.getElementById('mm-c3-lc').textContent=fmtM(lc);
+  document.getElementById('mm-c3-le').textContent=(le>=0?'':'-')+fmtM(Math.abs(le));
+  document.getElementById('mm-c3-le').style.color=le>=0?'var(--teal-med)':'var(--coral-med)';
+  document.getElementById('mm-c3-arr').textContent=fmtM(arrReais);
+  // prod mínima para empatar: lc = arrReais → prod*ps*ha*0.30=arrReais → prod=arrReais/(ps*ha*0.30)
+  const prodMin=arrReais/(ps*ha*0.40);
+  document.getElementById('mm-c3-min').textContent=dec(prodMin)+' @/ha';
+  // needle: le vs 0
+  const maxSwing=Math.max(arrReais,lc);
+  const ratio=le/maxSwing;
+  const nPct=Math.min(95,Math.max(5,50+ratio*45));
+  document.getElementById('needle-c3').style.left=nPct+'%';
+  const vd=document.getElementById('verdict-c3');
+  if(le<0){vd.textContent='Economicamente, arrendar o pasto \u00e9 mais vantajoso. O lucro econ\u00f4mico \u00e9 negativo: '+fmtM(le);vd.style.background='var(--coral-claro)';vd.style.color='var(--coral)';}
+  else if(le>0){vd.textContent='Criar gado no pasto pr\u00f3prio \u00e9 economicamente vantajoso. Lucro econ\u00f4mico positivo: '+fmtM(le);vd.style.background='var(--teal-claro)';vd.style.color='var(--teal)';}
+  else{vd.textContent='Ponto de equil\u00edbrio: criar e arrendar rendem o mesmo. Qualquer varia\u00e7\u00e3o define a melhor op\u00e7\u00e3o.';vd.style.background='var(--amber-claro)';vd.style.color='var(--amber)';}
+  // sliders
+  ['sl-arr','sl-psoja','sl-prod'].forEach((id,i)=>{
+    const sl=document.getElementById(id);
+    const ranges=[[5,25],[200,450],[20,120]];
+    const vals=[arr*10,ps,prod*10];
+    const p=((vals[i]-ranges[i][0])/(ranges[i][1]-ranges[i][0]))*100;
+    sl.style.background=`linear-gradient(to right,#d85a30 ${p}%,#ddd ${p}%)`;
+    sl.style.setProperty('--thumb-color','var(--coral-med)');
+  });
+}
+
+// ─── C4 — ORÇAMENTO MUNICIPAL ─────────────────────────
+// Recurso livre: R$ 3,00 milhões. Slider em milhares de reais.
+// kA = retorno por real em estradas vicinais; kB = retorno por real em creche.
+const C4_LIVRE = 3000; // R$ mil
+const C4_KA = 1.5, C4_KB = 1.8;
+const C4_CUSTO_KM = 50;   // R$ mil por km cascalhado
+const C4_CUSTO_VAGA = 15; // R$ mil por vaga/ano
+
+function c4M(vMil){ return 'R$ ' + (vMil/1000).toFixed(2).replace('.', ',') + ' M'; }
+
+function updateC4(){
+  const a = parseInt(document.getElementById('sl-orca').value); // R$ mil em estradas
+  const b = C4_LIVRE - a;                                       // R$ mil em creche
+  document.getElementById('sv-orca').textContent = c4M(a);
+
+  const benA = a * C4_KA, benB = b * C4_KB;
+  const total = benA + benB;
+  const melhor = Math.max(C4_LIVRE * C4_KA, C4_LIVRE * C4_KB);
+  const co = melhor - total; // benefício da melhor alocação preterida
+
+  document.getElementById('c4-oa').textContent = c4M(a);
+  document.getElementById('c4-km').textContent = Math.round(a / C4_CUSTO_KM) + ' km';
+  document.getElementById('c4-fam').textContent = Math.round(a / C4_CUSTO_KM * 4) + ' fam\u00edlias';
+  document.getElementById('c4-ben-a').textContent = c4M(benA);
+  document.getElementById('c4-ob').textContent = c4M(b);
+  document.getElementById('c4-vagas').textContent = Math.round(b / C4_CUSTO_VAGA) + ' vagas';
+  document.getElementById('c4-resp').textContent = Math.round(b / C4_CUSTO_VAGA * 0.7) + ' pessoas';
+  document.getElementById('c4-ben-b').textContent = c4M(benB);
+
+  const maxB = melhor;
+  function barra(id, valId, valor, texto){
+    const el = document.getElementById(id);
+    el.style.width = Math.max(valor > 0 ? 3 : 0, Math.round((valor / maxB) * 92)) + '%';
+    el.textContent = texto;
+    document.getElementById(valId).textContent = c4M(valor);
+  }
+  barra('bar-c4a', 'bval-c4a', benA, c4M(benA));
+  barra('bar-c4b', 'bval-c4b', benB, c4M(benB));
+  barra('bar-c4co', 'bval-c4co', co, co > 0 ? c4M(co) + ' de benef\u00edcio perdido' : 'Nenhuma alternativa melhor preterida');
+
+  document.getElementById('mm-c4tot').textContent = c4M(total);
+  document.getElementById('mm-c4best').textContent = c4M(melhor);
+  document.getElementById('mm-c4co').textContent = c4M(co);
+
+  const cl = document.getElementById('co-callout-c4');
+  if (a === C4_LIVRE) {
+    cl.innerHTML = '<strong>Tudo em estrada.</strong> S\u00e3o 60 km cascalhados e ' + c4M(benA) + ' de benef\u00edcio \u2014 um resultado positivo, '
+      + 'e \u00e9 a\u00ed que mora a armadilha. A mesma verba aplicada na creche geraria ' + c4M(melhor) + '. '
+      + 'O custo de oportunidade da decis\u00e3o \u00e9 ' + c4M(co) + ' que o munic\u00edpio deixou na mesa.';
+  } else if (a === 0) {
+    cl.innerHTML = '<strong>Tudo em creche.</strong> Com o retorno suposto aqui, esta \u00e9 a melhor aloca\u00e7\u00e3o \u2014 custo de oportunidade zero. '
+      + 'Mas nenhum quil\u00f4metro de estrada vicinal foi recuperado: quem mora na zona rural continua sem escoar a produ\u00e7\u00e3o na chuva. '
+      + 'Se o par\u00e2metro de retorno das estradas estivesse subestimado, esta escolha se inverteria.';
+  } else {
+    cl.innerHTML = '<strong>Divis\u00e3o ' + c4M(a) + ' / ' + c4M(b) + '.</strong> O benef\u00edcio total gerado \u00e9 ' + c4M(total)
+      + ', contra ' + c4M(melhor) + ' da melhor aloca\u00e7\u00e3o poss\u00edvel. O custo de oportunidade da divis\u00e3o escolhida \u00e9 ' + c4M(co) + '. '
+      + 'Cada real deslocado para a op\u00e7\u00e3o de menor retorno amplia essa diferen\u00e7a.';
+  }
+
+  const sl = document.getElementById('sl-orca');
+  const p = (a / C4_LIVRE) * 100;
+  sl.style.background = `linear-gradient(to right,#6d3ec4 ${p}%,#ddd ${p}%)`;
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
+  updateC1(); updateC2(); updateC3(); updateC4();
+});
+</script>
+</body>
+</html>
