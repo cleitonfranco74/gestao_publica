@@ -200,3 +200,44 @@ footer { margin: 3rem 0 2rem; color: var(--muted); font-size: .9rem; }
 .caso .caso-n { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; color: var(--accent-2); }
 .caso .caso-tags { margin-top: auto; font-size: .82rem; color: var(--muted); }
 .toc-sub { font-size: .88rem; color: var(--muted); }
+
+/* Gráfico interativo de oferta e demanda (estacionamento rotativo) */
+.od-fig { margin: 1rem 0; }
+.od-fig figcaption { margin-bottom: .6rem; }
+.od-sub { color: var(--muted); font-size: .92rem; }
+.od-ctrl { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; margin: .4rem 0; }
+.od-ctrl label { font-weight: 600; }
+.od-ctrl input { flex: 1; min-width: 160px; accent-color: var(--accent); }
+.od-ctrl output { font-weight: 700; min-width: 4.5rem; text-align: right; }
+.od-btns { display: flex; gap: .4rem; flex-wrap: wrap; margin: .4rem 0 .6rem; }
+.od-btns .btn { font-size: .85rem; padding: .35rem .7rem; }
+#od-svg { width: 100%; height: auto; display: block; }
+.od-grid { stroke: var(--border); stroke-width: 1; }
+.od-axis { stroke: var(--muted); stroke-width: 1.2; }
+.od-tick { fill: var(--muted); font-size: 13px; }
+.od-lab { fill: var(--muted); font-size: 13px; }
+.od-dem-c { stroke: var(--accent-2); stroke-width: 3; }
+.od-ofe-c { stroke: var(--accent); stroke-width: 3; }
+.od-dem-t { fill: var(--accent-2); font-weight: 700; font-size: 14px; }
+.od-ofe-t { fill: var(--accent); font-weight: 700; font-size: 14px; }
+.od-tar-c { stroke: var(--text); stroke-width: 1.2; stroke-dasharray: 5 4; }
+.od-falta { stroke: #c0392b; stroke-width: 7; stroke-linecap: round; opacity: .75; }
+.od-sobra { stroke: #c48a00; stroke-width: 7; stroke-linecap: round; opacity: .8; }
+.od-falta-t { fill: #c0392b; font-weight: 700; font-size: 15px; }
+.od-sobra-t { fill: #a87400; font-weight: 700; font-size: 15px; }
+.od-dem-p { fill: var(--accent-2); stroke: var(--surface); stroke-width: 2; }
+.od-ofe-p { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.od-eq { fill: var(--text); stroke: var(--surface); stroke-width: 2; }
+.od-eq-t { fill: var(--text); font-size: 13px; font-weight: 600; }
+.od-leg { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .88rem; color: var(--muted); margin: .3rem 0 .6rem; }
+.od-l { display: inline-block; width: 22px; height: 0; border-top: 3px solid; vertical-align: middle; margin-right: .35rem; }
+.od-dem { border-color: var(--accent-2); } .od-ofe { border-color: var(--accent); } .od-tar { border-top: 2px dashed var(--text); }
+.od-num { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .5rem; }
+.od-num div { background: var(--surface-2); border-radius: 8px; padding: .5rem .7rem; }
+.od-num b { display: block; font-size: .76rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.od-num span { font-size: 1.15rem; font-weight: 700; }
+.od-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--text); vertical-align: middle; margin-right: .35rem; }
+.od-neg { color: #c0392b; } .od-pos { color: #a87400; }
+.od-leitura { margin: .7rem 0 .3rem; }
+.od-fonte { font-size: .82rem; color: var(--muted); margin: 0; }
+@media (prefers-color-scheme: dark) { .od-falta-t, .od-neg { fill: #ff8a7a; color: #ff8a7a; } .od-sobra-t, .od-pos { fill: #f2c14e; color: #f2c14e; } }

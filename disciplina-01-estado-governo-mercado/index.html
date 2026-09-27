@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20260927">
+<link rel="stylesheet" href="assets/style.css?v=20260927b">
 </head>
 <body>
 <div class="inst" role="banner" aria-label="UNEMAT · DEAD · UAB">
@@ -150,6 +150,101 @@
   <div class="label">Exemplo na gestão pública</div>
   <p>Quando uma prefeitura tabela o preço de um serviço abaixo do equilíbrio (por exemplo, a tarifa de estacionamento rotativo), a tendência é faltar vaga. Quando fixa um piso acima do equilíbrio, a tendência é sobrar oferta. Entender oferta e demanda ajuda a prever os efeitos das decisões públicas.</p>
 </div>
+
+<figure class="card od-fig" id="grafico-estacionamento" aria-labelledby="od-titulo">
+  <figcaption id="od-titulo"><strong>Gráfico interativo: a tarifa do estacionamento rotativo</strong><br>
+  <span class="od-sub">Mova a tarifa ou use os botões. Dados hipotéticos de uma área central, em vagas por hora.</span></figcaption>
+  <div class="od-ctrl">
+    <label for="od-preco">Tarifa por hora</label>
+    <input type="range" id="od-preco" min="0.5" max="3.5" step="0.25" value="1">
+    <output id="od-preco-v" for="od-preco">R$ 1,00</output>
+  </div>
+  <div class="od-btns" role="group" aria-label="Situações">
+    <button type="button" class="btn secondary" data-p="1">Teto abaixo do equilíbrio (R$ 1,00)</button>
+    <button type="button" class="btn secondary" data-p="2">Equilíbrio (R$ 2,00)</button>
+    <button type="button" class="btn secondary" data-p="3">Piso acima do equilíbrio (R$ 3,00)</button>
+  </div>
+  <svg id="od-svg" viewBox="0 0 560 340" role="img" aria-labelledby="od-titulo od-leitura"></svg>
+  <div class="od-leg">
+    <span><i class="od-l od-dem"></i>Demanda: vagas procuradas</span>
+    <span><i class="od-l od-ofe"></i>Oferta: vagas oferecidas</span>
+    <span><i class="od-l od-tar"></i>Tarifa fixada</span>
+    <span><i class="od-dot"></i>E: equilíbrio (R$ 2,00 · 800 vagas)</span>
+  </div>
+  <div class="od-num">
+    <div><b>Vagas procuradas</b><span id="od-qd">–</span></div>
+    <div><b>Vagas oferecidas</b><span id="od-qs">–</span></div>
+    <div><b>Resultado</b><span id="od-res">–</span></div>
+  </div>
+  <p class="od-leitura" id="od-leitura" aria-live="polite"></p>
+  <p class="od-fonte">Modelo didático: demanda Qd = 1.400 − 300 × P; oferta Qs = 300 + 250 × P (vagas públicas rotativas e estacionamentos privados da área). Equilíbrio em R$ 2,00 por hora, com 800 vagas.</p>
+</figure>
+<script>
+(function () {
+  var svg = document.getElementById('od-svg'); if (!svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var X0 = 84, X1 = 540, Y0 = 290, Y1 = 20, QMAX = 1400, PMAX = 4, K = 1;
+  function fs(px) { return 'font-size:' + (px * K).toFixed(1) + 'px'; }
+  function X(q) { return X0 + q / QMAX * (X1 - X0); }
+  function Y(p) { return Y0 - p / PMAX * (Y0 - Y1); }
+  function qd(p) { return 1400 - 300 * p; }
+  function qs(p) { return 300 + 250 * p; }
+  function el(t, a, txt) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+  function n(v) { return Math.round(v).toLocaleString('pt-BR'); }
+  function rs(v) { return 'R$ ' + v.toFixed(2).replace('.', ','); }
+  var inp = document.getElementById('od-preco');
+  function draw() {
+    var w = svg.getBoundingClientRect().width || 560;
+    K = Math.min(2.2, Math.max(1, 1.1 * 560 / w));
+    X0 = Math.round(40 + 44 * K); Y0 = Math.round(310 - 20 * K);
+    var p = parseFloat(inp.value), d = qd(p), o = qs(p), gap = d - o;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    for (var pt = 0; pt <= 4; pt += 1) {
+      el('line', { x1: X0, x2: X1, y1: Y(pt), y2: Y(pt), class: 'od-grid' });
+      el('text', { x: X0 - 8, y: Y(pt) + 4 * K, 'text-anchor': 'end', class: 'od-tick', style: fs(12) }, K > 1.3 ? pt + ',00' : rs(pt));
+    }
+    for (var q = 0; q <= 1400; q += (K > 1.3 ? 400 : 200)) el('text', { x: X(q), y: Y0 + 8 + 11 * K, 'text-anchor': 'middle', class: 'od-tick', style: fs(12) }, n(q));
+    el('line', { x1: X0, x2: X1, y1: Y0, y2: Y0, class: 'od-axis' });
+    el('line', { x1: X0, x2: X0, y1: Y0, y2: Y1, class: 'od-axis' });
+    el('text', { x: (X0 + X1) / 2, y: 336, 'text-anchor': 'middle', class: 'od-lab', style: fs(12) }, 'Vagas por hora');
+    el('text', { x: 6 + 9 * K, y: (Y0 + Y1) / 2, 'text-anchor': 'middle', transform: 'rotate(-90 ' + (6 + 9 * K) + ' ' + (Y0 + Y1) / 2 + ')', class: 'od-lab', style: fs(12) }, 'Tarifa (R$ por hora)');
+    el('line', { x1: X(qd(0.5)), y1: Y(0.5), x2: X(qd(4)), y2: Y(4), class: 'od-dem-c' });
+    el('line', { x1: X(qs(0)), y1: Y(0), x2: X(qs(4)), y2: Y(4), class: 'od-ofe-c' });
+    el('text', { x: X(qd(3.9)) + 8, y: Y(3.9) + 4, class: 'od-dem-t', style: fs(14) }, 'D');
+    el('text', { x: X(qs(3.9)) - 22 * K, y: Y(3.9) + 4, class: 'od-ofe-t', style: fs(14) }, 'S');
+    el('line', { x1: X0, x2: X1, y1: Y(p), y2: Y(p), class: 'od-tar-c' });
+    if (Math.abs(gap) > 1) {
+      el('line', { x1: X(Math.min(d, o)), x2: X(Math.max(d, o)), y1: Y(p), y2: Y(p), class: gap > 0 ? 'od-falta' : 'od-sobra' });
+      el('text', { x: (X(d) + X(o)) / 2, y: Y(p) + (p > 2 ? -12 : 10 + 14 * K), 'text-anchor': 'middle', class: gap > 0 ? 'od-falta-t' : 'od-sobra-t', style: fs(15) },
+        (gap > 0 ? 'Faltam ' : 'Sobram ') + n(Math.abs(gap)) + ' vagas');
+      el('circle', { cx: X(o), cy: Y(p), r: 5, class: 'od-ofe-p' });
+      el('circle', { cx: X(d), cy: Y(p), r: 5, class: 'od-dem-p' });
+    }
+    el('circle', { cx: X(800), cy: Y(2), r: 6, class: 'od-eq' });
+    el('text', { x: X(800) + 12, y: Y(2) + 5, class: 'od-eq-t', style: fs(13) }, 'E');
+    document.getElementById('od-preco-v').textContent = rs(p);
+    document.getElementById('od-qd').textContent = n(d);
+    document.getElementById('od-qs').textContent = n(o);
+    var res = document.getElementById('od-res'), lt = document.getElementById('od-leitura');
+    if (gap > 1) {
+      res.textContent = 'Faltam ' + n(gap) + ' vagas'; res.className = 'od-neg';
+      lt.textContent = 'Tarifa abaixo do equilíbrio (preço máximo ou teto). A ' + rs(p) + ' por hora, motoristas procuram ' + n(d) + ' vagas, mas só ' + n(o) + ' são oferecidas. Resultado: carros circulando à procura de vaga, estacionamento irregular e permanência longa de quem já estacionou. A tarifa baixa agrada, mas o serviço não atende a todos.';
+    } else if (gap < -1) {
+      res.textContent = 'Sobram ' + n(-gap) + ' vagas'; res.className = 'od-pos';
+      lt.textContent = 'Tarifa acima do equilíbrio (preço mínimo ou piso). A ' + rs(p) + ' por hora, há ' + n(o) + ' vagas oferecidas, mas só ' + n(d) + ' são procuradas. Resultado: vagas ociosas, arrecadação menor do que a prevista e menos clientes para o comércio da área.';
+    } else {
+      res.textContent = 'Nem falta nem sobra'; res.className = '';
+      lt.textContent = 'Tarifa de equilíbrio. A R$ 2,00 por hora, as vagas procuradas e as oferecidas se igualam em 800: não há fila nem vaga ociosa. Na prática, a prefeitura pode usar esse raciocínio para calibrar a tarifa por região e horário.';
+    }
+  }
+  inp.addEventListener('input', draw);
+  window.addEventListener('resize', draw);
+  document.querySelectorAll('.od-btns button').forEach(function (b) {
+    b.addEventListener('click', function () { inp.value = b.getAttribute('data-p'); draw(); });
+  });
+  draw();
+})();
+</script>
 
 <h3>1.5 Microeconomia e macroeconomia</h3>
 <p>A <strong>microeconomia</strong> estuda o comportamento de unidades individuais (consumidores, empresas, mercados específicos) e a formação de preços. A <strong>macroeconomia</strong> estuda os agregados da economia: produto (PIB), emprego, inflação, juros, câmbio, contas públicas. Grande parte do debate sobre o papel do Estado é macroeconômico, como mostra a discussão sobre Keynes na Unidade 7.</p>
