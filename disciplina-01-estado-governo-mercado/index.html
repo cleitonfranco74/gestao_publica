@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20260927b">
+<link rel="stylesheet" href="assets/style.css?v=20260927c">
 </head>
 <body>
 <div class="inst" role="banner" aria-label="UNEMAT · DEAD · UAB">
@@ -79,7 +79,7 @@
 <nav class="card toc" aria-label="Sumário">
   <h3 style="margin-top:0">Sumário</h3>
   <ol>
-    <li><a href="#u1">Introdução à economia: conceitos básicos</a> <span class="toc-sub">(com <a href="#casos">estudos de caso</a>)</span></li>
+    <li><a href="#u1">Introdução à economia: conceitos básicos</a></li>
     <li><a href="#u2">Estado, governo e mercado: conceitos e funções</a></li>
     <li><a href="#u3">A dinâmica pendular entre Estado e mercado</a></li>
     <li><a href="#u4">A matriz liberal</a></li>
@@ -101,6 +101,13 @@
   <div class="label">Conceito-chave</div>
   <p><strong>Escassez</strong> é o problema econômico central: como os recursos são limitados e as necessidades não, toda sociedade precisa fazer escolhas. Toda escolha tem um <strong>custo de oportunidade</strong>, que é o valor da melhor alternativa de que se abre mão.</p>
 </div>
+
+<a class="card caso caso-inline" id="caso-custo" href="estudos-de-caso/custo-de-oportunidade.html">
+  <span class="caso-n">Estudo de caso interativo · Custo de oportunidade</span>
+  <strong>O iceberg do custo e o orçamento municipal: estrada vicinal ou creche?</strong>
+  <span>Veja o conceito na prática: custos explícitos e implícitos de uma escolha e, depois, R$ 3 milhões livres no orçamento de um município do interior de Mato Grosso. Mova os controles e observe quanto benefício a prefeitura deixa de gerar ao escolher uma alternativa em vez da outra.</span>
+  <span class="caso-tags">Abrir o estudo de caso →</span>
+</a>
 
 <h3>1.1 Os problemas econômicos fundamentais</h3>
 <p>Toda sociedade, seja qual for sua organização, precisa responder a três perguntas:</p>
@@ -246,35 +253,29 @@
 })();
 </script>
 
-<h3>1.5 Microeconomia e macroeconomia</h3>
-<p>A <strong>microeconomia</strong> estuda o comportamento de unidades individuais (consumidores, empresas, mercados específicos) e a formação de preços. A <strong>macroeconomia</strong> estuda os agregados da economia: produto (PIB), emprego, inflação, juros, câmbio, contas públicas. Grande parte do debate sobre o papel do Estado é macroeconômico, como mostra a discussão sobre Keynes na Unidade 7.</p>
+<h3 id="elasticidade">1.5 Elasticidade-preço da demanda</h3>
+<p>A lei da demanda diz que, quando o preço sobe, a quantidade demandada cai. A <strong>elasticidade-preço da demanda</strong> mede <em>quanto</em> ela cai: <strong>ε = variação percentual da quantidade ÷ variação percentual do preço</strong> (em módulo).</p>
+<ul>
+  <li><strong>Inelástica (ε &lt; 1):</strong> a quantidade varia proporcionalmente menos que o preço. É o caso de bens essenciais e sem substitutos próximos, como água, energia e medicamentos. Aumentar o preço <em>aumenta</em> a receita de quem vende.</li>
+  <li><strong>Elástica (ε &gt; 1):</strong> a quantidade varia proporcionalmente mais que o preço. É o caso de bens com substitutos ou dispensáveis. Aumentar o preço <em>reduz</em> a receita.</li>
+  <li><strong>Unitária (ε = 1):</strong> as duas variações se compensam, e a receita não muda.</li>
+</ul>
+<p>Para o gestor, a elasticidade ajuda a prever o efeito de tarifas e tributos: sobre bens inelásticos, arrecadam mais e alteram pouco o consumo, mas pesam mais no orçamento de quem não consegue consumir menos.</p>
 
-<h3 id="casos">1.6 Estudos de caso: a economia na pecuária e na gestão pública de Mato Grosso</h3>
-<p>Três estudos de caso interativos aplicam os conceitos desta unidade a situações de Mato Grosso. Em cada um, mova os controles e observe como os números e os gráficos mudam; depois, leia os quadros de interpretação. Os valores são ordens de grandeza e parâmetros didáticos, indicados em cada página.</p>
-<div class="casos">
-  <a class="card caso" href="estudos-de-caso/custo-de-oportunidade.html">
-    <span class="caso-n">Estudo de caso 1</span>
-    <strong>Custo de oportunidade</strong>
-    <span>O custo invisível das escolhas: custos explícitos e implícitos e R$ 3 milhões livres no orçamento de um município do interior (estrada vicinal ou creche?).</span>
-    <span class="caso-tags">Seção 1 · escassez e escolha</span>
-  </a>
-  <a class="card caso" href="estudos-de-caso/oferta-e-demanda.html">
-    <span class="caso-n">Estudo de caso 2</span>
-    <strong>Oferta e demanda</strong>
-    <span>A China amplia as compras de carne (deslocamento da demanda) e a arroba sobe enquanto o abate cai (retenção de matrizes e ciclo pecuário).</span>
-    <span class="caso-tags">Seção 1.4 · mercado e preços</span>
-  </a>
-  <a class="card caso" href="estudos-de-caso/elasticidade.html">
-    <span class="caso-n">Estudo de caso 3</span>
-    <strong>Elasticidade</strong>
-    <span>O conceito de elasticidade-preço da demanda e o reajuste da tarifa de água de um município do interior: quando o aumento eleva ou derruba a arrecadação, e quem paga a conta.</span>
-    <span class="caso-tags">Seção 1.4 · sensibilidade ao preço</span>
-  </a>
-</div>
+<a class="card caso caso-inline" id="caso-elasticidade" href="estudos-de-caso/elasticidade.html">
+  <span class="caso-n">Estudo de caso interativo · Elasticidade</span>
+  <strong>O reajuste da tarifa de água de um município do interior</strong>
+  <span>Primeiro, experimente o conceito: varie preço e quantidade e veja o que acontece com a receita. Depois, aplique a um serviço autônomo de água com 6 mil ligações: quanto o reajuste arrecada, quanto o consumo cai e quanto sobe a conta das famílias.</span>
+  <span class="caso-tags">Abrir o estudo de caso →</span>
+</a>
+
 <div class="card box-ex">
   <div class="label">Para o fórum temático 1</div>
-  <p>Escolha um dos cenários de gestão pública (o orçamento municipal ou a tarifa de água) e explique, com os números do estudo de caso, qual é o custo de oportunidade ou o efeito do preço sobre a arrecadação. Se puder, compare com dados do seu município.</p>
+  <p>Escolha um dos estudos de caso (o orçamento municipal ou a tarifa de água) e explique, com os números da simulação, qual é o custo de oportunidade da escolha ou o efeito do reajuste sobre a arrecadação e sobre as famílias. Se puder, compare com dados do seu município.</p>
 </div>
+
+<h3>1.6 Microeconomia e macroeconomia</h3>
+<p>A <strong>microeconomia</strong> estuda o comportamento de unidades individuais (consumidores, empresas, mercados específicos) e a formação de preços. A <strong>macroeconomia</strong> estuda os agregados da economia: produto (PIB), emprego, inflação, juros, câmbio, contas públicas. Grande parte do debate sobre o papel do Estado é macroeconômico, como mostra a discussão sobre Keynes na Unidade 7.</p>
 
 <!-- ============ UNIDADE 2 ============ -->
 <h2 id="u2">Unidade 2. Estado, governo e mercado: conceitos e funções</h2>
@@ -498,7 +499,6 @@
   <a class="btn secondary" href="apresentacao.html">Apresentação da disciplina</a>
   <a class="btn secondary" href="exercicios-1.html">Exercícios de fixação 1</a>
   <a class="btn secondary" href="exercicios-2.html">Exercícios de fixação 2</a>
-  <a class="btn secondary" href="#casos">Estudos de caso</a>
 </div>
 
 <!-- ============ REFERÊNCIAS ============ -->

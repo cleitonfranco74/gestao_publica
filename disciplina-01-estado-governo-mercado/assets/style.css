@@ -241,3 +241,5 @@ footer { margin: 3rem 0 2rem; color: var(--muted); font-size: .9rem; }
 .od-leitura { margin: .7rem 0 .3rem; }
 .od-fonte { font-size: .82rem; color: var(--muted); margin: 0; }
 @media (prefers-color-scheme: dark) { .od-falta-t, .od-neg { fill: #ff8a7a; color: #ff8a7a; } .od-sobra-t, .od-pos { fill: #f2c14e; color: #f2c14e; } }
+.caso-inline { margin: 1rem 0; }
+.caso-inline .caso-tags { font-weight: 700; color: var(--accent); font-size: .9rem; }
