@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elasticidade — da pecuária à tarifa municipal em Mato Grosso</title>
-<meta name="description" content="Elasticidade da pecuária à tarifa de água municipal em Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
+<title>Elasticidade — a tarifa de água municipal em Mato Grosso</title>
+<meta name="description" content="Elasticidade-preço da demanda e o reajuste da tarifa de água de um município de Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
 <link rel="icon" type="image/png" href="../../img/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Estudo de caso 3 · Elasticidade · Estado, Governo e Mercado">
-<meta property="og:description" content="Elasticidade da pecuária à tarifa de água municipal em Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
+<meta property="og:description" content="Elasticidade-preço da demanda e o reajuste da tarifa de água de um município de Mato Grosso: estudo de caso interativo da disciplina Estado, Governo e Mercado.">
 <meta property="og:url" content="https://cleitonfranco74.github.io/gestao_publica/disciplina-01-estado-governo-mercado/estudos-de-caso/elasticidade.html">
 <meta property="og:image" content="https://cleitonfranco74.github.io/gestao_publica/img/og-estado-governo-mercado.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -174,13 +174,11 @@
 
 <header>
   <p class="kicker">UNEMAT · DEAD/UAB · Especialização em Gestão Pública · Estado, Governo e Mercado</p>
-  <h1>Elasticidade<br><em>em Mato Grosso</em></h1>
-  <p class="sub">Quatro cenários — três da pecuária mato-grossense e um da tarifa de água de um município do interior — para entender como preço e quantidade se relacionam.</p>
+  <h1>Elasticidade<br><em>na tarifa de água</em></h1>
+  <p class="sub">O conceito de elasticidade-preço e um estudo de caso de gestão pública: o reajuste da tarifa de água de um município do interior de Mato Grosso.</p>
   <div class="chips">
     <span class="chip">ε = ΔQ% / ΔP%</span>
-    <span class="chip">Boi gordo · Oferta inelástica</span>
-    <span class="chip">Frango · Oferta elástica</span>
-    <span class="chip">Elasticidade cruzada</span>
+    <span class="chip">Receita total</span>
     <span class="chip">Tarifa de água · município</span>
   </div>
 </header>
@@ -190,17 +188,8 @@
     <button class="nav-tab active" data-p="e1" onclick="showPanel('e1',this)">
       <span class="tab-num">Conceito base</span>ε-Preço interativo
     </button>
-    <button class="nav-tab" data-p="e2" onclick="showPanel('e2',this)">
-      <span class="tab-num">Cenário 01</span>Boi gordo · oferta inelástica
-    </button>
-    <button class="nav-tab" data-p="e3" onclick="showPanel('e3',this)">
-      <span class="tab-num">Cenário 02</span>Frango · oferta elástica
-    </button>
-    <button class="nav-tab" data-p="e4" onclick="showPanel('e4',this)">
-      <span class="tab-num">Cenário 03</span>Cruzada · carne × frango
-    </button>
     <button class="nav-tab" data-p="e5" onclick="showPanel('e5',this)">
-      <span class="tab-num">Cenário 04</span>Tarifa de água · município
+      <span class="tab-num">Estudo de caso</span>Tarifa de água · município
     </button>
   </div>
 </div>
@@ -288,253 +277,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════ PAINEL 2 — BOI GORDO INELÁSTICO -->
-<div id="e2" class="panel">
-  <span class="scenario-tag tag-inelastica">ε &lt; 1 · Inelástica</span>
-  <h2 class="scenario-title">Oferta de boi gordo em MT:<br>presa ao relógio biológico</h2>
-  <p class="scenario-sub" style="margin-bottom:1.5rem">Mercado de boi gordo · Mato Grosso · Oferta de curto prazo</p>
-
-  <div class="formula-box">
-    <span class="formula">ε ≈ 0,20</span>
-    <span class="formula-desc">O boi que será abatido este ano nasceu há três anos. Por mais que a arroba suba, o rebanho pronto não cresce dentro da safra.</span>
-  </div>
-
-  <div class="control-panel">
-    <div class="control-row">
-      <span class="ctrl-label">Variação do preço da arroba (ΔP%)</span>
-      <div class="slider-wrap">
-        <input type="range" id="sl-e2" min="0" max="60" step="1" value="0" oninput="updateE2()" style="accent-color:var(--verde-med)">
-        <span class="slider-val" id="sv-e2" style="color:var(--verde-med)">+0%</span>
-      </div>
-      <button class="btn-reset" onclick="resetE2()">↺ Resetar</button>
-    </div>
-  </div>
-
-  <div class="epsilon-display">
-    <div class="eps-big">
-      <span class="eps-label">ε oferta boi gordo</span>
-      <div class="eps-value" style="color:var(--verde-med)">0,20</div>
-      <div class="eps-type" style="background:var(--verde-claro);color:var(--verde)">Inelástica</div>
-    </div>
-    <div class="eps-bar-wrap">
-      <div class="bar-label"><span>Inelástica</span><span>Unitária</span><span>Elástica</span></div>
-      <div class="eps-spectrum"><div class="eps-needle" style="left:10%"></div></div>
-      <div class="eps-ticks"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0+</span></div>
-    </div>
-  </div>
-
-  <div class="graph-card">
-    <div class="graph-legend">
-      <span class="leg"><span class="leg-line" style="background:var(--verde-med)"></span>Oferta (S) — quase vertical no curto prazo</span>
-      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Demanda (D)</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--verde-med)"></span>E1 original</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E2 novo preço</span>
-    </div>
-    <svg id="svg-e2" class="main-chart" viewBox="0 0 520 300"></svg>
-  </div>
-
-  <div class="metrics">
-    <div class="metric verde"><span>Preço original</span><strong id="m-e2-p1">R$ 300/@</strong></div>
-    <div class="metric verde"><span>Novo preço</span><strong id="m-e2-p2">R$ 300/@</strong></div>
-    <div class="metric verde"><span>Abate original</span><strong>6,50 M cab.</strong></div>
-    <div class="metric verde"><span>Novo abate ofertado</span><strong id="m-e2-q2">6,50 M cab.</strong></div>
-    <div class="metric verde"><span>ΔP%</span><strong id="m-e2-dp">+0%</strong></div>
-    <div class="metric verde"><span>ΔQ%</span><strong id="m-e2-dq">+0%</strong></div>
-  </div>
-
-  <div class="receita-section">
-    <h4>Receita bruta do setor (R$ bilhões/ano)</h4>
-    <div class="rec-row">
-      <span class="rec-label">Original</span>
-      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#9FE1CB;width:60%" id="rbar-e2-1">R$ 35,10 bi</div></div>
-      <span class="rec-val">R$ 35,10 bi</span>
-    </div>
-    <div class="rec-row">
-      <span class="rec-label">Novo preço</span>
-      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#2e9e5e;width:60%" id="rbar-e2-2">R$ 35,10 bi</div></div>
-      <span class="rec-val" id="rv-e2">R$ 35,10 bi</span>
-    </div>
-  </div>
-
-  <div class="callout verde">
-    <strong>Por que inelástica?</strong> Não existe atalho biológico. O animal que entra no frigorífico este ano precisou de dois a três anos de pasto,
-    e a alta da arroba não encurta esse tempo. No <strong>curto prazo</strong> a oferta é fisicamente rígida; no longo prazo, com mais bezerros nascidos e
-    pastagem recuperada, ε cresce. Em fases de retenção de matrizes a resposta chega a ser <em>negativa</em>: o produtor segura fêmeas e o abate cai.
-  </div>
-
-  <div class="concept-row">
-    <div class="concept-box">
-      <h3>Assinatura inelástica</h3>
-      <p>ε &lt; 1: a quantidade varia <em>menos</em> que o preço proporcionalmente. Arroba sobe 50%, abate sobe 10%. Curva quase vertical.</p>
-    </div>
-    <div class="concept-box">
-      <h3>Efeito na receita</h3>
-      <p>Como ε &lt; 1, quando o preço sobe a <strong>receita total aumenta</strong>: vende-se praticamente a mesma quantidade por um preço bem maior.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ PAINEL 3 — FRANGO ELÁSTICO -->
-<div id="e3" class="panel">
-  <span class="scenario-tag tag-elastica">ε &gt; 1 · Elástica</span>
-  <h2 class="scenario-title">Oferta de frango:<br>45 dias do pinto ao abate</h2>
-  <p class="scenario-sub" style="margin-bottom:1.5rem">Avicultura integrada · Sorriso, Lucas do Rio Verde e Nova Mutum, MT</p>
-
-  <div class="formula-box">
-    <span class="formula">ε ≈ 1,35</span>
-    <span class="formula-desc">Mesmo produto na prateleira do boi — carne —, elasticidade oposta. O lote de frango se ajusta em semanas, e o integrador reduz alojamento na hora em que o preço cai.</span>
-  </div>
-
-  <div class="control-panel">
-    <div class="control-row">
-      <span class="ctrl-label">Queda de preço do frango (ΔP%)</span>
-      <div class="slider-wrap">
-        <input type="range" id="sl-e3" min="0" max="50" step="1" value="0" oninput="updateE3()" style="accent-color:var(--laranja-med)">
-        <span class="slider-val" id="sv-e3" style="color:var(--laranja-med)">−0%</span>
-      </div>
-      <button class="btn-reset" onclick="resetE3()">↺ Resetar</button>
-    </div>
-  </div>
-
-  <div class="epsilon-display">
-    <div class="eps-big">
-      <span class="eps-label">ε oferta frango</span>
-      <div class="eps-value" style="color:var(--laranja-med)">1,35</div>
-      <div class="eps-type" style="background:var(--laranja-claro);color:var(--laranja)">Elástica</div>
-    </div>
-    <div class="eps-bar-wrap">
-      <div class="bar-label"><span>Inelástica</span><span>Unitária</span><span>Elástica</span></div>
-      <div class="eps-spectrum"><div class="eps-needle" style="left:67.5%"></div></div>
-      <div class="eps-ticks"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0+</span></div>
-    </div>
-  </div>
-
-  <div class="graph-card">
-    <div class="graph-legend">
-      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Oferta frango (S) — elástica</span>
-      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>Demanda (D)</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E1 original</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>E2 novo preço</span>
-    </div>
-    <svg id="svg-e3" class="main-chart" viewBox="0 0 520 300"></svg>
-  </div>
-
-  <div class="metrics">
-    <div class="metric laranja"><span>Preço original</span><strong>R$ 6,50/kg</strong></div>
-    <div class="metric laranja"><span>Novo preço</span><strong id="m-e3-p2">R$ 6,50/kg</strong></div>
-    <div class="metric laranja"><span>Produção original</span><strong>900 mil t</strong></div>
-    <div class="metric laranja"><span>Nova produção</span><strong id="m-e3-q2">900 mil t</strong></div>
-    <div class="metric laranja"><span>ΔP%</span><strong id="m-e3-dp">−0%</strong></div>
-    <div class="metric laranja"><span>ΔQ%</span><strong id="m-e3-dq">−0%</strong></div>
-  </div>
-
-  <div class="receita-section">
-    <h4>Receita bruta do setor (R$ bilhões/ano)</h4>
-    <div class="rec-row">
-      <span class="rec-label">Original</span>
-      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#f5c6a0;width:70%" id="rbar-e3-1">R$ 5,85 bi</div></div>
-      <span class="rec-val">R$ 5,85 bi</span>
-    </div>
-    <div class="rec-row">
-      <span class="rec-label">Novo preço</span>
-      <div class="rec-bar-bg"><div class="rec-bar-fill" style="background:#c4561a;width:70%" id="rbar-e3-2">R$ 5,85 bi</div></div>
-      <span class="rec-val" id="rv-e3">R$ 5,85 bi</span>
-    </div>
-  </div>
-
-  <div class="callout laranja">
-    <strong>Por que elástica?</strong> Do pinto de um dia ao abate são cerca de 45 dias. O integrador decide alojar ou não alojar o próximo lote a cada mês e meio,
-    e o produtor tem galpão ocioso pronto para responder. O que separa o frango do boi não é o mercado — <strong>é o ciclo de produção</strong>.
-  </div>
-
-  <div class="concept-row">
-    <div class="concept-box">
-      <h3>Assinatura elástica</h3>
-      <p>ε &gt; 1: a quantidade varia <em>mais</em> que o preço proporcionalmente. Curva bem inclinada, quase deitada.</p>
-    </div>
-    <div class="concept-box">
-      <h3>Efeito na receita</h3>
-      <p>Com ε &gt; 1, uma queda de preço derruba a receita mais que proporcionalmente: perde-se no preço e na quantidade ao mesmo tempo.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ PAINEL 4 — CRUZADA CARNE × FRANGO -->
-<div id="e4" class="panel">
-  <span class="scenario-tag tag-cruzada">Elasticidade cruzada</span>
-  <h2 class="scenario-title">Carne bovina × frango:<br>substitutos no prato</h2>
-  <p class="scenario-sub" style="margin-bottom:1.5rem">Quando a picanha sobe, o consumidor troca de bandeja — não de refeição</p>
-
-  <div class="formula-box">
-    <span class="formula">ε<sub>AB</sub> = ΔQ<sub>A</sub>% / ΔP<sub>B</sub>%</span>
-    <span class="formula-desc">Mede como a quantidade do bem A reage à variação de preço do bem B. Se positivo → bens substitutos. Se negativo → bens complementares.</span>
-  </div>
-
-  <div class="control-panel">
-    <div class="control-row">
-      <span class="ctrl-label">Alta do preço da carne bovina (ΔP%)</span>
-      <div class="slider-wrap">
-        <input type="range" id="sl-e4" min="0" max="60" step="5" value="0" oninput="updateE4()" style="accent-color:var(--azul-med)">
-        <span class="slider-val" id="sv-e4" style="color:var(--azul-med)">+0%</span>
-      </div>
-      <button class="btn-reset" onclick="resetE4()">↺ Resetar</button>
-    </div>
-  </div>
-
-  <div class="epsilon-display">
-    <div class="eps-big">
-      <span class="eps-label">ε cruzada</span>
-      <div class="eps-value" style="color:var(--azul-med)" id="eps-e4-val">+0,35</div>
-      <div class="eps-type" style="background:var(--azul-claro);color:var(--azul)" id="eps-e4-type">Substitutos</div>
-    </div>
-    <div class="eps-bar-wrap">
-      <div class="bar-label"><span>Complementares (ε&lt;0)</span><span>0</span><span>Substitutos (ε&gt;0)</span></div>
-      <div class="eps-spectrum" style="background:linear-gradient(to right,#fde8d5,#f5f5f0 50%,#ddeaf7)">
-        <div class="eps-needle" id="eps-e4-needle" style="left:67.5%"></div>
-      </div>
-      <div class="eps-ticks"><span>−1,0</span><span>−0,5</span><span>0</span><span>+0,5</span><span>+1,0</span></div>
-    </div>
-  </div>
-
-  <div class="two-charts">
-    <div class="chart-sub">
-      <h4>Preço da carne bovina no varejo</h4>
-      <svg id="svg-e4-f" class="main-chart" viewBox="0 0 260 200"></svg>
-    </div>
-    <div class="chart-sub">
-      <h4>Consumo de frango por habitante</h4>
-      <svg id="svg-e4-s" class="main-chart" viewBox="0 0 260 200"></svg>
-    </div>
-  </div>
-
-  <div class="metrics">
-    <div class="metric azul"><span>Carne bovina — original</span><strong>R$ 32,00/kg</strong></div>
-    <div class="metric azul"><span>Carne bovina — novo</span><strong id="m-e4-pf">R$ 32,00/kg</strong></div>
-    <div class="metric azul"><span>Frango — original</span><strong>45,0 kg/hab./ano</strong></div>
-    <div class="metric azul"><span>Frango — novo consumo</span><strong id="m-e4-qs">45,0 kg/hab./ano</strong></div>
-    <div class="metric azul"><span>ΔP carne bovina</span><strong id="m-e4-dp">+0%</strong></div>
-    <div class="metric azul"><span>ΔQ frango</span><strong id="m-e4-dq">+0%</strong></div>
-  </div>
-
-  <div class="callout azul">
-    <strong>Substitutos:</strong> carne bovina e frango disputam o mesmo lugar no prato. Quando a bovina encarece, parte do consumo migra para o frango —
-    e a elasticidade cruzada positiva (ε ≈ +0,35) mede exatamente esse desvio. O sinal <strong>positivo</strong> é a marca dos bens substitutos.
-    Repare que o efeito é parcial: ε &lt; 1 significa que a troca acontece, mas não na mesma proporção da alta.
-  </div>
-
-  <div class="concept-row">
-    <div class="concept-box">
-      <h3>Sinal da elasticidade cruzada</h3>
-      <p><strong>Positivo</strong> = substitutos (carne bovina e frango, manteiga e margarina). <strong>Negativo</strong> = complementares (bezerro e milho do confinamento, gasolina e carros).</p>
-    </div>
-    <div class="concept-box">
-      <h3>Para o gestor público</h3>
-      <p>Numa alta da carne bovina, a pressão sobre a cesta básica e sobre a merenda escolar não some — ela se desloca para o frango e para o ovo.
-         Quem compra alimentação escolar precisa antecipar esse desvio de demanda antes que ele chegue ao preço do próprio substituto.</p>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════════════════ PAINEL 5 — TARIFA DE ÁGUA MUNICIPAL -->
 <div id="e5" class="panel">
   <span class="scenario-tag tag-tarifa">Política tarifária · escala municipal</span>
@@ -543,7 +285,7 @@
 
   <div class="formula-box">
     <span class="formula">ε = ΔQ% / ΔP%</span>
-    <span class="formula-desc">A mesma fórmula dos cenários da pecuária, agora aplicada a um serviço público.
+    <span class="formula-desc">A mesma fórmula do conceito base, agora aplicada a um serviço público.
       A diferença é quem decide o preço: aqui não é o mercado, é o gestor.</span>
   </div>
 
@@ -825,168 +567,6 @@ function drawE1Revenue(p2,q2,r1,r2){
 
 function resetE1(){document.getElementById('sl-dp').value=20;document.getElementById('sl-dq').value=20;updateE1();}
 
-// ─── PAINEL 2 — BOI GORDO INELÁSTICO ────────────────
-const E2_P = 300, E2_Q = 6.5, E2_EPS = 0.20, E2_ARR = 18; // @ por cabeça
-function nb(v,c){ return v.toFixed(c).replace('.', ','); }
-
-function updateE2(){
-  const dp = parseInt(document.getElementById('sl-e2').value);
-  document.getElementById('sv-e2').textContent = '+' + dp + '%';
-  const sl = document.getElementById('sl-e2'), p = (dp/60)*100;
-  sl.style.background = `linear-gradient(to right,#2e9e5e ${p}%,#ddd ${p}%)`;
-  const p2 = E2_P * (1 + dp/100);
-  const dq = E2_EPS * dp;
-  const q2 = E2_Q * (1 + dq/100);
-  document.getElementById('m-e2-p1').textContent = 'R$ ' + E2_P + '/@';
-  document.getElementById('m-e2-p2').textContent = 'R$ ' + Math.round(p2) + '/@';
-  document.getElementById('m-e2-q2').textContent = nb(q2,2) + ' M cab.';
-  document.getElementById('m-e2-dp').textContent = '+' + dp + '%';
-  document.getElementById('m-e2-dq').textContent = '+' + nb(dq,1) + '%';
-  const r1 = E2_P*E2_Q*E2_ARR/1000, r2 = p2*q2*E2_ARR/1000; // R$ bi
-  document.getElementById('rbar-e2-2').style.width = Math.min(100, Math.round((r2/r1)*60)) + '%';
-  document.getElementById('rbar-e2-2').textContent = 'R$ ' + nb(r2,2) + ' bi';
-  document.getElementById('rv-e2').textContent = 'R$ ' + nb(r2,2) + ' bi';
-  drawE2(p2, q2);
-}
-
-function drawE2(p2, q2){
-  const svg = clr('svg-e2');
-  const W=520,H=300,ml=58,mb=30,mt=20,mr=30;
-  const xMin=5,xMax=8,xStep=1,yMin=280,yMax=520,yStep=40;
-  axes(svg,W,H,ml,mb,mt,mr,'Abate anual (milh\u00f5es de cabe\u00e7as)','Pre\u00e7o da arroba (R$/@)',xMin,xMax,xStep,yMin,yMax,yStep);
-  const X = q => px(q,xMin,xMax,ml,W-mr);
-  const Y = v => px(v,yMin,yMax,H-mb,mt);
-  // Oferta quase vertical: dP/dQ = P/(\u03b5\u00b7Q)
-  const inc = E2_P/(E2_EPS*E2_Q);
-  const sPts = [];
-  for (let v = yMin; v <= yMax; v += 20) sPts.push([E2_Q + (v-E2_P)/inc, v]);
-  curve(svg, sPts.map(a=>[X(a[0]),Y(a[1])]), '#2e9e5e', null, 'S', X(sPts[sPts.length-1][0])+6, Y(yMax)+2);
-  // Demanda descendente passando por (6,5 ; 300)
-  const dPts = [];
-  for (let v = yMin; v <= yMax; v += 20) dPts.push([E2_Q - (v-E2_P)/150, v]);
-  const dVis = dPts.filter(a => a[0] >= xMin && a[0] <= xMax);
-  curve(svg, dVis.map(a=>[X(a[0]),Y(a[1])]), '#c4561a', null, 'D', X(dVis[dVis.length-1][0])-24, Y(dVis[dVis.length-1][1])-8);
-  const e1x=X(E2_Q), e1y=Y(E2_P);
-  dashLine(svg,e1x,e1y,e1x,H-mb,'#2e9e5e'); dashLine(svg,ml,e1y,e1x,e1y,'#2e9e5e');
-  dot(svg,e1x,e1y,'#2e9e5e','E1',e1x-30,e1y+18);
-  if (p2 > E2_P + 1 && p2 <= yMax) {
-    const e2x=X(q2), e2y=Y(p2);
-    dashLine(svg,e2x,e2y,e2x,H-mb,'#c4561a'); dashLine(svg,ml,e2y,e2x,e2y,'#c4561a');
-    dot(svg,e2x,e2y,'#c4561a','E2',e2x+8,e2y-8);
-  }
-}
-function resetE2(){ document.getElementById('sl-e2').value=0; updateE2(); }
-
-// ─── PAINEL 3 — FRANGO ELÁSTICO ───────────────────
-const E3_P = 6.50, E3_Q = 900, E3_EPS = 1.35; // R$/kg ; mil toneladas
-
-function updateE3(){
-  const dp = parseInt(document.getElementById('sl-e3').value);
-  document.getElementById('sv-e3').textContent = '\u2212' + dp + '%';
-  const sl = document.getElementById('sl-e3'), p = (dp/50)*100;
-  sl.style.background = `linear-gradient(to right,#c4561a ${p}%,#ddd ${p}%)`;
-  const p2 = E3_P * (1 - dp/100);
-  const dq = E3_EPS * dp;
-  const q2 = Math.max(0, E3_Q * (1 - dq/100));
-  document.getElementById('m-e3-p2').textContent = 'R$ ' + nb(p2,2) + '/kg';
-  document.getElementById('m-e3-q2').textContent = Math.round(q2) + ' mil t';
-  document.getElementById('m-e3-dp').textContent = '\u2212' + dp + '%';
-  document.getElementById('m-e3-dq').textContent = '\u2212' + nb(dq,1) + '%';
-  const r1 = E3_P*E3_Q/1000, r2 = p2*q2/1000; // R$ bi
-  document.getElementById('rbar-e3-2').style.width = Math.max(2, Math.min(100, Math.round((r2/r1)*70))) + '%';
-  document.getElementById('rbar-e3-2').textContent = 'R$ ' + nb(r2,2) + ' bi';
-  document.getElementById('rv-e3').textContent = 'R$ ' + nb(r2,2) + ' bi';
-  drawE3(p2, q2);
-}
-
-function drawE3(p2, q2){
-  const svg = clr('svg-e3');
-  const W=520,H=300,ml=58,mb=30,mt=20,mr=30;
-  const xMin=200,xMax=1000,xStep=200,yMin=2,yMax=8,yStep=1;
-  axes(svg,W,H,ml,mb,mt,mr,'Produ\u00e7\u00e3o anual (mil toneladas)','Pre\u00e7o (R$/kg)',xMin,xMax,xStep,yMin,yMax,yStep);
-  const X = q => px(q,xMin,xMax,ml,W-mr);
-  const Y = v => px(v,yMin,yMax,H-mb,mt);
-  const inc = E3_P/(E3_EPS*E3_Q); // dP/dQ da oferta
-  const sPts = [];
-  for (let v = yMin; v <= yMax; v += 0.5) sPts.push([E3_Q + (v-E3_P)/inc, v]);
-  const sVis = sPts.filter(a => a[0] >= xMin && a[0] <= xMax);
-  curve(svg, sVis.map(a=>[X(a[0]),Y(a[1])]), '#c4561a', null, 'S', X(sVis[sVis.length-1][0])-20, Y(sVis[sVis.length-1][1])-8);
-  const dPts = [];
-  for (let v = yMin; v <= yMax; v += 0.5) dPts.push([E3_Q - (v-E3_P)/0.004, v]);
-  const dVis = dPts.filter(a => a[0] >= xMin && a[0] <= xMax);
-  curve(svg, dVis.map(a=>[X(a[0]),Y(a[1])]), '#2e6da4', null, 'D', X(dVis[0][0])+6, Y(dVis[0][1])+4);
-  const e1x=X(E3_Q), e1y=Y(E3_P);
-  dashLine(svg,e1x,e1y,e1x,H-mb,'#c4561a'); dashLine(svg,ml,e1y,e1x,e1y,'#c4561a');
-  dot(svg,e1x,e1y,'#c4561a','E1',e1x+8,e1y-8);
-  if (p2 < E3_P - 0.02 && q2 >= xMin) {
-    const e2x=X(q2), e2y=Y(p2);
-    dashLine(svg,e2x,e2y,e2x,H-mb,'#2e6da4'); dashLine(svg,ml,e2y,e2x,e2y,'#2e6da4');
-    dot(svg,e2x,e2y,'#2e6da4','E2',e2x+8,e2y+16);
-  }
-}
-function resetE3(){ document.getElementById('sl-e3').value=0; updateE3(); }
-
-// ─── PAINEL 4 — CRUZADA CARNE × FRANGO ──────────────
-const E4_PB = 32.0, E4_QF = 45.0, E4_EPS = 0.35;
-
-function updateE4(){
-  const dp = parseInt(document.getElementById('sl-e4').value);
-  document.getElementById('sv-e4').textContent = '+' + dp + '%';
-  const sl = document.getElementById('sl-e4'), p = (dp/60)*100;
-  sl.style.background = `linear-gradient(to right,#2e6da4 ${p}%,#ddd ${p}%)`;
-  const pb2 = E4_PB * (1 + dp/100);
-  const dqf = E4_EPS * dp;
-  const qf2 = E4_QF * (1 + dqf/100);
-  document.getElementById('m-e4-pf').textContent = 'R$ ' + nb(pb2,2) + '/kg';
-  document.getElementById('m-e4-qs').textContent = nb(qf2,1) + ' kg/hab./ano';
-  document.getElementById('m-e4-dp').textContent = '+' + dp + '%';
-  document.getElementById('m-e4-dq').textContent = '+' + nb(dqf,1) + '%';
-  document.getElementById('eps-e4-val').textContent = '+' + nb(E4_EPS,2);
-  drawE4Bovina(dp, pb2);
-  drawE4Frango(qf2);
-}
-
-function drawE4Bovina(dp, pb2){
-  const svg = clr('svg-e4-f');
-  const W=260,H=200,ml=45,mb=25,mt=15,mr=15;
-  axes(svg,W,H,ml,mb,mt,mr,'Tempo','R$/kg',0,4,1,0,60,20);
-  const Y = v => px(v,0,60,H-mb,mt);
-  const y0 = Y(E4_PB), y1 = Y(Math.min(58, pb2));
-  const x0=px(0,0,4,ml,W-mr), x1=px(1.5,0,4,ml,W-mr), x2=px(4,0,4,ml,W-mr);
-  se('line',{x1:x0,y1:y0,x2:x1,y2:y0,stroke:'#ccc','stroke-width':'2','stroke-linecap':'round'},svg);
-  if (dp>0) {
-    se('line',{x1:x1,y1:y0,x2:x1,y2:y1,stroke:'#2e6da4','stroke-width':'1.5','stroke-dasharray':'3,2'},svg);
-    se('line',{x1:x1,y1:y1,x2:x2,y2:y1,stroke:'#2e6da4','stroke-width':'2.5','stroke-linecap':'round'},svg);
-    const lb2=se('text',{x:x1+4,y:y1-5,'font-size':'9.5',fill:'#2e6da4','font-family':'DM Mono,monospace'},svg);
-    lb2.textContent='R$ '+nb(pb2,2)+'/kg';
-    se('circle',{cx:x1,cy:y1,r:'5',fill:'#2e6da4',stroke:'white','stroke-width':'1.5'},svg);
-  }
-  const lb=se('text',{x:x0+6,y:y0+14,'font-size':'9.5',fill:'#aaa','font-family':'DM Mono,monospace'},svg);
-  lb.textContent='R$ 32,00/kg';
-  se('circle',{cx:x1,cy:y0,r:'4',fill:'#ccc',stroke:'white','stroke-width':'1.5'},svg);
-}
-
-function drawE4Frango(qf2){
-  const svg = clr('svg-e4-s');
-  const W=260,H=200,ml=42,mb=25,mt=15,mr=15;
-  axes(svg,W,H,ml,mb,mt,mr,'Tempo','kg/hab./ano',0,4,1,0,80,20);
-  const Y = v => px(v,0,80,H-mb,mt);
-  const y0 = Y(E4_QF), y1 = Y(Math.min(78, qf2));
-  const x0=px(0,0,4,ml,W-mr), x1=px(1.5,0,4,ml,W-mr), x2=px(4,0,4,ml,W-mr);
-  se('line',{x1:x0,y1:y0,x2:x1,y2:y0,stroke:'#ccc','stroke-width':'2','stroke-linecap':'round'},svg);
-  if (qf2 > E4_QF + 0.1) {
-    se('line',{x1:x1,y1:y0,x2:x1,y2:y1,stroke:'#2e9e5e','stroke-width':'1.5','stroke-dasharray':'3,2'},svg);
-    se('line',{x1:x1,y1:y1,x2:x2,y2:y1,stroke:'#2e9e5e','stroke-width':'2.5','stroke-linecap':'round'},svg);
-    const lb2=se('text',{x:x1+4,y:y1-5,'font-size':'9.5',fill:'#2e9e5e','font-family':'DM Mono,monospace'},svg);
-    lb2.textContent=nb(qf2,1)+' kg';
-    se('circle',{cx:x1,cy:y1,r:'5',fill:'#2e9e5e',stroke:'white','stroke-width':'1.5'},svg);
-  }
-  const lb=se('text',{x:x0+6,y:y0+14,'font-size':'9.5',fill:'#aaa','font-family':'DM Mono,monospace'},svg);
-  lb.textContent='45,0 kg';
-  se('circle',{cx:x1,cy:y0,r:'4',fill:'#ccc',stroke:'white','stroke-width':'1.5'},svg);
-}
-function resetE4(){ document.getElementById('sl-e4').value=0; updateE4(); }
-
 // ─── PAINEL 5 — TARIFA DE ÁGUA MUNICIPAL ───────────────
 const E5_LIG = 6000;    // ligações residenciais
 const E5_CONS = 12;     // m³ por ligação/mês
@@ -1121,7 +701,7 @@ function showPanel(id,btn){
 
 // ─── INIT ─────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded',()=>{
-  updateE1(); updateE2(); updateE3(); updateE4(); updateE5();
+  updateE1(); updateE5();
 });
 </script>
 </body>
