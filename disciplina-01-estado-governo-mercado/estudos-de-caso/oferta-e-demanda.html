@@ -515,10 +515,8 @@
 <header>
   <p class="kicker">UNEMAT · DEAD/UAB · Especialização em Gestão Pública · Estado, Governo e Mercado</p>
   <h1>Oferta & Demanda<br><em>na pecuária de MT</em></h1>
-  <p class="sub">Quatro cenários reais da pecuária mato-grossense para entender movimentos ao longo da curva e deslocamentos de curva.</p>
+  <p class="sub">Dois cenários da pecuária mato-grossense para entender o deslocamento da demanda e a resposta da oferta no curto e no longo prazo.</p>
   <div class="chips">
-    <span class="chip">Leite · Arenápolis</span>
-    <span class="chip">Bezerro · reposição</span>
     <span class="chip">Carne · exportação China</span>
     <span class="chip">Boi gordo · Araguaia</span>
   </div>
@@ -526,20 +524,12 @@
 
 <div class="nav-wrap">
   <div class="nav-tabs">
-    <button class="nav-tab active" data-panel="c1" onclick="showPanel('c1',this)">
+    <button class="nav-tab active" data-panel="c3" onclick="showPanel('c3',this)">
       <span class="tab-num">Cenário 01</span>
-      Leite valoriza — movimento na curva
-    </button>
-    <button class="nav-tab" data-panel="c2" onclick="showPanel('c2',this)">
-      <span class="tab-num">Cenário 02</span>
-      Bezerro encarece — oferta recua
-    </button>
-    <button class="nav-tab" data-panel="c3" onclick="showPanel('c3',this)">
-      <span class="tab-num">Cenário 03</span>
       China compra carne — demanda avança
     </button>
     <button class="nav-tab" data-panel="c4" onclick="showPanel('c4',this)">
-      <span class="tab-num">Cenário 04</span>
+      <span class="tab-num">Cenário 02</span>
       Arroba sobe — o abate cai
     </button>
   </div>
@@ -547,145 +537,8 @@
 
 <main>
 
-<!-- ══════════════════════════ CENÁRIO 1 -->
-<div id="c1" class="panel active">
-  <div class="scenario-header">
-    <div>
-      <span class="scenario-tag tag-move">Movimento ao longo da curva</span>
-      <h2 class="scenario-title">O laticínio anuncia<br>preço maior pelo litro</h2>
-      <p class="scenario-sub">Bacia leiteira de Arenápolis e Nortelândia, MT</p>
-    </div>
-  </div>
-
-  <div class="control-panel">
-    <label>Preço pago ao produtor (R$/litro):</label>
-    <div class="slider-wrap">
-      <input type="range" id="sl1" min="160" max="280" value="220" step="5" oninput="updateC1()">
-      <span class="slider-val" id="sv1" style="color:var(--azul-med)">R$ 2,20</span>
-    </div>
-    <button class="btn-reset" onclick="resetC1()">↺ Resetar</button>
-  </div>
-
-  <div class="graph-card">
-    <div class="graph-legend">
-      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>Oferta (S)</span>
-      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Demanda (D)</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>E1 — ponto original</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--laranja-med)"></span>E2 — ponto atual</span>
-    </div>
-    <svg id="svg1" class="main-chart" viewBox="0 0 520 300"></svg>
-  </div>
-
-  <div class="metrics">
-    <div class="metric azul">
-      <span>Preço original (E1)</span>
-      <strong>R$ 2,20/L</strong>
-    </div>
-    <div class="metric laranja">
-      <span>Novo preço (E2)</span>
-      <strong id="m1-p">R$ 2,20/L</strong>
-      <span class="delta" id="m1-dp">+0%</span>
-    </div>
-    <div class="metric azul">
-      <span>Qtd. original (E1)</span>
-      <strong>8,0 M L/mês</strong>
-    </div>
-    <div class="metric laranja">
-      <span>Nova quantidade (E2)</span>
-      <strong id="m1-q">8,0 M L/mês</strong>
-      <span class="delta" id="m1-dq">+0%</span>
-    </div>
-  </div>
-
-  <div class="callout azul">
-    <strong>O que observar:</strong> as curvas S e D não se movem. Apenas o <strong>ponto de equilíbrio sobe sobre a curva de oferta</strong>.
-    O preço maior sinalizou ao produtor que valia a pena entregar mais leite — e ele respondeu deslocando o ponto, não a curva.
-  </div>
-
-  <div class="concept-row">
-    <div class="concept-box">
-      <h3>Regra fundamental</h3>
-      <p>Mudança no <strong>preço do próprio bem</strong> → o ponto se move <em>sobre</em> a curva. Nenhuma curva é deslocada.</p>
-    </div>
-    <div class="concept-box">
-      <h3>No curral</h3>
-      <p>O produtor responde em semanas: mais concentrado no cocho, mais vacas em ordenha, menos leite desviado para o bezerro.
-         São ajustes rápidos e reversíveis — por isso o leite responde ao preço muito mais rápido que o boi.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ CENÁRIO 2 -->
-<div id="c2" class="panel">
-  <div class="scenario-header">
-    <div>
-      <span class="scenario-tag tag-shift-s">Deslocamento da oferta ←</span>
-      <h2 class="scenario-title">O bezerro de reposição<br>encarece e aperta o terminador</h2>
-      <p class="scenario-sub">Mercado de boi gordo · Mato Grosso</p>
-    </div>
-  </div>
-
-  <div class="control-panel">
-    <label>Preço do bezerro (R$/cabeça):</label>
-    <div class="slider-wrap">
-      <input type="range" id="sl2" min="1800" max="3600" value="1800" step="50" oninput="updateC2()">
-      <span class="slider-val" id="sv2" style="color:var(--verde-med)">R$ 1.800</span>
-    </div>
-    <button class="btn-reset" onclick="resetC2()">↺ Resetar</button>
-  </div>
-
-  <div class="graph-card">
-    <div class="graph-legend">
-      <span class="leg"><span class="leg-line" style="background:var(--azul-med)"></span>S1 — oferta original</span>
-      <span class="leg"><span class="leg-line" style="background:var(--verde-med); opacity:.7"></span>S2 — nova oferta</span>
-      <span class="leg"><span class="leg-line" style="background:var(--laranja-med)"></span>Demanda D (não muda)</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--azul-med)"></span>E1</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--verde-med)"></span>E2</span>
-    </div>
-    <svg id="svg2" class="main-chart" viewBox="0 0 520 300"></svg>
-  </div>
-
-  <div class="metrics">
-    <div class="metric azul">
-      <span>E1 — preço equilíbrio</span>
-      <strong>R$ 300/@</strong>
-    </div>
-    <div class="metric verde">
-      <span>E2 — novo preço</span>
-      <strong id="m2-p">R$ 300/@</strong>
-      <span class="delta" id="m2-dp">+0%</span>
-    </div>
-    <div class="metric azul">
-      <span>E1 — quantidade</span>
-      <strong>6,50 M cab.</strong>
-    </div>
-    <div class="metric verde">
-      <span>E2 — nova qtd.</span>
-      <strong id="m2-q">6,50 M cab.</strong>
-      <span class="delta" id="m2-dq">−0%</span>
-    </div>
-  </div>
-
-  <div class="callout verde">
-    <strong>O que observar:</strong> a demanda (D) não mudou — os frigoríficos continuam os mesmos. Foi o <strong>custo do animal de reposição</strong>
-    que deslocou a curva S inteira para a esquerda. Ao preço antigo, engordar boi deixou de fechar a conta para parte dos terminadores.
-    Novo equilíbrio E2 com <strong>preço mais alto e quantidade menor</strong>.
-  </div>
-
-  <div class="concept-row">
-    <div class="concept-box">
-      <h3>Fatores que deslocam a oferta</h3>
-      <p>Custo de insumos (bezerro, milho, sal mineral) · Tecnologia · Expectativas · Número de vendedores · Clima e pastagem</p>
-    </div>
-    <div class="concept-box">
-      <h3>Assinatura do choque</h3>
-      <p>Oferta recua ← : E2 fica <strong>acima e à esquerda</strong> de E1. Preço sobe, quantidade cai — juntos.</p>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════════════════════ CENÁRIO 3 -->
-<div id="c3" class="panel">
+<div id="c3" class="panel active">
   <div class="scenario-header">
     <div>
       <span class="scenario-tag tag-shift-d">Deslocamento da demanda →</span>
@@ -836,7 +689,7 @@
     <div class="concept-box">
       <h3>A lei da oferta continua valendo</h3>
       <p>O que muda é o <strong>prazo</strong>. Os bezerros retidos hoje chegam ao abate em 24 a 36 meses:
-         aí a oferta responde no sentido esperado. A curva de longo prazo sobe da esquerda para a direita, como a do leite no Cenário 01.</p>
+         aí a oferta responde no sentido esperado. A curva de longo prazo sobe da esquerda para a direita, como manda a lei da oferta.</p>
     </div>
   </div>
 
@@ -975,106 +828,7 @@ function drawArrow(svg, x1, y1, x2, y2, color, label) {
   }
 }
 
-// ─── CENÁRIO 1 — MOVIMENTO AO LONGO (LEITE) ─────────────
-// S: P = 1,40 + 0,10·Q   D: P = 3,00 − 0,10·Q   E1 = (8 M L/mês ; R$ 2,20/L)
-const C1 = { xMin:2, xMax:14, yMin:1.4, yMax:3.0, xStep:2, yStep:0.2 };
-function c1QdaOferta(p) { return (p - 1.40) / 0.10; }
 function n1(v, c) { return v.toFixed(c).replace('.', ','); }
-
-function drawC1(price) {
-  const svg = clearSVG('svg1');
-  drawAxes(svg, 'Quantidade (milh\u00f5es de litros/m\u00eas)', 'Pre\u00e7o (R$/litro)',
-           C1.xMin, C1.xMax, C1.xStep, C1.yMin, C1.yMax, C1.yStep);
-  const sPts = [[2,1.6],[4,1.8],[6,2.0],[8,2.2],[10,2.4],[12,2.6],[14,2.8]];
-  const dPts = [[2,2.8],[4,2.6],[6,2.4],[8,2.2],[10,2.0],[12,1.8],[14,1.6]];
-  drawCurve(svg, sPts, C1.xMin, C1.xMax, C1.yMin, C1.yMax, '#2e6da4', null, 'S', 486, py(2.85,C1.yMin,C1.yMax));
-  drawCurve(svg, dPts, C1.xMin, C1.xMax, C1.yMin, C1.yMax, '#c4561a', null, 'D', 486, py(1.55,C1.yMin,C1.yMax));
-  const e1x = px(8, C1.xMin, C1.xMax), e1y = py(2.2, C1.yMin, C1.yMax);
-  drawDash(svg, e1x, e1y, e1x, py(C1.yMin, C1.yMin, C1.yMax), '#2e6da4');
-  drawDash(svg, px(C1.xMin,C1.xMin,C1.xMax), e1y, e1x, e1y, '#2e6da4');
-  drawDot(svg, e1x, e1y, '#2e6da4', 'E1', e1x+10, e1y-10);
-  if (Math.abs(price - 2.20) > 0.001) {
-    const q2 = c1QdaOferta(price);
-    const e2x = px(q2, C1.xMin, C1.xMax), e2y = py(price, C1.yMin, C1.yMax);
-    drawDash(svg, e2x, e2y, e2x, py(C1.yMin, C1.yMin, C1.yMax), '#c4561a');
-    drawDash(svg, px(C1.xMin,C1.xMin,C1.xMax), e2y, e2x, e2y, '#c4561a');
-    drawDot(svg, e2x, e2y, '#c4561a', 'E2', e2x+10, e2y-10);
-  }
-}
-
-function updateC1() {
-  const cent = parseInt(document.getElementById('sl1').value);
-  const price = cent / 100;
-  document.getElementById('sv1').textContent = 'R$ ' + n1(price,2);
-  drawC1(price);
-  const dp = ((price - 2.20) / 2.20) * 100;
-  const q2 = c1QdaOferta(price);
-  const dq = ((q2 - 8) / 8) * 100;
-  document.getElementById('m1-p').textContent = 'R$ ' + n1(price,2) + '/L';
-  document.getElementById('m1-dp').textContent = (dp>=0?'+':'\u2212') + n1(Math.abs(dp),1) + '%';
-  document.getElementById('m1-dp').className = 'delta ' + (dp>=0?'up':'dn');
-  document.getElementById('m1-q').textContent = n1(q2,1) + ' M L/m\u00eas';
-  document.getElementById('m1-dq').textContent = (dq>=0?'+':'\u2212') + n1(Math.abs(dq),1) + '%';
-  document.getElementById('m1-dq').className = 'delta ' + (dq>=0?'up':'dn');
-  const sl = document.getElementById('sl1');
-  const p = ((cent-160)/(280-160))*100;
-  sl.style.background = `linear-gradient(to right, #2e6da4 ${p}%, #ddd ${p}%)`;
-}
-function resetC1() { document.getElementById('sl1').value=220; updateC1(); }
-
-// ─── CENÁRIO 2 — DESLOCAMENTO DA OFERTA (BEZERRO) ────────
-// S1: P = 40 + 40·Q    D: P = 560 − 40·Q    E1 = (6,5 M cab. ; R$ 300/@)
-const C2 = { xMin:5, xMax:8, yMin:240, yMax:400, xStep:1, yStep:20 };
-function c2ShiftFromBezerro(preco) { return Math.min(80, ((preco-1800)/1800)*80); }
-
-function drawC2(preco) {
-  const svg = clearSVG('svg2');
-  drawAxes(svg, 'Abate anual (milh\u00f5es de cabe\u00e7as)', 'Pre\u00e7o da arroba (R$/@)',
-           C2.xMin, C2.xMax, C2.xStep, C2.yMin, C2.yMax, C2.yStep);
-  const extra = c2ShiftFromBezerro(preco);
-  const s1Pts = [[5,240],[5.5,260],[6,280],[6.5,300],[7,320],[7.5,340],[8,360]];
-  drawCurve(svg, s1Pts, C2.xMin, C2.xMax, C2.yMin, C2.yMax, '#2e6da4', null, 'S1', 486, py(365,C2.yMin,C2.yMax));
-  if (extra > 0.5) {
-    const s2Pts = s1Pts.map(p => [p[0], p[1]+extra]).filter(p => p[1] <= C2.yMax);
-    drawCurve(svg, s2Pts, C2.xMin, C2.xMax, C2.yMin, C2.yMax, '#2e9e5e', '7,4', 'S2', 486, py(Math.min(C2.yMax, 365+extra),C2.yMin,C2.yMax));
-    const mx = px(6.5,C2.xMin,C2.xMax);
-    drawArrow(svg, mx, py(305,C2.yMin,C2.yMax), mx, py(295+extra,C2.yMin,C2.yMax), '#555', '');
-    const ta = el('text', { x:mx+8, y:py(300+extra/2,C2.yMin,C2.yMax)+4, 'font-size':'10', fill:'#666', 'font-family':'DM Mono, monospace' }, svg);
-    ta.textContent = 'S desloca \u2191 (bezerro \u2191)';
-  }
-  const dPts = [[5,360],[5.5,340],[6,320],[6.5,300],[7,280],[7.5,260],[8,240]];
-  drawCurve(svg, dPts, C2.xMin, C2.xMax, C2.yMin, C2.yMax, '#c4561a', null, 'D', 486, py(235,C2.yMin,C2.yMax));
-  const e1x = px(6.5,C2.xMin,C2.xMax), e1y = py(300,C2.yMin,C2.yMax);
-  drawDash(svg, e1x, e1y, e1x, py(C2.yMin,C2.yMin,C2.yMax), '#2e6da4');
-  drawDash(svg, px(C2.xMin,C2.xMin,C2.xMax), e1y, e1x, e1y, '#2e6da4');
-  drawDot(svg, e1x, e1y, '#2e6da4', 'E1', e1x+10, e1y-10);
-  if (extra > 0.5) {
-    const q2 = (520-extra)/80, p2 = 560 - 40*q2;
-    const e2x = px(q2,C2.xMin,C2.xMax), e2y = py(p2,C2.yMin,C2.yMax);
-    drawDash(svg, e2x, e2y, e2x, py(C2.yMin,C2.yMin,C2.yMax), '#2e9e5e');
-    drawDash(svg, px(C2.xMin,C2.xMin,C2.xMax), e2y, e2x, e2y, '#2e9e5e');
-    drawDot(svg, e2x, e2y, '#2e9e5e', 'E2', e2x+10, e2y-10);
-  }
-}
-
-function updateC2() {
-  const preco = parseInt(document.getElementById('sl2').value);
-  document.getElementById('sv2').textContent = 'R$ ' + preco.toLocaleString('pt-BR');
-  drawC2(preco);
-  const extra = c2ShiftFromBezerro(preco);
-  const q2 = (520-extra)/80, p2 = 560 - 40*q2;
-  const dp = ((p2-300)/300)*100, dq = ((q2-6.5)/6.5)*100;
-  document.getElementById('m2-p').textContent = 'R$ '+Math.round(p2)+'/@';
-  document.getElementById('m2-dp').textContent = (dp>=0?'+':'\u2212')+n1(Math.abs(dp),1)+'%';
-  document.getElementById('m2-dp').className = 'delta '+(dp>=0?'up':'dn');
-  document.getElementById('m2-q').textContent = n1(q2,2)+' M cab.';
-  document.getElementById('m2-dq').textContent = (dq>=0?'+':'\u2212')+n1(Math.abs(dq),1)+'%';
-  document.getElementById('m2-dq').className = 'delta '+(dq>=0?'up':'dn');
-  const sl = document.getElementById('sl2');
-  const p = ((preco-1800)/(3600-1800))*100;
-  sl.style.background = `linear-gradient(to right, #2e9e5e ${p}%, #ddd ${p}%)`;
-}
-function resetC2() { document.getElementById('sl2').value=1800; updateC2(); }
 
 // ─── CENÁRIO 3 — DESLOCAMENTO DA DEMANDA (CHINA) ────────
 // S: P = 40 + 40·Q    D1: P = 560 − 40·Q    D2: P = 560 + shift − 40·Q
@@ -1261,8 +1015,6 @@ function showPanel(id, btn) {
 
 // ─── INIT ─────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  updateC1();
-  updateC2();
   updateC3();
   drawC4(300);
 });
