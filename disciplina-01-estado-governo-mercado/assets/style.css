@@ -256,3 +256,9 @@ footer { margin: 3rem 0 2rem; color: var(--muted); font-size: .9rem; }
 .vx-subl { border-top: 2px dotted var(--accent-2); }
 .vx-sw { display: inline-block; width: 16px; height: 12px; background: rgba(192,57,43,.25); vertical-align: middle; margin-right: .35rem; }
 @media (prefers-color-scheme: dark) { .vx-soc-c { stroke: #b39dfc; } .vx-soc-t { fill: #b39dfc; } .vx-soc { border-top-color: #b39dfc; } .vx-perda { fill: #ff8a7a; } }
+
+/* quiz de revisão na página de conteúdos */
+.quiz-rev { border-left: 4px solid var(--accent); }
+.quiz-rev .label { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; margin-bottom: .3rem; color: var(--accent); }
+.quiz-rev .quiz-score { font-weight: 600; min-height: 1.2em; }
+.quiz-rev .quiz-key { display: none; }
